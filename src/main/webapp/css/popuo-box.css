@@ -1,7 +1,7 @@
 /* Styles for dialog window */
-#small-dialog,#small-dialog1,#small-dialog2{
-	background:transparent;
-	padding: 0;
+#small-dialog,#small-dialog1{
+	background: white;
+	padding:20px 20px 30px 20px;
 	text-align: left;
 	max-width: 650px;
 	margin: 40px auto;
@@ -10,7 +10,7 @@
 }
 #small-dialog-it,#small-dialog-in,#small-dialog-fr,#small-dialog-sh,#small-dialog-sf,#small-dialog-su,#small-dialog-me,#small-dialog-ch,#small-dialog-pi,#small-dialog-am {
 	background: white;
-	padding:0px;
+	padding:20px;
 	text-align: left;
 	max-width: 450px;
 	margin: 40px auto;
@@ -183,7 +183,7 @@ opacity: 0;
   display: none !important; }
 .mfp-content iframe{
 	width:100%;
-	min-height:380px;
+	min-height:500px;
 }
 .mfp-preloader {
   color: #cccccc;
@@ -223,28 +223,25 @@ button::-moz-focus-inner {
   border: 0; }
 
 .mfp-close {
-	width: 23px;
-    height: 30px;
-    line-height: 25px;
-    position: absolute;
-    left: -30px;
-    top: -30px;
-    text-decoration: none;
-    text-align: center;
-    padding: 0 0 18px 10px;
-    color: white !important;
-    font-style: normal;
-    font-size: 45px;
-    outline: none;
-    font-family: 'Open Sans', sans-serif;
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  position: absolute;
+ right: 0px;
+	top: -43px;
+  text-decoration: none;
+  text-align: center;
+  padding: 0 0 18px 10px;
+  color: white;
+  font-style: normal;
+  font-size: 28px;
+  outline:none;	
  }
   .mfp-close:hover, .mfp-close:focus {
     opacity: 1; }
 
 .mfp-close-btn-in .mfp-close {
-  color: #333333; 
-  background: none;
-  }
+  color: #333333; }
 
 .mfp-image-holder .mfp-close,
 .mfp-iframe-holder .mfp-close {
@@ -254,9 +251,43 @@ button::-moz-focus-inner {
   padding-right: 6px;
   width: 100%; 
 }
-.login h3,.signup h3{
-	margin:1em 0;
-	color: #a63d56;
+.login h3,.select-city h3{
+	margin:0 0 0.5em 0;
+	color: #003b64;
+	font-size:1.5em;
+	font-weight:700;
+}
+.select-city p {
+	font-size:1em;
+	font-weight:500;
+	margin-bottom:0.5em;
+}
+.confirmation input.email[type="text"], .confirmation input.email[type="text"] {
+  width: 90%;
+  padding: 10px;
+  background: #FFF;
+  margin: 10px 0;
+  outline: none;
+  color: #817F7F;
+  border: solid 1px #817F7F;
+  font-family: 'Open Sans', sans-serif;
+}
+.confirmation input[type="submit"]{
+  border: 0px;
+  padding: .5em 2em;
+  background: #003b64;
+  margin: 1em 0 0 0;
+  outline: none;
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+  -webkit-appearance: none;
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+}
+.confirmation input[type="submit"]:hover {
+	color: #000;
+    background-color: #fff200;
 }
 .login input[type="text"],.login input[type="password"]{
 	width:90%;
@@ -266,61 +297,32 @@ button::-moz-focus-inner {
 	outline: none !important;
 }
 .signup input[type="text"]{
-	width: 44.5%;
-	padding: 5px;
-	margin: 10px 0;
-	outline: none;
-	background: #EBEBEB;
-	border: solid 1px #222;
-}
-.signup input.email[type="text"],.signup input[type="password"]{
-	width: 90%;
-	padding: 5px;
-	margin: 10px 0;
-	outline: none;
-	background: #EBEBEB;
-	border: solid 1px #222;
+	width:70%;
+	margin:0 auto;
+	padding:5px;
+	margin:10px 0;
+	outline: none !important;
 }
 .login input[type="submit"],.signup input[type="submit"]{
-	background: #347083;
-	border: 0px;
-	padding: 5px 10px;
-	margin: 10px 10px;
-	outline: none;
-	font-size: 18px;
+	background:#cf0000;
+	border:0px;
+	padding:5px 10px;
+	margin:10px 10px;
+	outline:none;
 	color: #fff;
 	text-transform: uppercase;
-	width: 17%;	
-	-webkit-appearance: none;
+	
 }
 .login input[type="submit"]:hover,.signup input[type="submit"]:hover{
-	background:#163035;
+	background:#000;
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
 }
-@media all and (max-width:667px){
-	.mfp-content iframe {
-		min-height: 235px;
-	}
-}
-@media all and (max-width:640px){
-	.mfp-close {
-		left: 0;
-		top: -38px;
-	}
-}
 @media all and (max-width:480px){
 	.comments-area textarea{
 		height:100px;
-	}
-	.login input[type="submit"], .signup input[type="submit"] {
-		font-size: 14px;
-		width: 20%;
-	}
-	.mfp-close {
-		left: 0;
 	}
 }
 @media all and (max-width:320px){
@@ -342,17 +344,6 @@ button::-moz-focus-inner {
 	}
 	.mfp-content iframe{
 		width:100%;
-		min-height:150px;
-	}
-	.login input[type="submit"], .signup input[type="submit"] {
-		font-size: 12px;
-		width: 29%;
-	}
-	.signup input[type="text"] {
-		width: 90%;
-	}
-	.mfp-close {
-		right: 2px;
-		top: -35px;
+		min-height:250px;
 	}
 } 
