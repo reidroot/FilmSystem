@@ -9,6 +9,7 @@ public class Cinema implements Serializable {
     private String cinemaName;         //影院名称
     private String address;            //影院地址
     private String picture;            //影院图片
+    private String telephone;          //影院电话号码
     private List<Hall> hallList;       //该影院下所有放映厅的集合
 
     public Cinema() {

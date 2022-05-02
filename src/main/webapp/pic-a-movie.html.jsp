@@ -565,25 +565,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="now-showing-list">
             <div class="col-md-4 movies-by-category movie-booking">
-                <h5>Looking for a specific cinema?</h5>
-                <input type="text" class="text" value="Type a cinema Name to filter" onfocus="this.value = '';" onblur="if (this.value == 'Type a cinema Name to filter') {this.value = 'Search for a movie name';}">
+<%--                <h5>Looking for a specific cinema?</h5>--%>
+<%--                <input type="text" class="text" value="Type a cinema Name to filter" onfocus="this.value = '';" onblur="if (this.value == 'Type a cinema Name to filter') {this.value = 'Search for a movie name';}">--%>
                 <div class="movie-ticket-book">
-                    <input type="checkbox" id="c1" name="cc">
-                    <label class="lang">Hide Unavailable Shows</label>
                     <img src="images/movie-show.jpg" alt="">
                     <div class="bahubali-details">
-                        <h4>Release Date:</h4>
-                        <p>Jul 3, 2015</p>
-                        <h4>Duration:</h4>
-                        <p>2 hrs 26 mins</p>
-                        <h4>Director:</h4>
-                        <p>Vemuganti</p>
-                        <h4>Language:</h4>
-                        <p>Telugu</p>
-                        <h4>Genre:</h4>
-                        <p>Action, Romance</p>
-                        <h4>Cast &amp; Crew:</h4>
-                        <p>Manoj Nandam, Priyadarshini, Vikrant, Brahmanandam, Ali Basha</p>
+                        <h4>导演:</h4>
+                        <p>张艺谋 / 张末</p>
+                        <h4>编剧:</h4>
+                        <p>陈宇</p>
+                        <h4>主演:</h4>
+                        <p>陈永胜 / 章宇 / 张译 / 刘奕铁 / 黄炎 / 王梓屹 / 陈铭杨 / 王乃训 / 程泓鑫 / 赵琥成 / 李汶聪 / 林博洋 / 王佑名 / 代文博 / 李昆 / 曹操 / 柯国庆 / 钱焜 / 暗真 / 柯南·何裴 / 李凯文 / 勃小龙 / 孟丹青 / 叶风光</p>
+                        <h4>类型:</h4>
+                        <p>剧情 / 历史 / 战争</p>
+                        <h4>制片国家/地区:</h4>
+                        <p>中国大陆</p>
+                        <h4>语言:</h4>
+                        <p>汉语普通话 / 英语</p>
+                        <h4>上映日期:</h4>
+                        <p>2022-02-01</p>
+                        <h4>片长:</h4>
+                        <p>96分钟</p>
                     </div>
                 </div>
             </div>
