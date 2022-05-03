@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="File_rating_website" />
+        <module name="FilmSystem" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
@@ -16,6 +17,7 @@
     <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf-8" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="File_rating_website" options="" />
+      <module name="FilmSystem" options="" />
     </option>
   </component>
 </project>

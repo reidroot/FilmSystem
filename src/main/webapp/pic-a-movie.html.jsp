@@ -570,7 +570,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="movie-ticket-book">
                     <img src="images/movie-show.jpg" alt="">
                     <div class="bahubali-details">
-                        <h4>导演:</h4>
+                        <h4>导演11111:</h4>
                         <p>张艺谋 / 张末</p>
                         <h4>编剧:</h4>
                         <p>陈宇</p>

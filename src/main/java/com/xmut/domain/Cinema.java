@@ -18,6 +18,7 @@ public class Cinema implements Serializable {
 
     public Cinema(Long cinemaId, String cinemaName, String address, String picture, List<Hall> hallList) {
         this.cinemaId = cinemaId;
+
         this.cinemaName = cinemaName;
         this.address = address;
         this.picture = picture;
