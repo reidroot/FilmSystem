@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
@@ -22,4 +25,27 @@ public class AdminController {
 
         return modelAndView;
     }
+
+    @RequestMapping("/toIndexPage")
+    public String toIndexPage(){
+        return "redirect:pages/admin_index.jsp";
+    }
+
+    @RequestMapping("/login")
+    public String login(Admin admin, HttpServletRequest request){
+
+        //调用Service
+        Admin dbAdmin = adminService.login(admin);
+        System.out.println(dbAdmin);
+        if (dbAdmin == null){
+            //登录失败
+            request.setAttribute("msg", "登录失败，用户或密码错误！");
+            return "forward:pages/admin_login.jsp";
+        }else{
+            request.getSession().setAttribute("ADMIN_SESSION", dbAdmin);
+            return "redirect:pages/admin_index.jsp";
+        }
+    }
+
+
 }

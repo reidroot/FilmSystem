@@ -18,7 +18,7 @@
 <!-- Date Picker -->
 <!-- Daterange picker -->
 <!-- Bootstrap time Picker -->
-<!--<link rel="stylesheet" href="../../../plugins/timepicker/bootstrap-timepicker.min.css">-->
+<!--<link rel="stylesheet" href="../..//admin/plugins/timepicker/bootstrap-timepicker.min.css">-->
 <!-- bootstrap wysihtml5 - text editor -->
 <!--数据表格-->
 <!-- 表格树 -->
@@ -67,7 +67,7 @@ folder instead of downloading all of them to reduce the load. -->
 <!-- select2 -->
 <!-- bootstrap color picker -->
 <!-- bootstrap time picker -->
-<!--<script src="../../../plugins/timepicker/bootstrap-timepicker.min.js"></script>-->
+<!--<script src="../..//admin/plugins/timepicker/bootstrap-timepicker.min.js"></script>-->
 <!-- Bootstrap WYSIHTML5 -->
 <!--bootstrap-markdown-->
 <!-- CK Editor -->
@@ -86,25 +86,25 @@ folder instead of downloading all of them to reduce the load. -->
 <!-- bootstrap-datetimepicker -->
 <!-- 页面meta /-->
 
-<link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="../plugins/ionicons/css/ionicons.min.css">
-<link rel="stylesheet" href="../plugins/iCheck/square/blue.css">
-<link rel="stylesheet" href="../plugins/morris/morris.css">
-<link rel="stylesheet" href="../plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-<link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
-<link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
-<link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-<link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
-<link rel="stylesheet" href="../plugins/treeTable/jquery.treetable.css">
-<link rel="stylesheet" href="../plugins/treeTable/jquery.treetable.theme.default.css">
-<link rel="stylesheet" href="../plugins/select2/select2.css">
-<link rel="stylesheet" href="../plugins/colorpicker/bootstrap-colorpicker.min.css">
-<link rel="stylesheet" href="../plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
-<link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
-<link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../plugins/ionslider/ion.rangeSlider.css">
-<link rel="stylesheet" href="../plugins/ionslider/ion.rangeSlider.skinNice.css">
-<link rel="stylesheet" href="../plugins/bootstrap-slider/slider.css">
-<link rel="stylesheet" href="../plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
+<link rel="stylesheet" href="/admin/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/admin/plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/admin/plugins/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="/admin/plugins/iCheck/square/blue.css">
+<link rel="stylesheet" href="/admin/plugins/morris/morris.css">
+<link rel="stylesheet" href="/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+<link rel="stylesheet" href="/admin/plugins/datepicker/datepicker3.css">
+<link rel="stylesheet" href="/admin/plugins/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+<link rel="stylesheet" href="/admin/plugins/datatables/dataTables.bootstrap.css">
+<link rel="stylesheet" href="/admin/plugins/treeTable/jquery.treetable.css">
+<link rel="stylesheet" href="/admin/plugins/treeTable/jquery.treetable.theme.default.css">
+<link rel="stylesheet" href="/admin/plugins/select2/select2.css">
+<link rel="stylesheet" href="/admin/plugins/colorpicker/bootstrap-colorpicker.min.css">
+<link rel="stylesheet" href="/admin/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+<link rel="stylesheet" href="/admin/plugins/adminLTE/css/AdminLTE.css">
+<link rel="stylesheet" href="/admin/plugins/adminLTE/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="/admin/css/style.css">
+<link rel="stylesheet" href="/admin/plugins/ionslider/ion.rangeSlider.css">
+<link rel="stylesheet" href="/admin/plugins/ionslider/ion.rangeSlider.skinNice.css">
+<link rel="stylesheet" href="/admin/plugins/bootstrap-slider/slider.css">
+<link rel="stylesheet" href="/admin/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">

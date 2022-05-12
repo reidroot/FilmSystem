@@ -11,7 +11,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminMapper adminMapper;
+
     public Admin findAdminById(long adminId) {
         return adminMapper.findAdminById(adminId);
+    }
+
+    public Admin login(Admin admin) {
+        return adminMapper.findAdminByNameAndPwd(admin);
     }
 }

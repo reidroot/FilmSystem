@@ -8,5 +8,9 @@
     <select id="findAdminById" parameterType="long" resultType="Admin">
         select * from t_admin where admin_id = #{id}
     </select>
+    
+    <select id="findAdminByNameAndPwd" parameterType="Admin" resultType="Admin">
+        select * from t_admin where admin_name = #{adminName} and admin_pwd = #{adminPwd};
+    </select>
 
 </mapper>

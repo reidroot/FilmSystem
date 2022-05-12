@@ -16,8 +16,24 @@
 
     <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/pages/admin/"/>
-        <!--<property name="suffix" value=".jsp"/>-->
+        <property name="suffix" value=".jsp"/>
     </bean>
 
+
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/> <!-- 配置拦截器作用的路径 -->
+            <mvc:exclude-mapping path="/css/**"/> <!-- 配置不需要拦截器作用的路径 -->
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/fonts/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+            <mvc:exclude-mapping path="/admin/css/**"/>
+            <mvc:exclude-mapping path="/admin/img/**"/>
+            <mvc:exclude-mapping path="/admin/js/**"/>
+            <mvc:exclude-mapping path="/admin/pages/**"/>
+            <mvc:exclude-mapping path="/admin/plugins/**"/>
+            <bean class="com.xmut.interceptor.ResourceInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
