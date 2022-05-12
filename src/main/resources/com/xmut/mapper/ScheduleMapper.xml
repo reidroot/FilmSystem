@@ -3,5 +3,7 @@
         PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xmut.mapper.ScheduleMapper">
-
+    <select id="findScheduleById" parameterType="Long" resultType="Schedule">
+        select * from t_schedule where schedule_id = #{scheduleId}
+    </select>
 </mapper>

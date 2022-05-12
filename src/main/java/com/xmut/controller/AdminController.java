@@ -18,7 +18,7 @@ public class AdminController {
 
     @RequestMapping("/test")
     public ModelAndView findAdminById(Long adminId){
-        Admin admin = adminService.findAdminById(1);
+        Admin admin = adminService.getAdminById(1);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin.jsp");
         modelAndView.addObject("admin",admin);

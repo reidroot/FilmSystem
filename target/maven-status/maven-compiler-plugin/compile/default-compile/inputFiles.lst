@@ -22,6 +22,7 @@ D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\RemarkService.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Schedule.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\mapper\CinemaMapper.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\mapper\OrderMapper.java
+D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\interceptor\ResourceInterceptor.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\FilmService.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\mapper\ScheduleMapper.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\CinemaService.java
@@ -29,9 +30,11 @@ D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\HallService.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\mapper\AdminMapper.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\controller\UserController.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\mapper\TagMapper.java
+D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\PageResult.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Film.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\ScheduleService.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\controller\ScheduleController.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\mapper\FilmMapper.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\OrderService.java
+D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\impl\OrderServiceImpl.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Hall.java

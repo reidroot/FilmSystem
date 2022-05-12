@@ -185,7 +185,7 @@
                 <ul class="treeview-menu">
 
                     <li id="list-order">
-                        <a href="list_order.jsp" target="mainFrame">
+                        <a href="/loadPagedOrders" target="mainFrame">
                             <i class="fa fa-circle-o"></i> 订单列表
                         </a>
                     </li>

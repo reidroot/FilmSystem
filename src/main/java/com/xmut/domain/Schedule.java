@@ -1,12 +1,13 @@
 package com.xmut.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public class Schedule implements Serializable {
 
     private Long scheduleId;            //场次ID
-    private String datetime;            //放映时间
+    private Date startTime;            //放映时间
     private String language;            //语言版本
     private Double price;               //售价
     private Integer remain;             //剩余座位
@@ -19,9 +20,9 @@ public class Schedule implements Serializable {
         super();
     }
 
-    public Schedule(Long scheduleId, String datetime, String language, Double price, Integer remain, Integer scheduleStatus, Hall scheduleHall, Film scheduleFilm, List<Order> orderList) {
+    public Schedule(Long scheduleId, Date startTime, String language, Double price, Integer remain, Integer scheduleStatus, Hall scheduleHall, Film scheduleFilm, List<Order> orderList) {
         this.scheduleId = scheduleId;
-        this.datetime = datetime;
+        this.startTime = startTime;
         this.language = language;
         this.price = price;
         this.remain = remain;
@@ -39,12 +40,12 @@ public class Schedule implements Serializable {
         this.scheduleId = scheduleId;
     }
 
-    public String getDatetime() {
-        return datetime;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
     public String getLanguage() {
@@ -107,7 +108,7 @@ public class Schedule implements Serializable {
     public String toString() {
         return "Schedule{" +
                 "scheduleId=" + scheduleId +
-                ", datetime='" + datetime + '\'' +
+                ", startTime=" + startTime +
                 ", language='" + language + '\'' +
                 ", price=" + price +
                 ", remain=" + remain +

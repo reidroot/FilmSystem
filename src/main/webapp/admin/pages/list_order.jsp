@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -92,15 +93,14 @@
                             </tr>
                             </thead>
                             <tbody>
-
+                            <c:forEach items="${pageResult.rows}" var="order">
                             <tr>
                                 <td><input name="ids" type="checkbox"></td>
-                                <td>1</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
+                                <td>${order.orderId}</td>
+                                <td>${order.position}</td>
+                                <td>${order.amount}</td>
+                                <td>${order.orderTime}</td>
+                                <td>${order.orderStatus}</td>
                                 <td class="text-center">开启</td>
                                 <td class="text-center">
                                     <button type="button" class="btn bg-olive btn-xs">订单</button>
@@ -108,81 +108,7 @@
                                     <button type="button" class="btn bg-olive btn-xs">编辑</button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>2</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>3</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>4</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>5</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>6</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
+                            </c:forEach>
                             <tr>
                                 <td><input name="ids" type="checkbox"></td>
                                 <td>7</td>

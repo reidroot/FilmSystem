@@ -153,6 +153,8 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
+                    <!-- 解决get方式请求中文乱码问题 -->
+                    <uriEncoding>utf-8</uriEncoding>
                     <port>8080</port>
                     <path>/</path>
                 </configuration>
