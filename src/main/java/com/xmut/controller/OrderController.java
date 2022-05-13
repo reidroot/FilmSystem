@@ -17,7 +17,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping("/test")
+    @RequestMapping("/orederTest")
     @ResponseBody
     public String test(){
         System.out.println("---------------order测试---------------");

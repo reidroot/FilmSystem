@@ -13,7 +13,7 @@ public interface OrderMapper {
     注意： selectAllXxxs，记得加s */
 
     /**
-     * 根据orderID查询Order  一对一关联 User、Schedule
+     * 根据orderId查询Order  一对一关联 User、Schedule
      * @param orderId
      * @return
      */

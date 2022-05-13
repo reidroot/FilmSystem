@@ -83,12 +83,11 @@
                                 <th class="" style="padding-right:0px;">
                                     <input id="selall" type="checkbox" class="icheckbox_square-blue">
                                 </th>
-                                <th class="sorting_asc">ID</th>
-                                <th class="sorting_desc">Browser [降序]</th>
-                                <th class="sorting_asc sorting_asc_disabled">Platform(s) [屏蔽升序]</th>
-                                <th class="sorting_desc sorting_desc_disabled">Engine version [屏蔽降序]</th>
-                                <th class="sorting">CSS grade [点击排序]</th>
-                                <th class="text-center sorting">屏蔽</th>
+                                <th class="sorting_asc">订单编号</th>
+                                <th class="sorting_desc">座位信息</th>
+                                <th class="sorting_asc">订单金额</th>
+                                <th class="sorting_desc sorting_desc_disabled">订单支付时间</th>
+                                <th class="sorting">订单状态</th>
                                 <th class="text-center">操作</th>
                             </tr>
                             </thead>
@@ -101,30 +100,13 @@
                                 <td>${order.amount}</td>
                                 <td>${order.orderTime}</td>
                                 <td>${order.orderStatus}</td>
-                                <td class="text-center">开启</td>
                                 <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
                                     <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
+                                    <button type="button" class="btn bg-blue btn-xs">编辑</button>
+                                    <button type="button" class="btn bg-red btn-xs">删除</button>
                                 </td>
                             </tr>
                             </c:forEach>
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>7</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
-
                             </tbody>
                             <!--
                         <tfoot>

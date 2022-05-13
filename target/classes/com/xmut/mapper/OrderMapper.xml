@@ -31,4 +31,10 @@
     </select>
 
 
+    <!--==================================== 提供给其他Mapper ====================================-->
+    <!-- 一对多： 提供给ScheduleMapper -->
+    <select id="findOrderByScheduleId" parameterType="Long" resultMap="OrderWithUserAndSchedule">
+        select * from t_order where schedule_id = #{schedule_id}
+    </select>
+
 </mapper>

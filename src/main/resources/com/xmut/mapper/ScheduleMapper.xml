@@ -3,7 +3,31 @@
         PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xmut.mapper.ScheduleMapper">
-    <select id="findScheduleById" parameterType="Long" resultType="Schedule">
+    <!-- 自定义结果集映射 -->
+    <resultMap id="ScheduleWithHallAndFilm" type="Schedule">
+        <id property="scheduleId" column="schedule_id"/>
+        <result property="startTime" column="start_time"/>
+        <result property="language" column="language"/>
+        <result property="price" column="price"/>
+        <result property="remain" column="remain"/>
+        <result property="scheduleStatus" column="schedule_status"/>
+        <!-- association来配置一对一映射 嵌套查询-->
+        <association property="scheduleHall" column="hall_id" javaType="Hall"
+                     select="com.xmut.mapper.HallMapper.findHallToSchedule"/>
+        <association property="scheduleFilm" column="film_id" javaType="Film"
+                     select="com.xmut.mapper.FilmMapper.findFilmToSchedule"/>
+        <!-- collection来配置一对多映射 嵌套查询-->
+        <collection property="orderList" column="scheduleId" ofType="Order"
+                    select="com.xmut.mapper.OrderMapper.findOrderByScheduleId">
+        </collection>
+    </resultMap>
+    <!-- 嵌套查询方式 -->
+    <select id="findScheduleById" parameterType="Long" resultMap="ScheduleWithHallAndFilm">
         select * from t_schedule where schedule_id = #{scheduleId}
     </select>
+
+    <select id="selectPagedSchedules" resultMap="ScheduleWithHallAndFilm">
+        select * from t_schedule
+    </select>
+
 </mapper>

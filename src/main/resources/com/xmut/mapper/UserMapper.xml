@@ -6,4 +6,6 @@
     <select id="findUserById" parameterType="Long" resultType="User">
         select * from t_user where user_id = #{userId}
     </select>
+
+    <!--==================================== 提供给其他Mapper ====================================-->
 </mapper>

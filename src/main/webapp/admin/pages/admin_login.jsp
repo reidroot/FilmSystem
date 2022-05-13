@@ -30,7 +30,7 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">登录系统</p>
-            <span>${msg}</span>
+            <span style="color: red;">${msg}</span>
             <form action="${pageContext.request.contextPath}/admin/login" method="post">
                 <div class="input-group mb-3">
                     <input type="text" name="adminName" class="form-control" placeholder="管理员账号">

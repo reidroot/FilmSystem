@@ -16,6 +16,7 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    // 测试
     @RequestMapping("/test")
     public ModelAndView findAdminById(Long adminId){
         Admin admin = adminService.getAdminById(1);

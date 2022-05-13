@@ -167,7 +167,7 @@
                     </li>
 
                     <li id="list-schedule">
-                        <a href="list_schedule.jsp" target="mainFrame">
+                        <a href="/loadPagedSchedules" target="mainFrame">
                             <i class="fa fa-circle-o"></i> 场次列表
                         </a>
                     </li>

@@ -29,7 +29,6 @@
             <mvc:exclude-mapping path="/admin/css/**"/>
             <mvc:exclude-mapping path="/admin/img/**"/>
             <mvc:exclude-mapping path="/admin/js/**"/>
-            <mvc:exclude-mapping path="/admin/pages/**"/>
             <mvc:exclude-mapping path="/admin/plugins/**"/>
             <bean class="com.xmut.interceptor.ResourceInterceptor"/>
         </mvc:interceptor>
