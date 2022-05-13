@@ -5,8 +5,8 @@
 <mapper namespace="com.xmut.mapper.FilmMapper">
 
     <!--==================================== 提供给其他Mapper ====================================-->
-    <!-- ScheduleMapper：获取简单的Film信息-->
-    <select id="findFilmToSchedule" parameterType="Long" resultType="Film">
+    <!-- otherMapper：获取简单的Film信息-->
+    <select id="findFilmToOther" parameterType="Long" resultType="Film">
         select * from t_film where film_id = #{film_id}
     </select>
 
