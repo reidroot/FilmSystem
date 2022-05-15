@@ -2,10 +2,8 @@ package com.xmut.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.xmut.domain.Order;
-import com.xmut.domain.PageResult;
+import com.xmut.entity.PageResult;
 import com.xmut.domain.Remark;
-import com.xmut.mapper.OrderMapper;
 import com.xmut.mapper.RemarkMapper;
 import com.xmut.service.RemarkService;
 import org.springframework.beans.factory.annotation.Autowired;

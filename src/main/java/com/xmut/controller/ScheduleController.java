@@ -1,6 +1,6 @@
 package com.xmut.controller;
 
-import com.xmut.domain.PageResult;
+import com.xmut.entity.PageResult;
 import com.xmut.domain.Schedule;
 import com.xmut.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;

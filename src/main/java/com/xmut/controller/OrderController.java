@@ -1,7 +1,8 @@
 package com.xmut.controller;
 
 import com.xmut.domain.Order;
-import com.xmut.domain.PageResult;
+import com.xmut.entity.PageResult;
+import com.xmut.entity.Result;
 import com.xmut.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,5 +44,14 @@ public class OrderController {
         modelAndView.setViewName("forward:admin/pages/list_order.jsp");
 
         return modelAndView;
+    }
+
+    @RequestMapping("/getOrderById")
+    @ResponseBody
+    public Result<Order> getOrderById(long orderId){
+        System.out.println(orderId);
+        Order order = orderService.getEasyOrderById(orderId);
+
+        return new Result<Order>(true, "", order);
     }
 }

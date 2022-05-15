@@ -3,7 +3,7 @@ package com.xmut.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.xmut.domain.Order;
-import com.xmut.domain.PageResult;
+import com.xmut.entity.PageResult;
 import com.xmut.mapper.OrderMapper;
 import com.xmut.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,10 @@ public class OrderServiceImpl implements OrderService {
 
     public Order getOrderById(long orderId) {
         return orderMapper.findOrderById(orderId);
+    }
+
+    public Order getEasyOrderById(long orderId) {
+        return orderMapper.findEasyOrderById(orderId);
     }
 
     public List<Order> loadAllOrders() {

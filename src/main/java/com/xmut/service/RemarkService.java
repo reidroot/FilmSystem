@@ -1,8 +1,7 @@
 package com.xmut.service;
 
 
-import com.xmut.domain.Order;
-import com.xmut.domain.PageResult;
+import com.xmut.entity.PageResult;
 import com.xmut.domain.Remark;
 
 import java.util.List;

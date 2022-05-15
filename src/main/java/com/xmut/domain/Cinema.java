@@ -16,11 +16,12 @@ public class Cinema implements Serializable {
         super();
     }
 
-    public Cinema(Long cinemaId, String cinemaName, String address, String picture, List<Hall> hallList) {
+    public Cinema(Long cinemaId, String cinemaName, String address, String picture, String telephone, List<Hall> hallList) {
         this.cinemaId = cinemaId;
         this.cinemaName = cinemaName;
         this.address = address;
         this.picture = picture;
+        this.telephone = telephone;
         this.hallList = hallList;
     }
 
@@ -56,6 +57,14 @@ public class Cinema implements Serializable {
         this.picture = picture;
     }
 
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
     public List<Hall> getHallList() {
         return hallList;
     }
@@ -71,6 +80,7 @@ public class Cinema implements Serializable {
                 ", cinemaName='" + cinemaName + '\'' +
                 ", address='" + address + '\'' +
                 ", picture='" + picture + '\'' +
+                ", telephone='" + telephone + '\'' +
                 ", hallList=" + hallList +
                 '}';
     }

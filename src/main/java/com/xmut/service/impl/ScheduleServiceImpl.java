@@ -2,7 +2,7 @@ package com.xmut.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.xmut.domain.PageResult;
+import com.xmut.entity.PageResult;
 import com.xmut.domain.Schedule;
 import com.xmut.mapper.ScheduleMapper;
 import com.xmut.service.ScheduleService;

@@ -1,6 +1,6 @@
 package com.xmut.service;
 
-import com.xmut.domain.PageResult;
+import com.xmut.entity.PageResult;
 import com.xmut.domain.Schedule;
 
 public interface ScheduleService {

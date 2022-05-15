@@ -62,9 +62,6 @@
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default" title="新建"><i class="fa fa-file-o"></i> 新建</button>
                                     <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
-                                    <button type="button" class="btn btn-default" title="开启"><i class="fa fa-check"></i> 开启</button>
-                                    <button type="button" class="btn btn-default" title="屏蔽"><i class="fa fa-ban"></i> 屏蔽</button>
-                                    <button type="button" class="btn btn-default" title="刷新"><i class="fa fa-refresh"></i> 刷新</button>
                                 </div>
                             </div>
                         </div>
@@ -99,10 +96,16 @@
                                 <td>${order.position}</td>
                                 <td>${order.amount}</td>
                                 <td>${order.orderTime}</td>
-                                <td>${order.orderStatus}</td>
+                                <!-- 0-退票中  -1-无法退票  1-已支付  2-退票成功 -->
+                                <td>
+                                    <c:if test="${order.orderStatus == -1}">无法退票</c:if>
+                                    <c:if test="${order.orderStatus == 0}">退票中</c:if>
+                                    <c:if test="${order.orderStatus == 1}">已支付</c:if>
+                                    <c:if test="${order.orderStatus == 2}">退票成功</c:if>
+                                </td>
                                 <td class="text-center">
                                     <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-blue btn-xs">编辑</button>
+                                    <button type="button" class="btn bg-blue btn-xs" onclick="findOrderById(${order.orderId})">审核</button>
                                     <button type="button" class="btn bg-red btn-xs">删除</button>
                                 </td>
                             </tr>
@@ -218,6 +221,14 @@
 <script src="/admin/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="/admin/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
+
+    function findOrderById(id){
+        var url = "/getOrderById?orderId="+id;
+        $.get(url, function (response) {
+            console.log(response.data.position);
+        })
+    }
+
     $(document).ready(function() {
         // 选择框
         $(".select2").select2();

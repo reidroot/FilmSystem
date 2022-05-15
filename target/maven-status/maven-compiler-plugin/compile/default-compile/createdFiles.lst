@@ -1,2 +1,6 @@
+com\xmut\mapper\OrderMapper.class
+com\xmut\service\OrderService.class
+com\xmut\entity\Result.class
 com\xmut\interceptor\ResourceInterceptor.class
+com\xmut\controller\OrderController.class
 com\xmut\service\impl\AdminServiceImpl.class

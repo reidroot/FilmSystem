@@ -1,6 +1,6 @@
 package com.xmut.controller;
 
-import com.xmut.domain.PageResult;
+import com.xmut.entity.PageResult;
 import com.xmut.domain.Remark;
 import com.xmut.service.RemarkService;
 import org.springframework.beans.factory.annotation.Autowired;

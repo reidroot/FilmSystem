@@ -1,4 +1,4 @@
-package com.xmut.domain;
+package com.xmut.entity;
 
 import java.io.Serializable;
 import java.util.List;
