@@ -3,6 +3,52 @@
         PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xmut.mapper.FilmMapper">
+    <!-- 自定义结果集映射 -->
+    <resultMap id="FilmWithRemarkList" type="Film">
+        <id property="filmId" column="film_id"/>
+        <result property="filmName" column="film_name"/>
+        <result property="director" column="director"/>
+        <result property="actor" column="actor"/>
+        <result property="tag" column="tag"/>
+        <result property="nation" column="nation"/>
+        <result property="releaseTime" column="release_time"/>
+        <result property="runningTime" column="running_time"/>
+        <result property="poster" column="poster"/>
+        <result property="description" column="description"/>
+        <result property="remarkCount" column="remark_count"/>
+        <result property="filmStatus" column="film_status"/>
+        <!-- collection 一对多 嵌套查询 -->
+        <collection property="remarkList" column="filmId" ofType="Remark"
+                    select="com.xmut.mapper.RemarkMapper.remarkListToFilm">
+        </collection>
+    </resultMap>
+
+    <!-- 查询复杂Film对象 -->
+    <select id="findFilmById" parameterType="Long" resultMap="FilmWithRemarkList">
+        select * from t_film where film_id = #{film_id}
+    </select>
+
+    <!-- 查询简单Film对象 -->
+    <select id="findEasyFilmById" parameterType="Long" resultType="Film">
+        select * from t_film where film_id = #{film_id}
+    </select>
+
+    <!-- 查询所有Film对象 -->
+    <select id="selectAllFilms" resultMap="FilmWithRemarkList">
+        select * from t_film
+    </select>
+
+    <!-- 分页查询所有Film对象 -->
+    <select id="selectPagedFilms" resultMap="FilmWithRemarkList">
+        select * from t_film
+    </select>
+
+    <!-- 新增影片 -->
+    <insert id="addFilm" parameterType="Film">
+        insert into t_film(film_name,director,actor,tag,nation,release_time,running_time,poster,description)
+        values (#{filmName},#{director},#{actor},#{tag},#{nation},#{releaseTime},#{runningTime},#{poster},#{description})
+    </insert>
+
 
     <!--==================================== 提供给其他Mapper ====================================-->
     <!-- otherMapper：获取简单的Film信息-->

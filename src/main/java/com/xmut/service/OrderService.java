@@ -10,7 +10,7 @@ public interface OrderService {
     注意: loadAllXxxs复数要加s, 例: loadAllAdmins*/
 
     /**
-     * 根据订单ID查找完整订单信息
+     * 根据订单ID查找复杂订单信息
      * @param orderId
      * @return
      */

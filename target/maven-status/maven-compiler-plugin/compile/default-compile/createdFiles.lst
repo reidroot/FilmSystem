@@ -1,4 +1,5 @@
 com\xmut\mapper\OrderMapper.class
+com\xmut\service\impl\FilmServiceImpl.class
 com\xmut\service\OrderService.class
 com\xmut\entity\Result.class
 com\xmut\interceptor\ResourceInterceptor.class

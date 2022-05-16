@@ -6,7 +6,6 @@ import com.xmut.service.CinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,13 +18,13 @@ public class CinemaController {
     @Autowired
     private CinemaService cinemaService;
 
-    @RequestMapping("/getCinema")
-    public String getCinemaController(Cinema cinema, MultipartFile pictureFile){
+    @RequestMapping("/createCinema")
+    public String createCinema(Cinema cinema, MultipartFile pictureFile){
 
         //文件上传功能
         String originalFilename = pictureFile.getOriginalFilename();       //上传的文件名字
-        String filePath = "D:\\J2EE_XL\\File_rating_website\\src\\main\\webapp\\files\\"+originalFilename; //文件上传后的位置
-        String imgPath = "/files/"+originalFilename;
+        String filePath = "D:\\J2EE_XL\\File_rating_website\\src\\main\\webapp\\files\\cinema"+originalFilename; //文件上传后的位置
+        String imgPath = "/files/cinema/"+originalFilename;
         try {
             pictureFile.transferTo(new File(filePath));
         } catch (IOException e) {

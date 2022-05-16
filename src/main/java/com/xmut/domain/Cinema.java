@@ -10,19 +10,19 @@ public class Cinema implements Serializable {
     private String address;            //影院地址
     private String picture;            //影院图片
     private String telephone;          //影院电话号码
-    private List<Hall> hallList;       //该影院下所有放映厅的集合
+    private List<Schedule> Schedule;       //该影院下所有放映厅的集合
 
     public Cinema() {
         super();
     }
 
-    public Cinema(Long cinemaId, String cinemaName, String address, String picture, String telephone, List<Hall> hallList) {
+    public Cinema(Long cinemaId, String cinemaName, String address, String picture, String telephone, List<com.xmut.domain.Schedule> schedule) {
         this.cinemaId = cinemaId;
         this.cinemaName = cinemaName;
         this.address = address;
         this.picture = picture;
         this.telephone = telephone;
-        this.hallList = hallList;
+        Schedule = schedule;
     }
 
     public Long getCinemaId() {
@@ -65,12 +65,12 @@ public class Cinema implements Serializable {
         this.telephone = telephone;
     }
 
-    public List<Hall> getHallList() {
-        return hallList;
+    public List<com.xmut.domain.Schedule> getSchedule() {
+        return Schedule;
     }
 
-    public void setHallList(List<Hall> hallList) {
-        this.hallList = hallList;
+    public void setSchedule(List<com.xmut.domain.Schedule> schedule) {
+        Schedule = schedule;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class Cinema implements Serializable {
                 ", address='" + address + '\'' +
                 ", picture='" + picture + '\'' +
                 ", telephone='" + telephone + '\'' +
-                ", hallList=" + hallList +
+                ", Schedule=" + Schedule +
                 '}';
     }
 }

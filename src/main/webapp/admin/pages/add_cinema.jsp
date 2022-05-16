@@ -82,7 +82,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" id="cinema" action="/getCinema" method="post" enctype="multipart/form-data">
+                    <form role="form" id="cinema" action="/createCinema" method="post" enctype="multipart/form-data">
                         <div class="box-body bg-light">
                             <div class="form-group">
                                 <label for="cinemaName">影院名称</label>
@@ -102,7 +102,8 @@
                             </div>
                         <!-- /.box-body onclick="submitCinema()" -->
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-danger" >提交</button>
+                                <button type="submit" class="btn btn-danger">提&nbsp;&nbsp;交</button>
+                                <button type="reset" class="btn btn-default  pull-right">取&nbsp;&nbsp;消</button>
                             </div>
                         </div>
                     </form>

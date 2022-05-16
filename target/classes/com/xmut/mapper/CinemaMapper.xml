@@ -6,7 +6,7 @@
 
     <!-- 新增影院 -->
     <insert id="addCinema" parameterType="Cinema">
-        insert into t_cinema(cinema_name,address,picture,telephone) values(#{cinemaName},#{address},#{picture},#{telephone});
+        insert into t_cinema(cinema_name,address,picture,telephone) values(#{cinemaName},#{address},#{picture},#{telephone})
     </insert>
 
     <!-- 简单查询Cinema信息 -->

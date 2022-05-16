@@ -19,6 +19,11 @@ public interface OrderMapper {
      */
     public Order findOrderById(Long orderId);
 
+    /**
+     * 简单查询Order
+     * @param orderId
+     * @return
+     */
     public Order findEasyOrderById(Long orderId);
 
     /**

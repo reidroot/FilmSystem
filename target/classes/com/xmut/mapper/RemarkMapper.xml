@@ -34,7 +34,7 @@
 
     <!--==================================== 提供给其他Mapper ====================================-->
     <!-- 一对多： 提供给FilmMapper -->
-<!--    <select id="findFilmByRemarkId" parameterType="Long" resultMap="RemarkWithUserAndFilm">-->
-<!--        select * from t_remark where film_id = #{film_id}-->
-<!--    </select>-->
+    <select id="remarkListToFilm" parameterType="Long" resultMap="RemarkWithUserAndFilm">
+        select * from t_remark where film_id = #{film_id}
+    </select>
 </mapper>
