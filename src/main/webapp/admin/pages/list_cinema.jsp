@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -61,9 +62,6 @@
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default" title="新建"><i class="fa fa-file-o"></i> 新建</button>
                                     <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
-                                    <button type="button" class="btn btn-default" title="开启"><i class="fa fa-check"></i> 开启</button>
-                                    <button type="button" class="btn btn-default" title="屏蔽"><i class="fa fa-ban"></i> 屏蔽</button>
-                                    <button type="button" class="btn btn-default" title="刷新"><i class="fa fa-refresh"></i> 刷新</button>
                                 </div>
                             </div>
                         </div>
@@ -82,122 +80,29 @@
                                 <th class="" style="padding-right:0px;">
                                     <input id="selall" type="checkbox" class="icheckbox_square-blue">
                                 </th>
-                                <th class="sorting_asc">ID</th>
-                                <th class="sorting_desc">Browser [降序]</th>
-                                <th class="sorting_asc sorting_asc_disabled">Platform(s) [屏蔽升序]</th>
-                                <th class="sorting_desc sorting_desc_disabled">Engine version [屏蔽降序]</th>
-                                <th class="sorting">CSS grade [点击排序]</th>
-                                <th class="text-center sorting">屏蔽</th>
-                                <th class="text-center">操作</th>
+                                <th>影院ID</th>
+                                <th>影院名称</th>
+                                <th>影院地址</th>
+                                <th>影院图片</th>
+                                <th>联系电话</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>1</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>2</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>3</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>4</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>5</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>6</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td>7</td>
-                                <td>Internet Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">订单</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                </td>
-                            </tr>
+                            <c:forEach items="${pageResult.rows}" var="cinema">
+                                <tr>
+                                    <td style="vertical-align:middle;"><input name="ids" type="checkbox"></td>
+                                    <td style="vertical-align:middle;">${cinema.cinemaId}</td>
+                                    <td style="vertical-align:middle;">${cinema.cinemaName}</td>
+                                    <td style="vertical-align:middle;">${cinema.address}</td>
+                                    <td style="vertical-align:middle;"><img src="${cinema.picture}" width="80px" height="80px"/></td>
+                                    <td style="vertical-align:middle;">${cinema.telephone}</td>
+                                    <td class="text-center" style="vertical-align:middle;">
+                                        <button type="button" class="btn bg-blue btn-xs" onclick="">编辑</button>
+                                        <button type="button" class="btn bg-red btn-xs">删除</button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
 
                             </tbody>
                             <!--

@@ -4,5 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xmut.mapper.CinemaMapper">
 
+    <!-- 新增影院 -->
+    <insert id="addCinema" parameterType="Cinema">
+        insert into t_cinema(cinema_name,address,picture,telephone) values(#{cinemaName},#{address},#{picture},#{telephone});
+    </insert>
+
+    <!-- 简单查询Cinema信息 -->
+    <select id="findEasyCinema" parameterType="Long" resultType="Cinema">
+        select * from t_cinema where cinema_id = #{cinemaId}
+    </select>
+
+    <!-- 简单分页查询Cinema信息 -->
+    <select id="selectPagedCinemas" parameterType="Long" resultType="Cinema">
+        select * from t_cinema
+    </select>
+
     <!--==================================== 提供给其他Mapper ====================================-->
 </mapper>

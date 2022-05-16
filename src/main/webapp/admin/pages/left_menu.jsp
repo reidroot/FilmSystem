@@ -119,7 +119,7 @@
                     </li>
 
                     <li id="list-cinema">
-                        <a href="list_cinema.jsp" target="mainFrame">
+                        <a href="/loadPagedCinemas" target="mainFrame">
                             <i class="fa fa-circle-o"></i> 影院列表
                         </a>
                     </li>

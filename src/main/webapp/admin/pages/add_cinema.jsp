@@ -3,7 +3,7 @@
 
 <head>
     <!-- 页面meta -->
-    <meta charset="utf-8j">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>Film后台管理系统</title>
@@ -82,7 +82,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <div role="form" id="cinema">
+                    <form role="form" id="cinema" action="/getCinema" method="post" enctype="multipart/form-data">
                         <div class="box-body bg-light">
                             <div class="form-group">
                                 <label for="cinemaName">影院名称</label>
@@ -93,26 +93,25 @@
                                 <input type="text" class="form-control" name="address" id="address" placeholder="请输入影院地址">
                             </div>
                             <div class="form-group">
-                                <label for="picture">影院图片</label>
-                                <input type="file" name="picture" id="picture">
+                                <label for="pictureFile">影院图片</label>
+                                <input type="file" name="pictureFile" id="pictureFile">
                             </div>
                             <div class="form-group">
                                 <label for="telephone">联系电话</label>
                                 <input type="text" class="form-control" name="telephone" id="telephone" placeholder="请输入联系电话">
                             </div>
+                        <!-- /.box-body onclick="submitCinema()" -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-danger" >提交</button>
+                            </div>
                         </div>
-                        <!-- /.box-body -->
-
-                        <div class="box-footer">
-                            <button type="button" class="btn btn-danger" onclick="submitCinema()">提交</button>
-                        </div>
-                    </div>
-                </div>
+                    </form>
                 <!-- /.box -->
             </div>
             <!--/.col (left) -->
         </div>
         <!-- /.row -->
+        </div>
     </section>
     <!-- /.content -->
 
@@ -126,7 +125,6 @@
     function submitCinema() {
         var cinemaName = $('#cinemaName').val();
         var address = $('#address').val();
-        var picture = $('#picture').val();
         var telephone = $('#telephone').val();
 
         $.ajax({
@@ -135,7 +133,6 @@
             data: JSON.stringify({
                 cinemaName: cinemaName,
                 address: address,
-                picture: picture,
                 telephone: telephone}),
             contentType: "application/json;charset=UTF-8",
             dataType: "text",
@@ -145,14 +142,13 @@
                 if (response == "success"){
                     $('#cinemaName').val("");
                     $('#address').val("");
-                    $('#picture').val("");
+                    $('#pictureFile').val("");
                     $('#telephone').val("");
                     $('.alert').html('新增影院成功！').addClass('alert-success').show().delay(500).fadeOut();
                 }
             }
         });
     }
-
 </script>
 
 
