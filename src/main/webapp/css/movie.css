@@ -85,6 +85,10 @@
     border-radius: 3px;
     vertical-align: middle;
 }
+.movie-profile{
+    box-sizing: content-box;
+}
+
 
 .movie-info-bar .movie-wish-grade-btn a:hover {
     background-color: #FF8D1B;

@@ -18,7 +18,7 @@
         <result property="remarkCount" column="remark_count"/>
         <result property="filmStatus" column="film_status"/>
         <!-- collection 一对多 嵌套查询 -->
-        <collection property="remarkList" column="filmId" ofType="Remark"
+        <collection property="remarkList" column="film_id" ofType="Remark"
                     select="com.xmut.mapper.RemarkMapper.remarkListToFilm">
         </collection>
     </resultMap>

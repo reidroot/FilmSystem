@@ -4,6 +4,8 @@ import com.github.pagehelper.Page;
 import com.xmut.domain.Schedule;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ScheduleMapper {
     /* 命名规范：addXxx()  deleteXxx() updateXxx() findXxxById() selectAllXxxs() selectPagedXxxs()
@@ -21,5 +23,13 @@ public interface ScheduleMapper {
      * @return
      */
     public Page<Schedule> selectPagedSchedules();
+
+
+    /**
+     * 查找该影片filmId下的所有场次
+     * @param filmId
+     * @return
+     */
+    public List<Schedule> findScheduleByFilmId(Long filmId);
 
 }

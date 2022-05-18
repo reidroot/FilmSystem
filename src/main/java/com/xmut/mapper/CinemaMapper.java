@@ -4,6 +4,8 @@ import com.github.pagehelper.Page;
 import com.xmut.domain.Cinema;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CinemaMapper {
     /* 命名规范：addXxx()  deleteXxx() updateXxx() findXxxById() selectAllXxxs() selectPagedXxxs()
@@ -29,6 +31,13 @@ public interface CinemaMapper {
      * @return
      */
     public Cinema findEasyCinema(Long cinemaId);
+
+
+    /**
+     * 查询所有Cinema
+     * @return
+     */
+    public List<Cinema> selectAllCinemas();
 
     /**
      * 分页查询所有Cinema(简单查询Cineam)

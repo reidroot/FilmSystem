@@ -9,6 +9,8 @@ import com.xmut.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
 
@@ -27,5 +29,9 @@ public class ScheduleServiceImpl implements ScheduleService {
         Page<Schedule> page = scheduleMapper.selectPagedSchedules();
 
         return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    public List<Schedule> loadScheduleByFilmId(Long filmId) {
+        return scheduleMapper.findScheduleByFilmId(filmId);
     }
 }

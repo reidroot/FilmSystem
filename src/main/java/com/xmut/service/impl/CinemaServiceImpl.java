@@ -8,6 +8,8 @@ import com.xmut.mapper.CinemaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CinemaServiceImpl implements com.xmut.service.CinemaService {
 
@@ -16,6 +18,10 @@ public class CinemaServiceImpl implements com.xmut.service.CinemaService {
 
     public int createCinema(Cinema cinema) {
         return cinemaMapper.addCinema(cinema);
+    }
+
+    public List<Cinema> loadAllCinemas() {
+        return cinemaMapper.selectAllCinemas();
     }
 
     public PageResult loadPagedOrders(Integer pageNum, Integer pageSize) {

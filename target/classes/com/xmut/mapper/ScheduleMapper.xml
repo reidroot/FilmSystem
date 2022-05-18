@@ -13,7 +13,7 @@
         <result property="scheduleStatus" column="schedule_status"/>
         <!-- association来配置一对一映射 嵌套查询-->
         <association property="scheduleCinema" column="cinema_id" javaType="Cinema"
-                     select="com.xmut.mapper.HallMapper.findHallToSchedule"/>
+                     select="com.xmut.mapper.CinemaMapper.findEasyCinema"/>
         <association property="scheduleFilm" column="film_id" javaType="Film"
                      select="com.xmut.mapper.FilmMapper.findFilmToOther"/>
         <!-- collection来配置一对多映射 嵌套查询-->
@@ -21,9 +21,15 @@
                     select="com.xmut.mapper.OrderMapper.findOrderByScheduleId">
         </collection>
     </resultMap>
+
     <!-- 嵌套查询方式 -->
     <select id="findScheduleById" parameterType="Long" resultMap="ScheduleWithHallAndFilm">
         select * from t_schedule where schedule_id = #{scheduleId}
+    </select>
+
+    <!-- 简单查询该影片下的所有场次 -->
+    <select id="findScheduleByFilmId" parameterType="Long" resultMap="ScheduleWithHallAndFilm">
+        select * from t_schedule where film_id = #{filmId}
     </select>
 
     <select id="selectPagedSchedules" resultMap="ScheduleWithHallAndFilm">

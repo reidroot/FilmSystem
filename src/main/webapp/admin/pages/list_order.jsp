@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -44,7 +45,6 @@
 
         <!-- 正文区域 -->
         <section class="content">
-
             <!-- .box-body -->
             <div class="box box-danger">
                 <div class="box-header with-border">
@@ -95,7 +95,9 @@
                                 <td>${order.orderId}</td>
                                 <td>${order.position}</td>
                                 <td>${order.amount}</td>
-                                <td>${order.orderTime}</td>
+                                <td>
+                                    <fmt:formatDate value="${order.orderTime}" pattern="yyyy-MM-dd HH:mm:ss" />
+                                </td>
                                 <!-- 0-退票中  -1-无法退票  1-已支付  2-退票成功 -->
                                 <td>
                                     <c:if test="${order.orderStatus == -1}">无法退票</c:if>

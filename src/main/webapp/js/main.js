@@ -114,7 +114,7 @@ function initSignInOutBehavior() {
         document.querySelector(".user .userin").setAttribute("style", "display:flex;display:-webkit-flex;");
         document.querySelector(".user .userin .user-name").innerHTML = getSession("UserName");
     } else { //未登录
-        let tag_a = document.querySelectorAll("a");
+        let tag_a = document.querySelectorAll("a.buy-ticket");
         for (let a of tag_a) {
             let flag = false;
             for (let h of ["index.jsp", "login.jsp", "register.jsp", "javascript:;"]) {

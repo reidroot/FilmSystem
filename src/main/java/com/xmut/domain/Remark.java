@@ -1,5 +1,7 @@
 package com.xmut.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -7,6 +9,7 @@ public class Remark implements Serializable {
 
     private Integer remarkId;       //评论ID
     private String context;         //评论内容
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date remarkTime;        //评论时间
     private Integer score;          //评分（1-5）
     private Integer isBought;       //是否购票(0-未购票 1-已购票高亮显示)

@@ -1,6 +1,7 @@
 com\xmut\mapper\OrderMapper.class
 com\xmut\service\impl\FilmServiceImpl.class
 com\xmut\service\OrderService.class
+com\xmut\controller\WebController.class
 com\xmut\entity\Result.class
 com\xmut\interceptor\ResourceInterceptor.class
 com\xmut\controller\OrderController.class
