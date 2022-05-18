@@ -32,12 +32,12 @@
         <form action="" id="center-box-form">
             <div class="form-item">
                 <i class="username-icon icon"></i>
-                <input type="text" name="" id="username" autocomplete="off" placeholder="请输入您的用户名">
+                <input type="text" name="userEmail" id="userEmail" autocomplete="off" placeholder="请输入您的用户邮箱">
                 <span class="input-tip"></span>
             </div>
             <div class="form-item">
                 <i class="password-icon icon"></i>
-                <input type="password" name="" id="password" autocomplete="off" placeholder="请输入您的密码">
+                <input type="password" name="userPwd" id="userPwd" autocomplete="off" placeholder="请输入您的密码">
                 <span class="input-tip"></span>
             </div>
             <div class="form-item">
@@ -48,10 +48,7 @@
                 <span class="captcha-tip">看不清，换一张</span>
             </div>
             <p>
-                <!--<label for="remember" style="color: #666;cursor: pointer;">
-                    <input type="checkbox" id="remember">
-                    记住登录状态
-                </label>-->
+                <span style="color: red">${msg}</span>
                 <a href="" class="forget-password">忘记密码？</a>
             </p>
             <button id="form-submit-btn" type="button" onclick="login()">登录</button>

@@ -7,5 +7,9 @@
         select * from t_user where user_id = #{userId}
     </select>
 
+    <select id="findUserByEmailAndPwd" parameterType="User" resultType="User">
+        select * from t_user where user_email = #{userEmail} and user_pwd = #{userPwd}
+    </select>
+
     <!--==================================== 提供给其他Mapper ====================================-->
 </mapper>

@@ -16,6 +16,7 @@ D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\controller\CinemaControlle
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Order.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\impl\ScheduleServiceImpl.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\impl\FilmServiceImpl.java
+D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\impl\UserServiceImpl.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\AdminService.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\entity\Result.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\mapper\UserMapper.java

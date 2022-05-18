@@ -14,6 +14,10 @@
         select * from t_cinema where cinema_id = #{cinemaId}
     </select>
 
+    <select id="selectAllCinemas" parameterType="Long" resultType="Cinema">
+        select * from t_cinema
+    </select>
+
     <!-- 简单分页查询Cinema信息 -->
     <select id="selectPagedCinemas" parameterType="Long" resultType="Cinema">
         select * from t_cinema

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -27,21 +28,25 @@
         </div>
         <!--用户登陆注册-->
         <div class="user">
-            <div class="userout">
-                <a href="login.jsp" class="login cur">登录</a>
-                <a href="register.jsp" class="register cur">注册</a>
-            </div>
-            <div class="userin">
-                <a href="javascript:;" class="menu-item-user">
-                    <img class="user-face" src="./imgs/userface.jpg" alt="userface">
-                    <span class="user-name"></span>
-                </a>
-                <span class="caret"></span>
-                <ul class="dropdown-menu">
-                    <li><a href="javascript:;">个人中心</a></li>
-                    <li><a href="javascript:;">退出登录</a></li>
-                </ul>
-            </div>
+            <c:if test="${empty sessionScope.USER_SEESION}">
+                <div class="userout">
+                    <a href="login.jsp" class="login cur">登录</a>
+                    <a href="register.jsp" class="register cur">注册</a>
+                </div>
+            </c:if>
+            <c:if test="${!empty sessionScope.USER_SEESION}">
+                <div class="userin">
+                    <a href="javascript:;" class="menu-item-user">
+                        <img class="user-face" src="./imgs/userface.jpg" alt="userface">
+                        <span class="user-name">${sessionScope.USER_SEESION.userName}</span>
+                    </a>
+                    <span class="caret"></span>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:;">个人中心</a></li>
+                        <li><a href="javascript:;">退出登录</a></li>
+                    </ul>
+                </div>
+            </c:if>
         </div>
         <!--搜索栏-->
         <div class="search">

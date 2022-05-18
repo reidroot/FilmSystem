@@ -84,13 +84,6 @@ function setPage(pageURL) {
     }
 }
 
-/**
- * 用户是否登录了
- * @returns {boolean}登陆了返回true；反之
- */
-function isLogin() {
-    return !!getSession("UserName");
-}
 
 /**
  * 初始化公共
@@ -98,10 +91,6 @@ function isLogin() {
 function initPublic() {
     //初始化搜索框
     initSearch();
-    //初始化登录后的行为
-    initSignInOutBehavior();
-    //退出登录
-    signOut();
 }
 
 /**
