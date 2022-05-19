@@ -22,7 +22,6 @@ public class WebController {
     @Autowired
     private ScheduleService scheduleService;
 
-
     @Autowired
     private UserService userService;
 
@@ -51,19 +50,16 @@ public class WebController {
     @RequestMapping("/userLogin")
     public String userLogin(User user, HttpServletRequest request){
 
-        System.out.println("---------------------------------正在登陆----------------------------------"+user);
         //调用Service
         User dbUser = userService.login(user);
         System.out.println(dbUser);
 
         if (dbUser == null){
             //登陆失败
-            System.out.println("---------------------------------登录失败----------------------------------"+user);
             request.setAttribute("msg","登录失败，邮箱或密码错误！");
             return "forward:login.jsp";
         }else{
             request.getSession().setAttribute("USER_SEESION", dbUser);
-            System.out.println("---------------------------------登录成功----------------------------------"+user);
             return "redirect:index";
         }
     }
@@ -101,6 +97,30 @@ public class WebController {
         modelAndView.addObject("cinemaList",cinemaList);
 
         modelAndView.setViewName("forward:movie.jsp");
+
+        return modelAndView;
+    }
+
+
+    /**
+     * 为前台ticket.jsp页面传值
+     * @param scheduleId
+     * @return
+     */
+    @RequestMapping("/ticket")
+    public ModelAndView ticket(long scheduleId){
+        ModelAndView modelAndView = new ModelAndView();
+
+        //获取选购场次的相关信息
+        Schedule schedule = scheduleService.getScheduleById(scheduleId);
+
+        int [] rows = new int[]{1,2,3,4,5,6,7,8,9};
+        int [] cols = new int[]{1,2,3,4,5,6,7,8,9,10};
+
+        modelAndView.addObject("rows", rows);
+        modelAndView.addObject("cols", cols);
+        modelAndView.addObject("schedule", schedule);
+        modelAndView.setViewName("forward:ticket.jsp");
 
         return modelAndView;
     }

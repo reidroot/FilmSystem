@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -37,124 +39,29 @@
             <div class="seat-container">
                 <div class="screen">银幕中央</div>
                 <div class="seat-wrapper">
-                    <div class="seat-row" data-row-id="1">
-                        <span class="seat" data-col-id="1"></span>
-                        <span class="seat" data-col-id="2"></span>
-                        <span class="seat" data-col-id="3"></span>
-                        <span class="seat" data-col-id="4"></span>
-                        <span class="seat" data-col-id="5"></span>
-                        <span class="empty-area"></span>
-                        <span class="seat" data-col-id="6"></span>
-                        <span class="seat" data-col-id="7"></span>
-                        <span class="seat" data-col-id="8"></span>
-                        <span class="seat" data-col-id="9"></span>
-                        <span class="seat" data-col-id="10"></span>
+<%--                    <div class="seat-row" data-row-id="1">--%>
+<%--                        <span class="seat" data-col-id="1"></span>--%>
+<%--                        <span class="seat" data-col-id="2"></span>--%>
+<%--                        <span class="seat" data-col-id="3"></span>--%>
+<%--                        <span class="seat" data-col-id="4"></span>--%>
+<%--                        <span class="seat" data-col-id="5"></span>--%>
+<%--                        <span class="empty-area"></span>--%>
+<%--                        <span class="seat" data-col-id="6"></span>--%>
+<%--                        <span class="seat" data-col-id="7"></span>--%>
+<%--                        <span class="seat" data-col-id="8"></span>--%>
+<%--                        <span class="seat" data-col-id="9"></span>--%>
+<%--                        <span class="seat" data-col-id="10"></span>--%>
+<%--                    </div>--%>
+                    <c:forEach items="${rows}" var="row">
+                    <div class="seat-row" data-row-id="${row}">
+                        <c:forEach items="${cols}" var="col">
+                            <span class="seat" data-col-id="${col}"></span>
+                            <c:if test="${col == 5}">
+                                <span class="empty-area"></span>
+                            </c:if>
+                        </c:forEach>
                     </div>
-                    <div class="seat-row" data-row-id="2">
-                        <span class="seat" data-col-id="1"></span>
-                        <span class="seat" data-col-id="2"></span>
-                        <span class="seat" data-col-id="3"></span>
-                        <span class="seat" data-col-id="4"></span>
-                        <span class="seat" data-col-id="5"></span>
-                        <span class="empty-area"></span>
-                        <span class="seat" data-col-id="6"></span>
-                        <span class="seat" data-col-id="7"></span>
-                        <span class="seat" data-col-id="8"></span>
-                        <span class="seat" data-col-id="9"></span>
-                        <span class="seat" data-col-id="10"></span>
-                    </div>
-                    <div class="seat-row" data-row-id="3">
-                        <span class="seat" data-col-id="1"></span>
-                        <span class="seat" data-col-id="2"></span>
-                        <span class="seat" data-col-id="3"></span>
-                        <span class="seat sold" data-col-id="4"></span>
-                        <span class="seat sold" data-col-id="5"></span>
-                        <span class="empty-area"></span>
-                        <span class="seat" data-col-id="6"></span>
-                        <span class="seat" data-col-id="7"></span>
-                        <span class="seat" data-col-id="8"></span>
-                        <span class="seat" data-col-id="9"></span>
-                        <span class="seat" data-col-id="10"></span>
-                    </div>
-                    <div class="seat-row" data-row-id="4">
-                        <span class="seat" data-col-id="1"></span>
-                        <span class="seat" data-col-id="2"></span>
-                        <span class="seat" data-col-id="3"></span>
-                        <span class="seat" data-col-id="4"></span>
-                        <span class="seat" data-col-id="5"></span>
-                        <span class="empty-area"></span>
-                        <span class="seat" data-col-id="6"></span>
-                        <span class="seat" data-col-id="7"></span>
-                        <span class="seat" data-col-id="8"></span>
-                        <span class="seat" data-col-id="9"></span>
-                        <span class="seat" data-col-id="10"></span>
-                    </div>
-                    <div class="empty-area"></div>
-                    <div class="seat-row" data-row-id="5">
-                        <span class="seat" data-col-id="1"></span>
-                        <span class="seat" data-col-id="2"></span>
-                        <span class="seat" data-col-id="3"></span>
-                        <span class="seat" data-col-id="4"></span>
-                        <span class="seat" data-col-id="5"></span>
-                        <span class="empty-area"></span>
-                        <span class="seat" data-col-id="6"></span>
-                        <span class="seat" data-col-id="7"></span>
-                        <span class="seat" data-col-id="8"></span>
-                        <span class="seat" data-col-id="9"></span>
-                        <span class="seat" data-col-id="10"></span>
-                    </div>
-                    <div class="seat-row" data-row-id="6">
-                        <span class="seat" data-col-id="1"></span>
-                        <span class="seat" data-col-id="2"></span>
-                        <span class="seat sold" data-col-id="3"></span>
-                        <span class="seat sold" data-col-id="4"></span>
-                        <span class="seat" data-col-id="5"></span>
-                        <span class="empty-area"></span>
-                        <span class="seat" data-col-id="6"></span>
-                        <span class="seat" data-col-id="7"></span>
-                        <span class="seat" data-col-id="8"></span>
-                        <span class="seat" data-col-id="9"></span>
-                        <span class="seat" data-col-id="10"></span>
-                    </div>
-                    <div class="seat-row" data-row-id="7">
-                        <span class="seat" data-col-id="1"></span>
-                        <span class="seat" data-col-id="2"></span>
-                        <span class="seat" data-col-id="3"></span>
-                        <span class="seat" data-col-id="4"></span>
-                        <span class="seat" data-col-id="5"></span>
-                        <span class="empty-area"></span>
-                        <span class="seat" data-col-id="6"></span>
-                        <span class="seat" data-col-id="7"></span>
-                        <span class="seat" data-col-id="8"></span>
-                        <span class="seat" data-col-id="9"></span>
-                        <span class="seat" data-col-id="10"></span>
-                    </div>
-                    <div class="seat-row" data-row-id="8">
-                        <span class="seat" data-col-id="1"></span>
-                        <span class="seat" data-col-id="2"></span>
-                        <span class="seat" data-col-id="3"></span>
-                        <span class="seat" data-col-id="4"></span>
-                        <span class="seat" data-col-id="5"></span>
-                        <span class="empty-area"></span>
-                        <span class="seat" data-col-id="6"></span>
-                        <span class="seat" data-col-id="7"></span>
-                        <span class="seat" data-col-id="8"></span>
-                        <span class="seat" data-col-id="9"></span>
-                        <span class="seat" data-col-id="10"></span>
-                    </div>
-                    <div class="seat-row" data-row-id="9">
-                        <span class="seat" data-col-id="1"></span>
-                        <span class="seat" data-col-id="2"></span>
-                        <span class="seat" data-col-id="3"></span>
-                        <span class="seat" data-col-id="4"></span>
-                        <span class="seat" data-col-id="5"></span>
-                        <span class="empty-area"></span>
-                        <span class="seat" data-col-id="6"></span>
-                        <span class="seat" data-col-id="7"></span>
-                        <span class="seat" data-col-id="8"></span>
-                        <span class="seat" data-col-id="9"></span>
-                        <span class="seat" data-col-id="10"></span>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
             <div class="seat-description flexcenter">
@@ -170,36 +77,36 @@
             <!--电影信息-->
             <div class="movie-info">
                 <a href="javascript:;">
-                    <img src="./imgs/poster/ruonengyuni.jpg" alt="">
+                    <img src="${schedule.scheduleFilm.poster}" alt="">
                 </a>
                 <div class="aside-info">
                     <h3 class="clearboth">
-                        <span class="movie-title ellipse">若能与你共乘海浪之上</span>
-                        <span class="movie-score">7.8</span>
+                        <span class="movie-title ellipse">${schedule.scheduleFilm.filmName}</span>
+<%--                        <span class="movie-score">7.8</span>--%>
                     </h3>
-                    <p class="ellipse">导演：汤浅政明</p>
-                    <p class="ellipse">主演：片寄凉太/川荣李奈/松本穗香</p>
-                    <p class="ellipse">类型：奇幻/爱情/动画</p>
-                    <p>片长：96分钟</p>
+                    <p class="ellipse">导演：${schedule.scheduleFilm.director}</p>
+                    <p class="ellipse">主演：${schedule.scheduleFilm.actor}</p>
+                    <p class="ellipse">类型：${schedule.scheduleFilm.tag}</p>
+                    <p>片长：${schedule.scheduleFilm.runningTime}分钟</p>
                 </div>
             </div>
             <!--电影票信息-->
             <div class="ticket-info">
                 <div class="info-item">
                     <span>影院：</span>
-                    <span class="cinema">飞扬影城(正佳IMAX店)</span>
+                    <span class="cinema">${schedule.scheduleCinema.cinemaName}</span>
                 </div>
                 <div class="info-item">
                     <span>版本：</span>
-                    <span class="version">3D 日语中字</span>
+                    <span class="version">${schedule.language}</span>
                 </div>
                 <div class="info-item">
                     <span>场次：</span>
-                    <span class="movie-time">12月26日 12:20</span>
+                    <span class="movie-time"><fmt:formatDate value="${schedule.startTime}" pattern="MM月dd日 HH:mm"/></span>
                 </div>
                 <div class="info-item">
                     <span>票价：</span>
-                    <span class="ticket-price"><span>25</span>/张</span>
+                    <span class="ticket-price"><span><fmt:formatNumber type="number" value="${schedule.price}" maxFractionDigits="0"/></span>/张</span>
                 </div>
             </div>
             <!--购票信息-->

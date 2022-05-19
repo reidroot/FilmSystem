@@ -141,7 +141,7 @@
                                                     </div>
                                                     <div class="tcb-rt">
                                                         <p class="ticket-price"><fmt:formatNumber type="number" value="${schedule.price}" maxFractionDigits="0"/></p>
-                                                        <a href="ticket.jsp" class="buy-ticket">购票</a>
+                                                        <a href="/ticket?scheduleId=${schedule.scheduleId}" class="buy-ticket">购票</a>
                                                     </div>
                                                 </li>
                                             </c:if>
@@ -182,7 +182,6 @@
                 <div class="tab-content" style="display: none">
                     <div class="movie-watch-time bodpnd">
                         <p class="title">${filmInfo.filmName}的短评· · · · · · (全部${filmInfo.remarkCount}条)</p>
-                        <button >我要写短评</button>
                     </div>
                     <c:forEach items="${filmInfo.remarkList}" var="remark">
                     <div class="movie-watch-time bodpnd" <c:if test="${remark.isBought  == 1}">style="color: #FF8D1B;"</c:if>>
@@ -190,7 +189,6 @@
                         <fmt:formatDate value="${remark.remarkTime}" pattern="yyyy-MM-dd HH:mm:ss" />
                         <br>
                         ${remark.context}
-
                     </div>
                     </c:forEach>
                 </div>
