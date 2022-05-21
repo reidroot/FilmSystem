@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -21,9 +22,12 @@ public class AdminController {
     public ModelAndView findAdminById(Long adminId){
         Admin admin = adminService.getAdminById(1);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin.jsp");
+        modelAndView.setViewName("admin");
         modelAndView.addObject("admin",admin);
-
+        List<Admin> adminList = adminService.loadAllAdmins();
+        for (Admin a: adminList) {
+            System.out.println(a);
+        }
         return modelAndView;
     }
 

@@ -4,6 +4,8 @@ import com.xmut.domain.Admin;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface AdminMapper {
     /* 命名规范：addXxx()  deleteXxx() updateXxx() findXxxById() selectAllXxxs() selectPagedXxxs()
@@ -22,5 +24,12 @@ public interface AdminMapper {
      * @return
      */
     public Admin findAdminByNameAndPwd(Admin admin);
+
+    /**
+     * 查询所有Admin
+     * @return
+     */
+    @Select("select * from t_admin")
+    public List<Admin> selectAllAdmins();
 
 }

@@ -1,4 +1,3 @@
-D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Tag.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Cinema.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Admin.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\controller\OrderController.java
@@ -31,6 +30,7 @@ D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\impl\RemarkService
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\CinemaService.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\mapper\AdminMapper.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\controller\UserController.java
+D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Slide.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Film.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\ScheduleService.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\controller\ScheduleController.java

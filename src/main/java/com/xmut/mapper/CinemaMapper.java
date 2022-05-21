@@ -2,6 +2,7 @@ package com.xmut.mapper;
 
 import com.github.pagehelper.Page;
 import com.xmut.domain.Cinema;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface CinemaMapper {
     public int addCinema(Cinema cinema);
 
     /**
-     * 根据cinemaId查询Cinema  一对多关联 Hall
+     * 根据cinemaId查询Cinema  一对多关联 Schedule
      * @param cinemaId
      * @return
      */
@@ -30,19 +31,21 @@ public interface CinemaMapper {
      * @param cinemaId
      * @return
      */
+    @Select("select * from t_cinema where cinema_id = #{cinemaId}")
     public Cinema findEasyCinema(Long cinemaId);
 
-
     /**
-     * 查询所有Cinema
+     * 查询所有Cinema(简单查询Cineam)
      * @return
      */
+    @Select("select * from t_cinema")
     public List<Cinema> selectAllCinemas();
 
     /**
      * 分页查询所有Cinema(简单查询Cineam)
      * @return
      */
+    @Select("select * from t_cinema")
     public Page<Cinema> selectPagedCinemas();
 
 }

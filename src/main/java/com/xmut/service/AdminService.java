@@ -3,6 +3,7 @@ package com.xmut.service;
 import com.xmut.domain.Admin;
 
 import javax.jws.WebService;
+import java.util.List;
 
 public interface AdminService {
     /*命名规范：createXxx()  removeXxx() updateXxx() getXxxById() loadAllXxxs() loadPagedXxxs()
@@ -21,4 +22,10 @@ public interface AdminService {
      * @return
      */
     public Admin login(Admin admin);
+
+    /**
+     * 查询所有管理员
+     * @return
+     */
+    public List<Admin> loadAllAdmins();
 }

@@ -8,6 +8,7 @@ import com.xmut.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,10 @@ public class WebController {
 
     @Autowired
     private UserService userService;
+
+
+    // seat存放二维数组座位图
+    char seat[][] = new char[10][11];
 
 
     //---------------------------前台相关-------------------------
@@ -114,14 +119,73 @@ public class WebController {
         //获取选购场次的相关信息
         Schedule schedule = scheduleService.getScheduleById(scheduleId);
 
+        //前台行列
         int [] rows = new int[]{1,2,3,4,5,6,7,8,9};
         int [] cols = new int[]{1,2,3,4,5,6,7,8,9,10};
 
+        //---------------------测试-----------------------------
+        String testString = "11111111111/10000000001/10000000000/10000000000/10000000000/10000000000/10000000000/10000000000/10000000000/10000000000";
+
+        // 按'/'分隔出每一行
+        String[] stringArray = testString.split("/");
+
+        // 将座位信息变为seat二维数组
+        int i = 0;
+        for(String string: stringArray) {
+            char[] stringToCharArray = string.toCharArray();
+            seat[i] = stringToCharArray;
+            i++;
+        }
+
+        // 修改seat为int数组
+        int seatint[][] = new int[10][11];
+        for(int k=0;k<10;k++) {
+            for(int n=0;n<11;n++) {
+                seatint[k][n] = seat[k][n] - '0';
+            }
+        }
+
+        System.out.println(Arrays.toString(seatint));
+
         modelAndView.addObject("rows", rows);
         modelAndView.addObject("cols", cols);
+        modelAndView.addObject("seat", seatint);
         modelAndView.addObject("schedule", schedule);
         modelAndView.setViewName("forward:ticket.jsp");
 
         return modelAndView;
+    }
+
+    @RequestMapping("/generateOrder")
+    @ResponseBody
+    public String generateOrder(String rows, String cols, Order order){
+        System.out.println(order);
+
+        //用户购买的座位行、列
+        char[] rowArray = rows.toCharArray();
+        char[] colArray = cols.toCharArray();
+
+        //将购买后的座位修改为1
+        for(int a=0;a<rowArray.length;a++) {
+            for(int k=0;k<10;k++) {
+                for(int n=0;n<11;n++) {
+                    if(rowArray[a]-'0' == k && colArray[a]-'0' == n)
+                        seat[k][n] = '1';
+                }
+            }
+        }
+
+        //将seat二维数组转为字符串
+        String seatSql = "";
+        for(int k=0;k<10;k++) {
+            for(int n=0;n<11;n++) {
+                seatSql += seat[k][n];
+            }
+            seatSql += "/";
+        }
+
+        System.out.println(seatSql);
+
+        return "success";
     }
 }

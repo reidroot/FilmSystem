@@ -16,12 +16,19 @@
         <result property="poster" column="poster"/>
         <result property="description" column="description"/>
         <result property="remarkCount" column="remark_count"/>
+        <result property="remarkScore" column="remark_score"/>
         <result property="filmStatus" column="film_status"/>
         <!-- collection 一对多 嵌套查询 -->
         <collection property="remarkList" column="film_id" ofType="Remark"
                     select="com.xmut.mapper.RemarkMapper.remarkListToFilm">
         </collection>
     </resultMap>
+
+    <!-- 新增影片 注: remark_count, remark_score 字段数据库触发器生成-->
+    <insert id="addFilm" parameterType="Film">
+        insert into t_film(film_name,director,actor,tag,nation,release_time,running_time,poster,description)
+        values (#{filmName},#{director},#{actor},#{tag},#{nation},#{releaseTime},#{runningTime},#{poster},#{description})
+    </insert>
 
     <!-- 查询复杂Film对象 -->
     <select id="findFilmById" parameterType="Long" resultMap="FilmWithRemarkList">
@@ -42,13 +49,6 @@
     <select id="selectPagedFilms" resultMap="FilmWithRemarkList">
         select * from t_film
     </select>
-
-    <!-- 新增影片 -->
-    <insert id="addFilm" parameterType="Film">
-        insert into t_film(film_name,director,actor,tag,nation,release_time,running_time,poster,description)
-        values (#{filmName},#{director},#{actor},#{tag},#{nation},#{releaseTime},#{runningTime},#{poster},#{description})
-    </insert>
-
 
     <!--==================================== 提供给其他Mapper ====================================-->
     <!-- otherMapper：获取简单的Film信息-->

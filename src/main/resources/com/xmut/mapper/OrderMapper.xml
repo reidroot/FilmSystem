@@ -6,6 +6,7 @@
     <!-- 自定义结果集映射 -->
     <resultMap id="OrderWithUserAndSchedule" type="Order">
         <id property="orderId" column="order_id"/>
+        <result property="orderNum" column="order_num"/>
         <result property="position" column="position"/>
         <result property="amount" column="amount"/>
         <result property="orderTime" column="order_time"/>

@@ -62,9 +62,6 @@
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default" title="新建"><i class="fa fa-file-o"></i> 新建</button>
                                     <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
-                                    <button type="button" class="btn btn-default" title="开启"><i class="fa fa-check"></i> 开启</button>
-                                    <button type="button" class="btn btn-default" title="屏蔽"><i class="fa fa-ban"></i> 屏蔽</button>
-                                    <button type="button" class="btn btn-default" title="刷新"><i class="fa fa-refresh"></i> 刷新</button>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +95,6 @@
                                 <td>${schedule.scheduleId}</td>
                                 <td>${schedule.startTime}</td>
                                 <td>${schedule.price}</td>
-                                <td>${schedule.remain}</td>
                                 <td>${schedule.scheduleStatus}</td>
                                 <td class="text-center">
                                     <button type="button" class="btn bg-olive btn-xs">详情</button>
@@ -108,16 +104,6 @@
                             </tr>
                             </c:forEach>
                             </tbody>
-                            <!--
-                        <tfoot>
-                        <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                        </tr>
-                        </tfoot>-->
                         </table>
                         <!--数据列表/-->
 

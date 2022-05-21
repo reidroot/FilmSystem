@@ -6,6 +6,8 @@ import com.xmut.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AdminServiceImpl implements AdminService {
 
@@ -18,5 +20,9 @@ public class AdminServiceImpl implements AdminService {
 
     public Admin login(Admin admin) {
         return adminMapper.findAdminByNameAndPwd(admin);
+    }
+
+    public List<Admin> loadAllAdmins() {
+        return adminMapper.selectAllAdmins();
     }
 }

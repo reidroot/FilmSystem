@@ -1,3 +1,4 @@
+com\xmut\domain\Slide.class
 com\xmut\mapper\OrderMapper.class
 com\xmut\service\impl\UserServiceImpl.class
 com\xmut\service\impl\FilmServiceImpl.class

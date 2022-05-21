@@ -1,6 +1,26 @@
 /**
  *
  */
+var rowsback = []
+var colsback = []
+var position = ""
+var amount
+
+//数组对象定义一个函数
+Array.prototype.indexOf = function(val) {
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] == val) return i;
+    }
+    return -1;
+};
+//得到这个元素的索引,数组自己固有的函数去删除这个元素
+Array.prototype.remove = function(val) {
+    var index = this.indexOf(val);
+    if (index > -1) {
+        this.splice(index, 1);
+    }
+};
+
 function chooseTicket() {
     let seats = document.querySelectorAll(".seat-wrapper .seat");
     let ticketNum = 0;
@@ -44,10 +64,14 @@ function addOrRemoveTicket(op, row, col) {
         span.setAttribute("data-row-col", row + "-" + col);
         span.innerHTML = row + "排" + col + "座";
         ticketContainer.appendChild(span);
+        rowsback.push(row)
+        colsback.push(col)
     } else if (op === -1) {
         let selector = "span[" + "data-row-col='" + row + "-" + col + "']";
         let s = ticketContainer.querySelector(selector);
         ticketContainer.removeChild(s);
+        rowsback.remove(row)
+        colsback.remove(col)
     }
 }
 
@@ -63,4 +87,17 @@ function insOrDesPrice(op) {
     } else if (op === -1) {
         t_price.innerHTML = (parseInt(t_price.innerHTML.trim()) - parseInt(p_price.trim())).toString();
     }
+    amount = t_price.innerHTML
+}
+
+function purchase(userId,scheduleId){
+    // console.log(rowsback);
+    // console.log(colsback);
+
+    for (i=0;i<rowsback.length;i++){
+        position+=rowsback[i]+"排"+colsback[i]+"座;"
+    }
+
+    location.href='/generateOrder?rows='+rowsback+'&cols='+colsback+'&position='+position+'&amount='+amount+'&orderStatus='+1+'&userId='+userId+'&scheduleId='+scheduleId;
+
 }

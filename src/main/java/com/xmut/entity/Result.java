@@ -1,7 +1,5 @@
 package com.xmut.entity;
 
-import java.io.Serializable;
-
 public class Result<T> {
 
     private Boolean success;

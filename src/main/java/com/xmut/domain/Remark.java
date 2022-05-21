@@ -1,5 +1,6 @@
 package com.xmut.domain;
 
+import com.sun.org.apache.bcel.internal.generic.LineNumberGen;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -13,6 +14,8 @@ public class Remark implements Serializable {
     private Date remarkTime;        //评论时间
     private Integer score;          //评分（1-5）
     private Integer isBought;       //是否购票(0-未购票 1-已购票高亮显示)
+    private Long filmId;            //所属影片id
+    private Long userId;            //所属用户id
     private Film remarkFilm;        //所属影片对象
     private User remarkUser;        //所属用户对象
 

@@ -4,11 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xmut.mapper.AdminMapper">
 
-    <!-- 根据id查询管理员信息 -->
+    <!-- 根据id查询Admin -->
     <select id="findAdminById" parameterType="long" resultType="Admin">
         select * from t_admin where admin_id = #{id}
     </select>
-    
+
+    <!-- 根据adminName和adminPwd查询Admin -->
     <select id="findAdminByNameAndPwd" parameterType="Admin" resultType="Admin">
         select * from t_admin where admin_name = #{adminName} and admin_pwd = #{adminPwd};
     </select>

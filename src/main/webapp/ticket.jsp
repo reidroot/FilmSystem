@@ -39,23 +39,10 @@
             <div class="seat-container">
                 <div class="screen">银幕中央</div>
                 <div class="seat-wrapper">
-<%--                    <div class="seat-row" data-row-id="1">--%>
-<%--                        <span class="seat" data-col-id="1"></span>--%>
-<%--                        <span class="seat" data-col-id="2"></span>--%>
-<%--                        <span class="seat" data-col-id="3"></span>--%>
-<%--                        <span class="seat" data-col-id="4"></span>--%>
-<%--                        <span class="seat" data-col-id="5"></span>--%>
-<%--                        <span class="empty-area"></span>--%>
-<%--                        <span class="seat" data-col-id="6"></span>--%>
-<%--                        <span class="seat" data-col-id="7"></span>--%>
-<%--                        <span class="seat" data-col-id="8"></span>--%>
-<%--                        <span class="seat" data-col-id="9"></span>--%>
-<%--                        <span class="seat" data-col-id="10"></span>--%>
-<%--                    </div>--%>
                     <c:forEach items="${rows}" var="row">
                     <div class="seat-row" data-row-id="${row}">
                         <c:forEach items="${cols}" var="col">
-                            <span class="seat" data-col-id="${col}"></span>
+                            <span class="seat<c:if test="${seat[row][col] == 1}"> sold</c:if>" data-col-id="${col}"></span>
                             <c:if test="${col == 5}">
                                 <span class="empty-area"></span>
                             </c:if>
@@ -116,14 +103,11 @@
                 </div>
                 <div class="ticket-total-price">
                     <span>总价：</span>
-                    <span class="price">0</span>
+                    <span id="amount" class="price">0</span>
                 </div>
             </div>
             <div class="ticket-order">
-                <input type="text" id="phoneNumInput" placeholder="请输入手机号码">
-                <input type="text" id="codeInput" placeholder="请填写验证码">
-                <a href="javascript:;" id="getCodeBtn">获取验证码</a>
-                <a href="javascript:;" id="ticketOrderBtn">确认选座</a>
+                <a onclick="purchase('${sessionScope.USER_SEESION.userId}','${schedule.scheduleId}')" id="ticketOrderBtn">确认选座</a>
             </div>
         </div>
     </div>

@@ -20,6 +20,7 @@ public class Film implements Serializable {
     private String poster;              //海报
     private String description;         //影片简介
     private Integer remarkCount;        //影片参评人数（热评榜）
+    private Double remarkScore;          //影片评分(好评榜)
     private Integer filmStatus;         //影片状态(默认1：0-下架  1-在线)
     private List<Remark> remarkList;    //该影片下所有的评论集合
 
@@ -27,7 +28,7 @@ public class Film implements Serializable {
         super();
     }
 
-    public Film(Long filmId, String filmName, String director, String actor, String tag, String nation, Date releaseTime, Integer runningTime, String poster, String description, Integer remarkCount, Integer filmStatus, List<Remark> remarkList) {
+    public Film(Long filmId, String filmName, String director, String actor, String tag, String nation, Date releaseTime, Integer runningTime, String poster, String description, Integer remarkCount, Double remarkScore, Integer filmStatus, List<Remark> remarkList) {
         this.filmId = filmId;
         this.filmName = filmName;
         this.director = director;
@@ -39,6 +40,7 @@ public class Film implements Serializable {
         this.poster = poster;
         this.description = description;
         this.remarkCount = remarkCount;
+        this.remarkScore = remarkScore;
         this.filmStatus = filmStatus;
         this.remarkList = remarkList;
     }
@@ -131,6 +133,14 @@ public class Film implements Serializable {
         this.remarkCount = remarkCount;
     }
 
+    public Double getRemarkScore() {
+        return remarkScore;
+    }
+
+    public void setRemarkScore(Double remarkScore) {
+        this.remarkScore = remarkScore;
+    }
+
     public Integer getFilmStatus() {
         return filmStatus;
     }
@@ -145,24 +155,5 @@ public class Film implements Serializable {
 
     public void setRemarkList(List<Remark> remarkList) {
         this.remarkList = remarkList;
-    }
-
-    @Override
-    public String toString() {
-        return "Film{" +
-                "filmId=" + filmId +
-                ", filmName='" + filmName + '\'' +
-                ", director='" + director + '\'' +
-                ", actor='" + actor + '\'' +
-                ", tag='" + tag + '\'' +
-                ", nation='" + nation + '\'' +
-                ", releaseTime=" + releaseTime +
-                ", runningTime=" + runningTime +
-                ", poster='" + poster + '\'' +
-                ", description='" + description + '\'' +
-                ", remarkCount=" + remarkCount +
-                ", filmStatus=" + filmStatus +
-                ", remarkList=" + remarkList +
-                '}';
     }
 }
