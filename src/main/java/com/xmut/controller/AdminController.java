@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -52,5 +53,13 @@ public class AdminController {
         }
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
 
+        HttpSession session = request.getSession();
+        //销毁Session
+        session.invalidate();
+
+        return "redirect:pages/admin_login.jsp";
+    }
 }

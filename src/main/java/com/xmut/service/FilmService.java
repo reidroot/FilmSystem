@@ -15,7 +15,20 @@ public interface FilmService {
      * @param film
      * @return
      */
-    public int createFilm(Film film);
+    public Integer createFilm(Film film);
+
+    /**
+     * 修改影片信息
+     * @param film
+     * @return
+     */
+    public Integer updateFilm(Film film);
+
+    /**
+     * 根据filmId删除影片
+     * @param filmId
+     */
+    public Integer removeFilm(long filmId);
 
     //-------------------以下为查询----------------------
 
@@ -38,6 +51,12 @@ public interface FilmService {
      * @return
      */
     public List<Film> loadAllFilms();
+
+    /**
+     * 简单查询所有影片信息
+     * @return
+     */
+    public List<Film> loadAllEasyFilms();
 
     /**
      * 分页查询影片信息

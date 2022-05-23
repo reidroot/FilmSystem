@@ -1,6 +1,5 @@
 package com.xmut.controller;
 
-import com.xmut.entity.PageResult;
 import com.xmut.domain.Remark;
 import com.xmut.service.RemarkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +34,9 @@ public class RemarkController {
     public ModelAndView loadPagedRemarks(){
         ModelAndView modelAndView = new ModelAndView();
 
-        int pageNum = 1;
-        int pageSize = 1;
-        PageResult pageResult = remarkService.loadPagedRemarks(pageNum, pageSize);
-        modelAndView.addObject("pageResult", pageResult);
+        List<Remark> remarkList = remarkService.loadAllRemarks();
 
+        modelAndView.addObject("remarkList", remarkList);
         modelAndView.setViewName("forward:admin/pages/list_remark.jsp");
 
         return modelAndView;

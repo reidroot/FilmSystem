@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xmut.mapper.ScheduleMapper">
     <!-- 自定义结果集映射 -->
-    <resultMap id="ScheduleWithHallAndFilm" type="Schedule">
+    <resultMap id="ScheduleWithCinemaAndFilm" type="Schedule">
         <id property="scheduleId" column="schedule_id"/>
         <result property="startTime" column="start_time"/>
         <result property="language" column="language"/>
@@ -17,22 +17,51 @@
         <association property="scheduleFilm" column="film_id" javaType="Film"
                      select="com.xmut.mapper.FilmMapper.findFilmToOther"/>
         <!-- collection来配置一对多映射 嵌套查询-->
-        <collection property="orderList" column="scheduleId" ofType="Order"
+        <collection property="orderList" column="schedule_id" ofType="Order"
                     select="com.xmut.mapper.OrderMapper.findOrderByScheduleId">
         </collection>
     </resultMap>
 
-    <!-- 嵌套查询方式 -->
-    <select id="findScheduleById" parameterType="Long" resultMap="ScheduleWithHallAndFilm">
+    <!-- 新增Schedule -->
+    <insert id="addSchedule" parameterType="Schedule">
+        insert into t_schedule(start_time,language,price,schedule_status,cinema_id,film_id) values (#{startTime},#{language},#{price},#{scheduleStatus},#{cinemaId},#{filmId})
+    </insert>
+
+    <!-- 更新schedule_status -->
+    <update id="deleteSchedule" parameterType="Long">
+        update t_schedule set schedule_status = !schedule_status where schedule_id = #{scheduleId}
+    </update>
+
+    <!-- 更新seat -->
+    <update id="updateSeat" parameterType="Schedule">
+        update t_schedule set seat = #{seat} where schedule_id = #{scheduleId}
+    </update>
+
+    <!-- 编辑场次信息 -->
+    <update id="updateSchedule" parameterType="Schedule">
+        update t_schedule set start_time = #{startTime}, language = #{language}, price = #{price} where schedule_id = #{scheduleId}
+    </update>
+
+    <!-- 简单查询Schedule -->
+    <select id="findEasyScheduleById" parameterType="Long" resultType="Schedule">
         select * from t_schedule where schedule_id = #{scheduleId}
     </select>
 
-    <!-- 简单查询该影片下的所有场次 -->
-    <select id="findScheduleByFilmId" parameterType="Long" resultMap="ScheduleWithHallAndFilm">
+    <!-- 嵌套查询方式 -->
+    <select id="findScheduleById" parameterType="Long" resultMap="ScheduleWithCinemaAndFilm">
+        select * from t_schedule where schedule_id = #{scheduleId}
+    </select>
+
+    <!-- 查询该影片下的所有场次 -->
+    <select id="findScheduleByFilmId" parameterType="Long" resultMap="ScheduleWithCinemaAndFilm">
         select * from t_schedule where film_id = #{filmId}
     </select>
 
-    <select id="selectPagedSchedules" resultMap="ScheduleWithHallAndFilm">
+    <select id="selectAllSchedule" resultMap="ScheduleWithCinemaAndFilm">
+        select * from t_schedule
+    </select>
+
+    <select id="selectPagedSchedules" resultMap="ScheduleWithCinemaAndFilm">
         select * from t_schedule
     </select>
 

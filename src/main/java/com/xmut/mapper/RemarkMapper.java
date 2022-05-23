@@ -1,11 +1,12 @@
 package com.xmut.mapper;
 
 import com.github.pagehelper.Page;
-import com.xmut.domain.Order;
 import com.xmut.domain.Remark;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface RemarkMapper {
     /* 命名规范：addXxx()  deleteXxx() updateXxx() findXxxById() selectAllXxxs() selectPagedXxxs()
     注意： selectAllXxxs，记得加s */

@@ -127,7 +127,7 @@
                             <li>
                                 <a href="/filmInfo?filmId=${film.filmId}" class="movie-poster">
                                     <img src="${film.poster}" alt="" class="poster">
-                                    <span class="movie-score">8.5</span>
+                                    <span class="movie-score">${film.remarkScore}</span>
                                 </a>
                                 <span class="movie-title">${film.filmName}</span>
                                 <a href="/filmInfo?filmId=${film.filmId}" class="movie-ticket-buy">选座购票</a>

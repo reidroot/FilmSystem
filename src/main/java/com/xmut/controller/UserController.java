@@ -5,13 +5,25 @@ import com.xmut.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+import java.util.List;
 
 @Controller
 public class UserController {
 
+    @Autowired
+    private UserService userService;
 
+    @RequestMapping("/loadPagedUsers")
+    public ModelAndView loadPagedCinemas(){
+        ModelAndView modelAndView = new ModelAndView();
 
+        List<User> userList = userService.loadAllUsers();
+
+        modelAndView.addObject("userList", userList);
+        modelAndView.setViewName("forward:admin/pages/list_user.jsp");
+
+        return modelAndView;
+    }
 
 }

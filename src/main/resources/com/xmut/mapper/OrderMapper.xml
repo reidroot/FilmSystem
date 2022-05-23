@@ -18,6 +18,11 @@
                      select="com.xmut.mapper.ScheduleMapper.findScheduleById"/>
     </resultMap>
 
+    <insert id="addOrder" parameterType="Order">
+        insert into t_order(order_num,position,amount,order_time,order_status,user_id,schedule_id)
+        values (#{orderNum},#{position},#{amount},#{orderTime},#{orderStatus},#{userId},#{scheduleId})
+    </insert>
+
     <!-- 嵌套查询方式 -->
     <select id="findOrderById" parameterType="Long" resultMap="OrderWithUserAndSchedule">
         select * from t_order where order_id = #{orderId}

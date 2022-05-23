@@ -6,6 +6,8 @@ import com.xmut.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -14,5 +16,9 @@ public class UserServiceImpl implements UserService {
 
     public User login(User user) {
         return userMapper.findUserByEmailAndPwd(user);
+    }
+
+    public List<User> loadAllUsers() {
+        return userMapper.selectAllUsers();
     }
 }

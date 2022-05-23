@@ -70,11 +70,11 @@
             </div>
             <div class="movie-grade-box">
                 <div class="grade-box">
-                    <b>7<sup>.8</sup></b>
+                    <b>${score[0]}<sup>.${score[2]}</sup></b>
                     <p>总分：10</p>
                 </div>
                 <ul>
-                    <li><p>评分：<span>1253</span>人</p></li>
+                    <li><p>评分：<span>${filmInfo.remarkCount}</span>人</p></li>
                     <li><p>想看：<span>15684</span>人</p></li>
                     <li><p>票房：<span>3200</span>万</p></li>
                 </ul>

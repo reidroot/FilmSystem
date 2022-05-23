@@ -1,7 +1,10 @@
 package com.xmut.mapper;
 
 import com.xmut.domain.User;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface UserMapper {
@@ -21,4 +24,11 @@ public interface UserMapper {
      * @return
      */
     public User findUserByEmailAndPwd(User user);
+
+    /**
+     *  查询所有User
+     * @return
+     */
+    @Select("select * from t_user")
+    public List<User> selectAllUsers();
 }

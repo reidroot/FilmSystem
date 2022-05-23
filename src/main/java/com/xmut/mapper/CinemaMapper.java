@@ -38,7 +38,7 @@ public interface CinemaMapper {
      * 查询所有Cinema(简单查询Cineam)
      * @return
      */
-    @Select("select * from t_cinema")
+    @Select("select * from t_cinema ")
     public List<Cinema> selectAllCinemas();
 
     /**

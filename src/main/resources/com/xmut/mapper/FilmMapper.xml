@@ -24,11 +24,23 @@
         </collection>
     </resultMap>
 
-    <!-- 新增影片 注: remark_count, remark_score 字段数据库触发器生成-->
+    <!-- 新增影片 注: remark_count, remark_score 字段数据库触发器生成 -->
     <insert id="addFilm" parameterType="Film">
         insert into t_film(film_name,director,actor,tag,nation,release_time,running_time,poster,description)
         values (#{filmName},#{director},#{actor},#{tag},#{nation},#{releaseTime},#{runningTime},#{poster},#{description})
     </insert>
+
+    <!-- 修改影片 注: remark_count, remark_score 字段数据库触发器生成, film_status 由下架修改 -->
+    <update id="updateFilm" parameterType="Film">
+        update t_film set film_name=#{filmName},director=#{director},actor=#{actor},tag=#{tag},nation=#{nation},
+        release_time=#{releaseTime},running_time=#{runningTime},poster=#{poster},description=#{description}
+        where film_id=#{filmId}
+    </update>
+
+    <!-- 下架影片 -->
+    <update id="deleteFilm" parameterType="Long">
+        update t_film set film_status = !film_status where film_id = #{film_id}
+    </update>
 
     <!-- 查询复杂Film对象 -->
     <select id="findFilmById" parameterType="Long" resultMap="FilmWithRemarkList">
@@ -42,15 +54,20 @@
 
     <!-- 查询所有Film对象 -->
     <select id="selectAllFilms" resultMap="FilmWithRemarkList">
-        select * from t_film
+        select * from t_film order by film_status desc
+    </select>
+
+    <!-- 查询所有简单Film对象 -->
+    <select id="selectAllEasyFilms" resultType="Film">
+        select * from t_film order by film_status desc
     </select>
 
     <!-- 分页查询所有Film对象 -->
     <select id="selectPagedFilms" resultMap="FilmWithRemarkList">
-        select * from t_film
+        select * from t_film order by film_status desc
     </select>
 
-    <!--==================================== 提供给其他Mapper ====================================-->
+    <!-- ==================================== 提供给其他Mapper ==================================== -->
     <!-- otherMapper：获取简单的Film信息-->
     <select id="findFilmToOther" parameterType="Long" resultType="Film">
         select * from t_film where film_id = #{film_id}

@@ -53,7 +53,7 @@
                 <ul class="treeview-menu">
 
                     <li id="list-user">
-                        <a href="list_user.jsp" target="mainFrame">
+                        <a href="/loadPagedUsers" target="mainFrame">
                             <i class="fa fa-circle-o"></i> 用户列表
                         </a>
                     </li>
@@ -77,7 +77,7 @@
                     </li>
 
                     <li id="list-film">
-                        <a href="list_film.jsp" target="mainFrame">
+                        <a href="/loadPagedFilms" target="mainFrame">
                             <i class="fa fa-circle-o"></i> 影片列表
                         </a>
                     </li>
@@ -95,7 +95,7 @@
                 <ul class="treeview-menu">
 
                     <li id="list-remark">
-                        <a href="list_remark.jsp" target="mainFrame">
+                        <a href="/loadPagedRemarks" target="mainFrame">
                             <i class="fa fa-circle-o"></i> 评论列表
                         </a>
                     </li>
@@ -129,30 +129,6 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-video-camera"></i> <span>放映厅管理</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-
-                    <li id="add-hall">
-                        <a href="add_hall.jsp" target="mainFrame">
-                            <i class="fa fa-circle-o"></i> 新增放映厅
-                        </a>
-                    </li>
-
-                    <li id="list-hall">
-                        <a href="list_hall.jsp" target="mainFrame">
-                            <i class="fa fa-circle-o"></i> 放映厅列表
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="#">
                     <i class="fa fa-cube"></i> <span>场次管理</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -161,7 +137,7 @@
                 <ul class="treeview-menu">
 
                     <li id="add-schedule">
-                        <a href="add_schedule.jsp" target="mainFrame">
+                        <a href="/toCreateSchedule" target="mainFrame">
                             <i class="fa fa-circle-o"></i> 新增场次
                         </a>
                     </li>

@@ -37,13 +37,13 @@
             <c:if test="${!empty sessionScope.USER_SEESION}">
                 <div class="userin">
                     <a href="javascript:;" class="menu-item-user">
-                        <img class="user-face" src="./imgs/userface.jpg" alt="userface">
+                        <img class="user-face" src="${sessionScope.USER_SEESION.icon}" alt="userface">
                         <span class="user-name">${sessionScope.USER_SEESION.userName}</span>
                     </a>
                     <span class="caret"></span>
                     <ul class="dropdown-menu">
                         <li><a href="javascript:;">个人中心</a></li>
-                        <li><a href="javascript:;">退出登录</a></li>
+                        <li><a href="/logout">退出登录</a></li>
                     </ul>
                 </div>
             </c:if>

@@ -17,6 +17,10 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMapper orderMapper;
 
+    public Integer createOrder(Order order) {
+        return orderMapper.addOrder(order);
+    }
+
     public Order getOrderById(long orderId) {
         return orderMapper.findOrderById(orderId);
     }

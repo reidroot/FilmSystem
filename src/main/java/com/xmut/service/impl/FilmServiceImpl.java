@@ -17,8 +17,16 @@ public class FilmServiceImpl implements FilmService {
     @Autowired
     private FilmMapper filmMapper;
 
-    public int createFilm(Film film) {
+    public Integer createFilm(Film film) {
         return filmMapper.addFilm(film);
+    }
+
+    public Integer updateFilm(Film film) {
+        return filmMapper.updateFilm(film);
+    }
+
+    public Integer removeFilm(long filmId) {
+        return filmMapper.deleteFilm(filmId);
     }
 
     public Film getFilmById(long filmId) {
@@ -31,6 +39,10 @@ public class FilmServiceImpl implements FilmService {
 
     public List<Film> loadAllFilms() {
         return filmMapper.selectAllFilms();
+    }
+
+    public List<Film> loadAllEasyFilms() {
+        return filmMapper.selectAllEasyFilms();
     }
 
     public PageResult loadPagedFilms(Integer pageNum, Integer pageSize) {

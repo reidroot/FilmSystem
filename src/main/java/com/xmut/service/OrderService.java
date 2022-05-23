@@ -10,6 +10,13 @@ public interface OrderService {
     注意: loadAllXxxs复数要加s, 例: loadAllAdmins*/
 
     /**
+     * 新增订单信息
+     * @param order
+     * @return
+     */
+    public Integer createOrder(Order order);
+
+    /**
      * 根据订单ID查找复杂订单信息
      * @param orderId
      * @return

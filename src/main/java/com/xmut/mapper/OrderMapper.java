@@ -13,6 +13,13 @@ public interface OrderMapper {
     注意： selectAllXxxs，记得加s */
 
     /**
+     * 新增Order
+     * @param order
+     * @return
+     */
+    public Integer addOrder(Order order);
+
+    /**
      * 根据orderId查询Order  一对一关联 User、Schedule
      * @param orderId
      * @return

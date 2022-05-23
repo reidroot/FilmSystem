@@ -56,28 +56,11 @@
                     <!-- 数据表格 -->
                     <div class="table-box">
 
-                        <!--工具栏-->
-<%--                        <div class="pull-left">--%>
-<%--                            <div class="form-group form-inline">--%>
-<%--                                <div class="btn-group">--%>
-<%--                                    <button type="button" class="btn btn-default" title="新建"><i class="fa fa-file-o"></i> 新建</button>--%>
-<%--                                    <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="box-tools pull-right">--%>
-<%--                            <div class="has-feedback">--%>
-<%--                                <input type="text" class="form-control input-sm" placeholder="搜索">--%>
-<%--                                <span class="glyphicon glyphicon-search form-control-feedback"></span>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-                        <!--工具栏/-->
-
                         <!--数据列表-->
                         <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                             <tr>
-                                <th>影院ID</th>
+                                <th>ID</th>
                                 <th>影院名称</th>
                                 <th>影院地址</th>
                                 <th>影院图片</th>
@@ -86,12 +69,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${pageResult.rows}" var="cinema">
+                            <c:forEach items="${cinemaList}" var="cinema">
                                 <tr>
                                     <td style="vertical-align:middle;">${cinema.cinemaId}</td>
+                                    <td style="vertical-align:middle;"><img src="${cinema.picture}" width="80px" height="60px"/></td>
                                     <td style="vertical-align:middle;">${cinema.cinemaName}</td>
                                     <td style="vertical-align:middle;">${cinema.address}</td>
-                                    <td style="vertical-align:middle;"><img src="${cinema.picture}" width="80px" height="80px"/></td>
                                     <td style="vertical-align:middle;">${cinema.telephone}</td>
                                     <td class="text-center" style="vertical-align:middle;">
                                         <button type="button" class="btn bg-blue btn-xs" onclick="">编辑</button>
@@ -107,11 +90,8 @@
                     </div>
                     <!-- 数据表格 /-->
 
-
                 </div>
                 <!-- /.box-body -->
-
-
 
             </div>
 
@@ -175,7 +155,6 @@
         });
     });
 
-
     // 设置激活菜单
     function setSidebarActive(tagUri) {
         var liObj = $("#" + tagUri);
@@ -185,11 +164,11 @@
         }
     }
 
+    // 设置激活表格
     $(function () {
         $("#dataList").DataTable({
         });
     });
-
 
     $(document).ready(function() {
 

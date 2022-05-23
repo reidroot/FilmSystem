@@ -17,8 +17,32 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Autowired
     private ScheduleMapper scheduleMapper;
 
+    public Integer createSchedule(Schedule schedule) {
+        return scheduleMapper.addSchedule(schedule);
+    }
+
+    public Integer deleteSchedule(Long scheduleId) {
+        return scheduleMapper.deleteSchedule(scheduleId);
+    }
+
+    public Integer updateSeat(Schedule schedule) {
+        return scheduleMapper.updateSeat(schedule);
+    }
+
+    public Integer updateSchedule(Schedule schedule) {
+        return scheduleMapper.updateSchedule(schedule);
+    }
+
+    public Schedule getEasyScheduleById(Long scheduleId) {
+        return scheduleMapper.findEasyScheduleById(scheduleId);
+    }
+
     public Schedule getScheduleById(Long scheduleId) {
         return scheduleMapper.findScheduleById(scheduleId);
+    }
+
+    public List<Schedule> loadAllSchedule() {
+        return scheduleMapper.selectAllSchedule();
     }
 
     public PageResult loadPagedSchedules(Integer pageNum, Integer pageSize) {

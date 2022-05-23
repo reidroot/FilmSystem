@@ -1,5 +1,6 @@
 package com.xmut.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.util.List;
 public class Schedule implements Serializable {
 
     private Long scheduleId;            //场次ID
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",  timezone = "GMT+8")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date startTime;             //放映时间
     private String language;            //语言版本

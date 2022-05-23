@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -56,50 +57,49 @@
                     <!-- 数据表格 -->
                     <div class="table-box">
 
-                        <!--工具栏-->
-                        <div class="pull-left">
-                            <div class="form-group form-inline">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default" title="新建"><i class="fa fa-file-o"></i> 新建</button>
-                                    <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-tools pull-right">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control input-sm" placeholder="搜索">
-                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                            </div>
-                        </div>
-                        <!--工具栏/-->
-
                         <!--数据列表-->
                         <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                             <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
-                                <th class="sorting_asc">场次编号</th>
-                                <th class="sorting_desc">放映时间</th>
-                                <th class="sorting_asc">售价</th>
-                                <th class="sorting_desc sorting_desc_disabled">剩余座位</th>
-                                <th class="sorting">场次状态</th>
+                                <th>ID</th>
+                                <th>所属影院</th>
+                                <th>所属影片</th>
+                                <th>放映时间</th>
+                                <th>售价</th>
+                                <th>场次状态</th>
                                 <th class="text-center">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${pageResult.rows}" var="schedule">
+                            <c:forEach items="${scheduleList}" var="schedule">
                             <tr>
-                                <td><input name="ids" type="checkbox"></td>
                                 <td>${schedule.scheduleId}</td>
-                                <td>${schedule.startTime}</td>
+                                <td>${schedule.scheduleCinema.cinemaName}</td>
+                                <td>${schedule.scheduleFilm.filmName}</td>
+                                <td>
+                                    <fmt:formatDate value="${schedule.startTime}" pattern="yyyy-MM-dd HH:mm" />
+                                </td>
                                 <td>${schedule.price}</td>
-                                <td>${schedule.scheduleStatus}</td>
+                                <!-- 0-上架  1-下架 -->
+                                <td style="vertical-align:middle;">
+                                    <c:if test="${schedule.scheduleStatus == 1}">上架</c:if>
+                                    <c:if test="${schedule.scheduleStatus == 0}">下架</c:if>
+                                </td>
                                 <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-blue btn-xs">编辑</button>
-                                    <button type="button" class="btn bg-red btn-xs">删除</button>
+                                    <button type="button" class="btn bg-blue btn-xs" data-toggle="modal"
+                                            data-target="#editScheduleModal" onclick="showUpdateDlg(${schedule.scheduleId})">编辑</button>
+                                    <c:if test="${schedule.scheduleStatus == 0}">
+                                        <button type="button" class="btn bg-olive btn-xs"
+                                                onclick="showDeleteDlg(${schedule.scheduleId},${schedule.scheduleStatus},'${schedule.scheduleCinema.cinemaName}','${schedule.scheduleFilm.filmName}')">
+                                            上架
+                                        </button>
+                                    </c:if>
+                                    <c:if test="${schedule.scheduleStatus == 1}">
+                                        <button type="button" class="btn bg-red btn-xs"
+                                                onclick="showDeleteDlg(${schedule.scheduleId},${schedule.scheduleStatus},'${schedule.scheduleCinema.cinemaName}','${schedule.scheduleFilm.filmName}')">
+                                            下架
+                                        </button>
+                                    </c:if>
                                 </td>
                             </tr>
                             </c:forEach>
@@ -110,52 +110,102 @@
                     </div>
                     <!-- 数据表格 /-->
 
-
                 </div>
                 <!-- /.box-body -->
-
-                <!-- .box-footer-->
-                <div class="box-footer">
-                    <div class="pull-left">
-                        <div class="form-group form-inline">
-                            总共2 页，共14 条数据。 每页
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select> 条
-                        </div>
-                    </div>
-
-                    <div class="box-tools pull-right">
-                        <ul class="pagination">
-                            <li>
-                                <a href="#" aria-label="Previous">首页</a>
-                            </li>
-                            <li><a href="#">上一页</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">下一页</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">尾页</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /.box-footer-->
-
-
 
             </div>
 
         </section>
         <!-- 正文区域 /-->
+
+        <!-- 提示框 -->
+        <div class="alert"></div>
+
+        <!-- 编辑场次的模块框 -->
+        <div class="modal fade" id="editScheduleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">编辑场次</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editSchedule" class="form-horizontal">
+                            <input type="hidden" id="scheduleId" name="scheduleId">
+                            <div class="form-group">
+                                <label for="startTime" class="col-sm-2 control-label">放映时间</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="startTime" name="startTime">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="language" class="col-sm-2 control-label">语言版本</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="language" name="language">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="price" class="col-sm-2 control-label">售价</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="price" name="price">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" onclick="editSchedule()">保存</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+        <!-- 下架场次的模块框 -->
+        <div class="modal modal-danger fade" id="deleteScheduleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">下架场次</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="deleteMessage"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-outline" onclick="deleteSchedule()">确定</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+        <!-- 上架场次的模块框 -->
+        <div class="modal modal-success fade" id="shelvesScheduleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">上架场次</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="shelvesMessage"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-outline" onclick="deleteSchedule()">确定</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 
 
 <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -204,6 +254,69 @@
 <script src="/admin/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="/admin/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
+
+    //查询id对应的场次信息，并将场次信息回显到编辑的窗口中
+    function showUpdateDlg(id) {
+
+        var url =  "/getScheduleById?scheduleId="+id;
+        $.get(url, function (response) {
+            //将获取的场次信息回显到编辑的窗口中
+            $("#scheduleId").val(response.data.scheduleId);
+            $("#startTime").val(response.data.startTime);
+            $("#language").val(response.data.language);
+            $("#price").val(response.data.price);
+        })
+    }
+
+    //点击编辑的保存按钮，提交更改后的场次信息
+    function editSchedule(){
+        var url ="/updateSchedule";
+        $.post(url, $("#editSchedule").serialize(), function (response) {
+
+            if (response.success == true){
+                $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
+                $('#editScheduleModal').modal('hide')
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1800);
+            }else {
+                $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
+            }
+        })
+    }
+
+    var deleteId = 0;
+    //查询id对应的场次信息，并将场次信息回显到上架、下架的窗口中
+    function showDeleteDlg(id,status,cinemaName,fileName){
+        //将获取的场次信息回显到指定的窗口中
+        deleteId = id;
+        if(status == 0){
+            $("#shelvesMessage").text("您确定要上架"+cinemaName+"影院下"+fileName+"的场次信息吗?");
+            $('#shelvesScheduleModal').modal('show');
+        }else{
+            $("#deleteMessage").text("您确定要下架"+cinemaName+"影院下"+fileName+"的场次信息吗?");
+            $('#deleteScheduleModal').modal('show');
+        }
+    }
+
+    //点击上、下架的确定按钮，提交更改后的场次信息
+    function deleteSchedule(){
+        var url ="/deleteSchedule?scheduleId="+deleteId;
+        $.post(url, function (response) {
+
+            if (response.success == true){
+                $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
+                $('#deleteScheduleModal').modal('hide')
+                $('#shelvesScheduleModal').modal('hide')
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1800);
+            }else {
+                $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
+            }
+        })
+    }
+
     $(document).ready(function() {
         // 选择框
         $(".select2").select2();
@@ -214,7 +327,6 @@
         });
     });
 
-
     // 设置激活菜单
     function setSidebarActive(tagUri) {
         var liObj = $("#" + tagUri);
@@ -224,6 +336,12 @@
         }
     }
 
+    // 设置激活表格
+    $(function () {
+        $("#dataList").DataTable({
+            'order' : [5,'asc']
+        });
+    });
 
     $(document).ready(function() {
 
@@ -235,6 +353,7 @@
             checkboxClass: 'icheckbox_square-blue',
             increaseArea: '20%'
         });
+
         // 全选操作
         $("#selall").click(function() {
             var clicks = $(this).is(':checked');
@@ -245,6 +364,11 @@
             }
             $(this).data("clicks", !clicks);
         });
+    });
+
+    $('#startTime').datetimepicker({
+        format:'yyyy-mm-dd hh:ii:ss',
+        theme: 'dark'
     });
 </script>
 </body>

@@ -1,7 +1,6 @@
 package com.xmut.controller;
 
 import com.xmut.domain.Order;
-import com.xmut.entity.PageResult;
 import com.xmut.entity.Result;
 import com.xmut.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +35,9 @@ public class OrderController {
     public ModelAndView loadPagedOrders(){
         ModelAndView modelAndView = new ModelAndView();
 
-        int pageNum = 1;
-        int pageSize = 1;
-        PageResult pageResult = orderService.loadPagedOrders(pageNum, pageSize);
-        modelAndView.addObject("pageResult", pageResult);
+        List<Order> orderList = orderService.loadAllOrders();
 
+        modelAndView.addObject("orderList", orderList);
         modelAndView.setViewName("forward:admin/pages/list_order.jsp");
 
         return modelAndView;
