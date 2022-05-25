@@ -31,13 +31,13 @@
         <!-- 内容头部 -->
         <section class="content-header">
             <h1>
-                影院管理
-                <small>影院列表</small>
+                轮播图管理
+                <small>轮播图列表</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">影院管理</a></li>
-                <li class="active">影院列表</li>
+                <li><a href="#">轮播图管理</a></li>
+                <li class="active">轮播图列表</li>
             </ol>
         </section>
         <!-- 内容头部 /-->
@@ -77,8 +77,8 @@
                                     <td style="vertical-align:middle;">${cinema.address}</td>
                                     <td style="vertical-align:middle;">${cinema.telephone}</td>
                                     <td class="text-center" style="vertical-align:middle;">
-                                        <button type="button" class="btn bg-blue btn-xs" data-toggle="modal"
-                                                data-target="#editCinemaModal"    onclick="showUpdateDlg(${cinema.cinemaId})">编辑</button>
+                                        <button type="button" class="btn bg-blue btn-xs" onclick="">编辑</button>
+                                        <button type="button" class="btn bg-red btn-xs">删除</button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -97,58 +97,6 @@
 
         </section>
         <!-- 正文区域 /-->
-        <!-- 提示框 -->
-        <div class="alert"></div>
-
-        <!-- 编辑影院的模块框 -->
-        <div class="modal fade" id="editCinemaModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span></button>
-                        <h4 class="modal-title" id="exampleModalLabel">编辑影院</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form id="editCinema" class="form-horizontal">
-                            <input type="hidden" id="cinemaId" name="cinemaId">
-                            <div class="form-group">
-                                <label for="cinemaName" class="col-sm-2 control-label">影院名称</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="cinemaName" name="cinemaName">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="address" class="col-sm-2 control-label">影院地址</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="address" name="address">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="pictureFile" class="col-sm-2 control-label">影院图片</label>
-                                <div class="col-sm-10">
-                                    <img src="/files/no-pic.jpg" id="picImg" width="200" height="130"
-                                         class="py-1" style="margin-bottom: 5px"><br>
-                                    <input type="file" name="pictureFile" id="pictureFile" onchange="previewImage(this)">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="telephone" class="col-sm-2 control-label">联系电话</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="telephone" name="telephone">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary" onclick="editCinema()">保存</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
 
 
 <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -197,68 +145,6 @@
 <script src="/admin/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="/admin/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
-
-    var oldPicture;
-
-    //查询id对应的影院信息，并将影院信息回显到编辑的窗口中
-    function showUpdateDlg(id) {
-
-        var url =  "/getCinemaById?cinemaId="+id;
-        $.get(url, function (response) {
-            //将获取的场次信息回显到编辑的窗口中
-            $("#cinemaId").val(response.data.cinemaId);
-            $("#cinemaName").val(response.data.cinemaName);
-            $("#address").val(response.data.address);
-            $("#telephone").val(response.data.telephone);
-            var img = document.getElementById('picImg');
-            img.src = response.data.picture;
-            oldPicture = response.data.picture;
-        })
-    }
-
-    //点击编辑的保存按钮，提交更改后的影院信息
-    function editCinema(){
-        // var form = $('editCinema');
-        var formdata = new FormData(document.getElementById("editCinema"));
-
-        $.ajax({
-            url:"/updateCinema",
-            type: "POST",
-            data: formdata,
-            async: false,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(response){
-                if (response.success == true)
-                    $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
-                    $('#editCinemaModal').modal('hide')
-                    setTimeout(function() {
-                        window.location.reload();
-                    }, 1800);
-            }
-        })
-    }
-
-    //回显图片
-    function previewImage(file) {
-        var img = document.getElementById('picImg');
-
-        if (file.files && file.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(evt) {
-                img.src = evt.target.result;
-                console.log("read ok!" + evt.target.result);
-
-            }
-            console.log("start to read");
-            reader.readAsDataURL(file.files[0]);
-        } else {
-            img.src = oldPicture;
-        }
-    }
-
     $(document).ready(function() {
         // 选择框
         $(".select2").select2();

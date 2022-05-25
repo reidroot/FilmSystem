@@ -12,45 +12,6 @@
 
     <%--  引用文件  --%>
     <%@ include file="head.jsp"%>
-    <style>
-        .alert {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            min-width: 300px;
-            max-width: 600px;
-            transform: translate(-50%,-50%);
-            z-index: 99999;
-            text-align: center;
-            padding: 15px;
-            border-radius: 3px;
-        }
-
-        .alert-success {
-            color: #3c763d;
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-        }
-
-        .alert-info {
-            color: #31708f;
-            background-color: #d9edf7;
-            border-color: #bce8f1;
-        }
-
-        .alert-warning {
-            color: #8a6d3b;
-            background-color: #fcf8e3;
-            border-color: #faebcc;
-        }
-
-        .alert-danger {
-            color: #a94442;
-            background-color: #f2dede;
-            border-color: #ebccd1;
-        }
-    </style>
 
 </head>
 
@@ -93,8 +54,10 @@
                                 <input type="text" class="form-control" name="address" id="address" placeholder="请输入影院地址">
                             </div>
                             <div class="form-group">
-                                <label for="pictureFile">影院图片</label>
-                                <input type="file" name="pictureFile" id="pictureFile">
+                                <label for="pictureFile">影院图片</label><br>
+                                <img src="/files/no-pic.jpg" id="picImg" width="200" height="130"
+                                     class="py-1" style="margin-bottom: 5px"><br>
+                                <input type="file" name="pictureFile" id="pictureFile"  onchange="previewImage(this)">
                             </div>
                             <div class="form-group">
                                 <label for="telephone">联系电话</label>
@@ -120,37 +83,7 @@
 <div class="alert"></div>
 <!-- 提示框结束 -->
 
-<%-- 提交信息ajax代码 --%>
-<script type="text/javascript">
 
-    function submitCinema() {
-        var cinemaName = $('#cinemaName').val();
-        var address = $('#address').val();
-        var telephone = $('#telephone').val();
-
-        $.ajax({
-            url: "/getCinema",
-            type: "post",
-            data: JSON.stringify({
-                cinemaName: cinemaName,
-                address: address,
-                telephone: telephone}),
-            contentType: "application/json;charset=UTF-8",
-            dataType: "text",
-            success: function (response) {
-                console.log("进入success")
-                console.log(response)
-                if (response == "success"){
-                    $('#cinemaName').val("");
-                    $('#address').val("");
-                    $('#pictureFile').val("");
-                    $('#telephone').val("");
-                    $('.alert').html('新增影院成功！').addClass('alert-success').show().delay(500).fadeOut();
-                }
-            }
-        });
-    }
-</script>
 
 
 <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -209,6 +142,24 @@
         });
     });
 
+    //回显图片
+    function previewImage(file) {
+        var img = document.getElementById('picImg');
+
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(evt) {
+                img.src = evt.target.result;
+                console.log("read ok!" + evt.target.result);
+
+            }
+            console.log("start to read");
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            img.src = "/files/no-pic.jpg";
+        }
+    }
 
     // 设置激活菜单
     function setSidebarActive(tagUri) {

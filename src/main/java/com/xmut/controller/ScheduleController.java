@@ -76,10 +76,10 @@ public class ScheduleController {
 
     @ResponseBody
     @RequestMapping("/getScheduleById")
-    public Result<Schedule> findScheduleById(Long scheduleId) {
+    public Result<Schedule> getScheduleById(Long scheduleId) {
         try {
             Schedule schedule = scheduleService.getEasyScheduleById(scheduleId);
-            if(schedule==null){
+            if(schedule == null){
                 return new Result(false,"没有获取到场次信息");
             }
             return new Result(true,"查询场次成功",schedule);
@@ -93,7 +93,7 @@ public class ScheduleController {
     @RequestMapping("/updateSchedule")
     public Result updateSchedule(Schedule schedule) {
         try {
-            Integer count=scheduleService.updateSchedule(schedule);
+            Integer count = scheduleService.updateSchedule(schedule);
             if(count!=1){
                 return new Result(false, "编辑场次失败!");
             }

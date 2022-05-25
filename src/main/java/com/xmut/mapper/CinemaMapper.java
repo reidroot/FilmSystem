@@ -17,7 +17,9 @@ public interface CinemaMapper {
      * @param cinema
      * @return
      */
-    public int addCinema(Cinema cinema);
+    public Integer addCinema(Cinema cinema);
+
+    public Integer updateCinema(Cinema cinema);
 
     /**
      * 根据cinemaId查询Cinema  一对多关联 Schedule
@@ -32,7 +34,7 @@ public interface CinemaMapper {
      * @return
      */
     @Select("select * from t_cinema where cinema_id = #{cinemaId}")
-    public Cinema findEasyCinema(Long cinemaId);
+    public Cinema findEasyCinemaById(Long cinemaId);
 
     /**
      * 查询所有Cinema(简单查询Cineam)

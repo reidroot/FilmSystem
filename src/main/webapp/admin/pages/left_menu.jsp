@@ -169,6 +169,24 @@
                 </ul>
             </li>
 
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-picture-o"></i> <span>轮播图管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li id="list-slide">
+                        <a href="/loadPagedSlide" target="mainFrame">
+                            <i class="fa fa-circle-o"></i> 轮播图列表
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
             <!-- 菜单 /-->
         </ul>
     </section>

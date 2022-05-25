@@ -7,15 +7,17 @@ public class Slide implements Serializable {
     private Long slideId;
     private String img;
     private Long filmId;
+    private Film film;
 
     public Slide() {
         super();
     }
 
-    public Slide(Long slideId, String img, Long filmId) {
+    public Slide(Long slideId, String img, Long filmId, Film film) {
         this.slideId = slideId;
         this.img = img;
         this.filmId = filmId;
+        this.film = film;
     }
 
     public Long getSlideId() {
@@ -42,12 +44,21 @@ public class Slide implements Serializable {
         this.filmId = filmId;
     }
 
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
+    }
+
     @Override
     public String toString() {
         return "Slide{" +
                 "slideId=" + slideId +
                 ", img='" + img + '\'' +
                 ", filmId=" + filmId +
+                ", film=" + film +
                 '}';
     }
 }

@@ -16,8 +16,16 @@ public class CinemaServiceImpl implements com.xmut.service.CinemaService {
     @Autowired
     private CinemaMapper cinemaMapper;
 
-    public int createCinema(Cinema cinema) {
+    public Integer createCinema(Cinema cinema) {
         return cinemaMapper.addCinema(cinema);
+    }
+
+    public Integer updateCinema(Cinema cinema) {
+        return cinemaMapper.updateCinema(cinema);
+    }
+
+    public Cinema findEasyCinemaById(Long cinemaId) {
+        return cinemaMapper.findEasyCinemaById(cinemaId);
     }
 
     public List<Cinema> loadAllCinemas() {

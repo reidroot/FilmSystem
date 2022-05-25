@@ -14,7 +14,21 @@ public interface CinemaService {
      * @param cinema
      * @return
      */
-    public int createCinema(Cinema cinema);
+    public Integer createCinema(Cinema cinema);
+
+    /**
+     * 更新影院
+     * @param cinema
+     * @return
+     */
+    public Integer updateCinema(Cinema cinema);
+
+    /**
+     * 简单查询影院信息
+     * @param cinemaId
+     * @return
+     */
+    public Cinema findEasyCinemaById(Long cinemaId);
 
     /**
      * 查询所有影院信息

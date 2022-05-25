@@ -180,17 +180,48 @@
                     </div>
                 </div>
                 <div class="tab-content" style="display: none">
-                    <div class="movie-watch-time bodpnd">
-                        <p class="title">${filmInfo.filmName}的短评· · · · · · (全部${filmInfo.remarkCount}条)</p>
+                    <div class="remark-container">
+                        <div class="comment-send">
+                            <form id="commentForm" method="GET" action="http://127.0.0.1:8888/comment">
+                         <span class="comment-avatar">
+                       <img src="files/poster/film1.jpg" alt="avatar">
+                        </span>
+                                <textarea class="comment-send-input" name="comment" form="commentForm" cols="80" rows="5" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"></textarea>
+                                <input class="comment-send-button" type="submit" value="发表评论">
+                            </form>
+                        </div>
+                        <div class="comment-list" id="commentList">
+                            <c:forEach var="i" begin="1" end="10" step="1">
+                                <div class="comment">
+                        <span class="comment-avatar">
+                         <img src="files/poster/film1.jpg" alt="avatar">
+                        </span>
+                                    <div class="comment-content" style="margin-top:-5px;">
+                                        <p class="comment-content-name">EdmundDZhang</p>
+                                        <p class="comment-content-article">惊了</p>
+                                        <p class="comment-content-footer">
+                                            <span class="comment-content-footer-id">#2</span>
+                                            <span class="comment-content-footer-device">来自安卓客户端</span>
+                                            <span class="comment-content-footer-timestamp">2018-01-20 14:05</span>
+                                        </p>
+                                    </div>
+                                    <div class="cls"></div>
+                                </div>
+                            </c:forEach>
+                        </div>
                     </div>
-                    <c:forEach items="${filmInfo.remarkList}" var="remark">
-                    <div class="movie-watch-time bodpnd" <c:if test="${remark.isBought  == 1}">style="color: #FF8D1B;"</c:if>>
-                        ${remark.remarkUser.userName}
-                        <fmt:formatDate value="${remark.remarkTime}" pattern="yyyy-MM-dd HH:mm:ss" />
-                        <br>
-                        ${remark.context}
-                    </div>
-                    </c:forEach>
+<%--                    <div class="movie-watch-time bodpnd">--%>
+<%--                        <p class="title">${filmInfo.filmName}的短评· · · · · · (全部${filmInfo.remarkCount}条)</p>--%>
+<%--                    </div>--%>
+<%--                    <c:forEach items="${filmInfo.remarkList}" var="remark">--%>
+<%--                    <div class="movie-watch-time bodpnd" <c:if test="${remark.isBought  == 1}">style="color: #FF8D1B;"</c:if>>--%>
+<%--                        ${remark.remarkUser.userName}--%>
+<%--                        <fmt:formatDate value="${remark.remarkTime}" pattern="yyyy-MM-dd HH:mm:ss" />--%>
+<%--                        <br>--%>
+<%--                        ${remark.context}--%>
+<%--                    </div>--%>
+<%--                    </c:forEach>--%>
+
                 </div>
                 <script type="text/javascript">
                     let tsa = document.querySelectorAll(".tab-subtitle a");
