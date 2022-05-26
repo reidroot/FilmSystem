@@ -21,7 +21,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         return scheduleMapper.addSchedule(schedule);
     }
 
-    public Integer deleteSchedule(Long scheduleId) {
+    public Integer removeSchedule(Long scheduleId) {
         return scheduleMapper.deleteSchedule(scheduleId);
     }
 

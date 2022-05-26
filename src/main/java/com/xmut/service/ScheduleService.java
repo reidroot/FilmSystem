@@ -21,7 +21,7 @@ public interface ScheduleService {
      * @param scheduleId
      * @return
      */
-    public Integer deleteSchedule(Long scheduleId);
+    public Integer removeSchedule(Long scheduleId);
 
     /**
      * 更新座位信息

@@ -14,6 +14,7 @@
     <title>电影 - 叮当电影</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="./css/movie.css">
+    <link rel="stylesheet" type="text/css" href="./css/remark.css">
 </head>
 <body>
 
@@ -180,29 +181,32 @@
                     </div>
                 </div>
                 <div class="tab-content" style="display: none">
+                    <div class="movie-watch-time bodpnd">
+                        <p class="title">${filmInfo.filmName}的短评· · · · · · (全部${filmInfo.remarkCount}条)</p>
+                    </div>
                     <div class="remark-container">
                         <div class="comment-send">
                             <form id="commentForm" method="GET" action="http://127.0.0.1:8888/comment">
-                         <span class="comment-avatar">
-                       <img src="files/poster/film1.jpg" alt="avatar">
-                        </span>
+                                <span class="comment-avatar">
+                                    <img src="files/icon/default.png" alt="avatar">
+                                </span>
                                 <textarea class="comment-send-input" name="comment" form="commentForm" cols="80" rows="5" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"></textarea>
                                 <input class="comment-send-button" type="submit" value="发表评论">
                             </form>
                         </div>
                         <div class="comment-list" id="commentList">
-                            <c:forEach var="i" begin="1" end="10" step="1">
+                            <c:forEach items="${filmInfo.remarkList}" var="remark">
                                 <div class="comment">
-                        <span class="comment-avatar">
-                         <img src="files/poster/film1.jpg" alt="avatar">
-                        </span>
+                                    <span class="comment-avatar">
+                                     <img src="${remark.remarkUser.icon}" alt="头像">
+                                    </span>
                                     <div class="comment-content" style="margin-top:-5px;">
-                                        <p class="comment-content-name">EdmundDZhang</p>
-                                        <p class="comment-content-article">惊了</p>
+                                        <p class="comment-content-name">${remark.remarkUser.userName}</p>
+                                        <p class="comment-content-article">${remark.context}</p>
                                         <p class="comment-content-footer">
                                             <span class="comment-content-footer-id">#2</span>
                                             <span class="comment-content-footer-device">来自安卓客户端</span>
-                                            <span class="comment-content-footer-timestamp">2018-01-20 14:05</span>
+                                            <span class="comment-content-footer-timestamp"><fmt:formatDate value="${remark.remarkTime}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
                                         </p>
                                     </div>
                                     <div class="cls"></div>

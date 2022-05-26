@@ -67,7 +67,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="releaseTime">上映时间</label>
-                                <input type="text" class="form-control" name="releaseTime" id="releaseTime" placeholder="">
+                                <input type="text" class="form-control" name="releaseTime" id="releaseTime" placeholder="请选择上映时间">
                             </div>
                             <div class="form-group">
                                 <label for="runningTime">片长(分钟)</label>
@@ -153,6 +153,11 @@
         });
     });
 
+    //时间控件
+    $('#releaseTime').datepicker({
+        format:'yyyy-mm-dd',
+        theme: 'dark'
+    });
 
     // 设置激活菜单
     function setSidebarActive(tagUri) {

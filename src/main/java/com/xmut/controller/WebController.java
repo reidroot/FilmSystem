@@ -28,7 +28,7 @@ public class WebController {
     @Autowired
     private ScheduleService scheduleService;
 
-    // seat存放二维数组座位图
+    //seat存放二维数组座位图
     char seat[][] = new char[10][11];
 
     /**
@@ -174,6 +174,15 @@ public class WebController {
         return modelAndView;
     }
 
+    /**
+     * 生成订单，更新座位信息
+     * @param rows
+     * @param cols
+     * @param order
+     * @param userId
+     * @param scheduleId
+     * @return
+     */
     @RequestMapping("/generateOrder")
     @ResponseBody
     public String generateOrder(String rows, String cols, Order order, Long userId, Long scheduleId){

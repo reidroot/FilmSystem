@@ -32,12 +32,18 @@
 
     <!-- 修改影片 注: remark_count, remark_score 字段数据库触发器生成, film_status 由下架修改 -->
     <update id="updateFilm" parameterType="Film">
-        update t_film set film_name=#{filmName},director=#{director},actor=#{actor},tag=#{tag},nation=#{nation},
-        release_time=#{releaseTime},running_time=#{runningTime},poster=#{poster},description=#{description}
+        update t_film
+        <set>
+            film_name=#{filmName},director=#{director},actor=#{actor},tag=#{tag},nation=#{nation},
+            release_time=#{releaseTime},running_time=#{runningTime},description=#{description},
+            <if test="poster!=null and poster!=''">
+                poster=#{poster}
+            </if>
+        </set>
         where film_id=#{filmId}
     </update>
 
-    <!-- 下架影片 -->
+    <!-- 上架、下架影片 -->
     <update id="deleteFilm" parameterType="Long">
         update t_film set film_status = !film_status where film_id = #{film_id}
     </update>

@@ -257,7 +257,6 @@
 
     //查询id对应的场次信息，并将场次信息回显到编辑的窗口中
     function showUpdateDlg(id) {
-
         var url =  "/getScheduleById?scheduleId="+id;
         $.get(url, function (response) {
             //将获取的场次信息回显到编辑的窗口中
@@ -317,6 +316,12 @@
         })
     }
 
+    //时间控件
+    $('#startTime').datetimepicker({
+        format:'yyyy-mm-dd hh:ii:ss',
+        theme: 'dark'
+    });
+
     $(document).ready(function() {
         // 选择框
         $(".select2").select2();
@@ -366,10 +371,6 @@
         });
     });
 
-    $('#startTime').datetimepicker({
-        format:'yyyy-mm-dd hh:ii:ss',
-        theme: 'dark'
-    });
 </script>
 </body>
 

@@ -78,7 +78,7 @@
                                     <td style="vertical-align:middle;">${cinema.telephone}</td>
                                     <td class="text-center" style="vertical-align:middle;">
                                         <button type="button" class="btn bg-blue btn-xs" data-toggle="modal"
-                                                data-target="#editCinemaModal"    onclick="showUpdateDlg(${cinema.cinemaId})">编辑</button>
+                                                data-target="#editCinemaModal" onclick="showUpdateDlg(${cinema.cinemaId})">编辑</button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -97,6 +97,7 @@
 
         </section>
         <!-- 正文区域 /-->
+
         <!-- 提示框 -->
         <div class="alert"></div>
 
@@ -205,7 +206,7 @@
 
         var url =  "/getCinemaById?cinemaId="+id;
         $.get(url, function (response) {
-            //将获取的场次信息回显到编辑的窗口中
+            //将获取的影院信息回显到编辑的窗口中
             $("#cinemaId").val(response.data.cinemaId);
             $("#cinemaName").val(response.data.cinemaName);
             $("#address").val(response.data.address);
@@ -216,15 +217,14 @@
         })
     }
 
-    //点击编辑的保存按钮，提交更改后的影院信息
+    //点击编辑的保存按钮，提交修改后的影院信息
     function editCinema(){
-        // var form = $('editCinema');
-        var formdata = new FormData(document.getElementById("editCinema"));
+        var formData = new FormData(document.getElementById("editCinema"));
 
         $.ajax({
             url:"/updateCinema",
             type: "POST",
-            data: formdata,
+            data: formData,
             async: false,
             cache: false,
             contentType: false,

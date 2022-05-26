@@ -10,7 +10,7 @@ import java.util.List;
 public class Schedule implements Serializable {
 
     private Long scheduleId;            //场次ID
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",  timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date startTime;             //放映时间
     private String language;            //语言版本

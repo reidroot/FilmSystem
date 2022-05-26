@@ -14,7 +14,7 @@
         update t_cinema
         <set>
             cinema_name = #{cinemaName}, address = #{address}, telephone = #{telephone},
-            <if test="picture != null and picture !=''">
+            <if test="picture!=null and picture!=''">
                 picture = #{picture},
             </if>
         </set>

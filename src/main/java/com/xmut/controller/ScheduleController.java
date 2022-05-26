@@ -108,7 +108,7 @@ public class ScheduleController {
     @RequestMapping("/deleteSchedule")
     public Result deleteSchedule(Long scheduleId){
         try {
-            Integer count = scheduleService.deleteSchedule(scheduleId);
+            Integer count = scheduleService.removeSchedule(scheduleId);
             if(count!=1){
                 return new Result(false, "操作失败!");
             }

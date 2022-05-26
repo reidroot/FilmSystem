@@ -1,5 +1,6 @@
 package com.xmut.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ public class Film implements Serializable {
     private String actor;               //主演
     private String tag;                 //类型
     private String nation;              //制片国家/地区
+    @JsonFormat(pattern="yyyy-MM-dd", timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date releaseTime;           //上映时间
     private Integer runningTime;        //片长(分钟)

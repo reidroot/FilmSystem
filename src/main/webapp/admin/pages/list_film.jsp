@@ -88,7 +88,8 @@
                                         <c:if test="${film.filmStatus == 0}">下架</c:if>
                                     </td>
                                     <td class="text-center" style="vertical-align:middle;">
-                                        <button type="button" class="btn bg-blue btn-xs" onclick="updateFilm('${film.filmId}')">编辑</button>
+                                        <button type="button" class="btn bg-blue btn-xs" data-toggle="modal"
+                                                data-target="#editFilmModal" onclick="showUpdateDlg(${film.filmId})">编辑</button>
                                         <button type="button" class="btn bg-red btn-xs" onclick="removeFilmById('${film.filmId}')">
                                             <c:if test="${film.filmStatus == 0}">上架</c:if>
                                             <c:if test="${film.filmStatus == 1}">下架</c:if>
@@ -111,6 +112,89 @@
 
         </section>
         <!-- 正文区域 /-->
+
+        <!-- 提示框 -->
+        <div class="alert"></div>
+
+        <!-- 编辑影院的模块框 -->
+        <div class="modal fade" id="editFilmModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">编辑影片</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editFilm" class="form-horizontal">
+                            <input type="hidden" id="filmId" name="filmId">
+                            <div class="form-group">
+                                <label for="filmName" class="col-sm-2 control-label">影片名称</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="filmName" name="filmName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="director" class="col-sm-2 control-label">导演</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="director" name="director">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="actor" class="col-sm-2 control-label">主演</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="actor" name="actor">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tag" class="col-sm-2 control-label">类型</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="tag" name="tag">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nation" class="col-sm-2 control-label">制片国家</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nation" name="nation">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="releaseTime" class="col-sm-2 control-label">上映时间</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="releaseTime" name="releaseTime">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="runningTime" class="col-sm-2 control-label">片长(分钟)</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="runningTime" name="runningTime">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="posterFile" class="col-sm-2 control-label">影院图片</label>
+                                <div class="col-sm-10">
+                                    <img src="/files/no-pic.jpg" id="picImg" width="115px" height="161px"
+                                         class="py-1" style="margin-bottom: 5px"><br>
+                                    <input type="file" name="posterFile" id="posterFile" onchange="previewImage(this)">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-sm-2 control-label">影片简介</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" rows="4" name="description" id="description" placeholder="请输入影片简介..."></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" onclick="editFilm()">保存</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 
 
 <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -159,6 +243,79 @@
 <script src="/admin/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="/admin/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
+
+    var oldPoster;
+
+    //查询id对应的影片信息，并将影片信息回显到编辑的窗口中
+    function showUpdateDlg(id){
+
+        var url = "/getFilmById?filmId="+id;
+        $.get(url, function (response) {
+            //将获取到的影片信息回显到编辑的窗口中
+            $("#filmId").val(response.data.filmId);
+            $("#filmName").val(response.data.filmName);
+            $("#director").val(response.data.director);
+            $("#actor").val(response.data.actor);
+            $("#tag").val(response.data.tag);
+            $("#nation").val(response.data.nation);
+            $("#releaseTime").val(response.data.releaseTime);
+            $("#runningTime").val(response.data.runningTime);
+            $("#description").val(response.data.description);
+
+            var img = document.getElementById('picImg');
+            img.src = response.data.poster;
+            oldPoster = response.data.poster;
+        })
+    }
+
+    //点击编辑的保存按钮，提交修改后的影片信息
+    function editFilm(){
+        var formData = new FormData(document.getElementById("editFilm"));
+
+        $.ajax({
+            url:"/updateFilm",
+            type: "POST",
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                if (response.success == true)
+                    $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
+                $('#editFilmModal').modal('hide')
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1800);
+            }
+        })
+    }
+
+    //回显图片
+    function previewImage(file) {
+        var img = document.getElementById('picImg');
+
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(evt) {
+                img.src = evt.target.result;
+                console.log("read ok!" + evt.target.result);
+
+            }
+            console.log("start to read");
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            img.src = oldPoster;
+        }
+    }
+
+    //时间控件
+    $('#releaseTime').datepicker({
+        format:'yyyy-mm-dd',
+        theme: 'dark'
+    });
+
     $(document).ready(function() {
         // 选择框
         $(".select2").select2();
