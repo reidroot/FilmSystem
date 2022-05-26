@@ -89,11 +89,21 @@
                                     </td>
                                     <td class="text-center" style="vertical-align:middle;">
                                         <button type="button" class="btn bg-blue btn-xs" data-toggle="modal"
-                                                data-target="#editFilmModal" onclick="showUpdateDlg(${film.filmId})">编辑</button>
-                                        <button type="button" class="btn bg-red btn-xs" onclick="removeFilmById('${film.filmId}')">
-                                            <c:if test="${film.filmStatus == 0}">上架</c:if>
-                                            <c:if test="${film.filmStatus == 1}">下架</c:if>
+                                                data-target="#editFilmModal" onclick="showUpdateDlg(${film.filmId})">
+                                            编辑
                                         </button>
+                                        <c:if test="${film.filmStatus == 0}">
+                                            <button type="button" class="btn bg-olive btn-xs"
+                                                    onclick="showDeleteDlg(${film.filmId},${film.filmStatus},'${film.filmName}')">
+                                                上架
+                                            </button>
+                                        </c:if>
+                                        <c:if test="${film.filmStatus == 1}">
+                                            <button type="button" class="btn bg-red btn-xs"
+                                                    onclick="showDeleteDlg(${film.filmId},${film.filmStatus},'${film.filmName}')">
+                                                下架
+                                            </button>
+                                        </c:if>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -171,7 +181,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="posterFile" class="col-sm-2 control-label">影院图片</label>
+                                <label for="posterFile" class="col-sm-2 control-label">海报</label>
                                 <div class="col-sm-10">
                                     <img src="/files/no-pic.jpg" id="picImg" width="115px" height="161px"
                                          class="py-1" style="margin-bottom: 5px"><br>
@@ -196,8 +206,52 @@
             <!-- /.modal-dialog -->
         </div>
 
+        <!-- 下架场次的模块框 -->
+        <div class="modal modal-danger fade" id="deleteFilmModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">下架影片</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="deleteMessage"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-outline" onclick="deleteFilm()">确定</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 
-<script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <!-- 上架场次的模块框 -->
+        <div class="modal modal-success fade" id="shelvesFilmModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">上映影片</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="shelvesMessage"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-outline" onclick="deleteFilm()">确定</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+
+    <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>
 <script>
     $.widget.bridge('uibutton', $.ui.button);
@@ -245,10 +299,10 @@
 <script>
 
     var oldPoster;
+    var deleteId = 0;
 
     //查询id对应的影片信息，并将影片信息回显到编辑的窗口中
     function showUpdateDlg(id){
-
         var url = "/getFilmById?filmId="+id;
         $.get(url, function (response) {
             //将获取到的影片信息回显到编辑的窗口中
@@ -271,7 +325,6 @@
     //点击编辑的保存按钮，提交修改后的影片信息
     function editFilm(){
         var formData = new FormData(document.getElementById("editFilm"));
-
         $.ajax({
             url:"/updateFilm",
             type: "POST",
@@ -286,7 +339,41 @@
                 $('#editFilmModal').modal('hide')
                 setTimeout(function() {
                     window.location.reload();
-                }, 1800);
+                }, 1500);
+            },
+            error: function (response) {
+                $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
+            }
+        })
+    }
+
+    //显示模态窗，并将影片信息回显到上映、下架的窗口中
+    function showDeleteDlg(id,status,fileName){
+        //将获取的影片信息回显到指定的窗口中
+        deleteId = id;
+        if(status == 0){
+            $("#shelvesMessage").text("您确定要上映"+fileName+"吗?");
+            $('#shelvesFilmModal').modal('show');
+        }else{
+            $("#deleteMessage").text("您确定要下架"+fileName+"吗?");
+            $('#deleteFilmModal').modal('show');
+        }
+    }
+
+    //点击上映、下架的确定按钮，实现上映、下架功能
+    function deleteFilm(){
+        var url ="/deleteFilm?filmId="+deleteId;
+        $.post(url, function (response) {
+
+            if (response.success == true){
+                $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
+                $('#deleteFilmModal').modal('hide')
+                $('#shelvesFilmModal').modal('hide')
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1500);
+            }else {
+                $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
             }
         })
     }

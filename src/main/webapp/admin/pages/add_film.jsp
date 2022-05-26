@@ -67,15 +67,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="releaseTime">上映时间</label>
-                                <input type="text" class="form-control" name="releaseTime" id="releaseTime" placeholder="请选择上映时间">
+                                <input type="text" class="form-control" name="releaseTime" id="releaseTime" placeholder="请选择上映时间"  autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label for="runningTime">片长(分钟)</label>
                                 <input type="text" class="form-control" name="runningTime" id="runningTime" placeholder="请输入片长(分钟)">
                             </div>
                             <div class="form-group">
-                                <label for="posterFile">海报</label>
-                                <input type="file" name="posterFile" id="posterFile">
+                                <label for="posterFile">海报</label><br>
+                                <img src="/files/no-pic2.jpg" id="picImg" width="115" height="161"
+                                     class="py-1" style="margin-bottom: 5px"><br>
+                                <input type="file" name="posterFile" id="posterFile" onchange="previewImage(this)">
                             </div>
                             <div class="form-group">
                                 <label for="description">影片简介</label>
@@ -168,6 +170,24 @@
         }
     }
 
+    //回显图片
+    function previewImage(file) {
+        var img = document.getElementById('picImg');
+
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(evt) {
+                img.src = evt.target.result;
+                console.log("read ok!" + evt.target.result);
+
+            }
+            console.log("start to read");
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            img.src = "/files/no-pic2.jpg";
+        }
+    }
 
     // 激活导航位置
     setSidebarActive("form-general");

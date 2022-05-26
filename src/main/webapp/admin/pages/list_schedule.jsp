@@ -87,7 +87,9 @@
                                 </td>
                                 <td class="text-center">
                                     <button type="button" class="btn bg-blue btn-xs" data-toggle="modal"
-                                            data-target="#editScheduleModal" onclick="showUpdateDlg(${schedule.scheduleId})">编辑</button>
+                                            data-target="#editScheduleModal" onclick="showUpdateDlg(${schedule.scheduleId})">
+                                        编辑
+                                    </button>
                                     <c:if test="${schedule.scheduleStatus == 0}">
                                         <button type="button" class="btn bg-olive btn-xs"
                                                 onclick="showDeleteDlg(${schedule.scheduleId},${schedule.scheduleStatus},'${schedule.scheduleCinema.cinemaName}','${schedule.scheduleFilm.filmName}')">
@@ -254,6 +256,7 @@
 <script src="/admin/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="/admin/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
+    var deleteId = 0;
 
     //查询id对应的场次信息，并将场次信息回显到编辑的窗口中
     function showUpdateDlg(id) {
@@ -277,15 +280,15 @@
                 $('#editScheduleModal').modal('hide')
                 setTimeout(function() {
                     window.location.reload();
-                }, 1800);
+                }, 1500);
             }else {
                 $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
             }
         })
     }
 
-    var deleteId = 0;
-    //查询id对应的场次信息，并将场次信息回显到上架、下架的窗口中
+
+    //显示模态窗，并将场次信息回显到上架、下架的窗口中
     function showDeleteDlg(id,status,cinemaName,fileName){
         //将获取的场次信息回显到指定的窗口中
         deleteId = id;
@@ -298,7 +301,7 @@
         }
     }
 
-    //点击上、下架的确定按钮，提交更改后的场次信息
+    //点击上、下架的确定按钮，实现上、下架功能
     function deleteSchedule(){
         var url ="/deleteSchedule?scheduleId="+deleteId;
         $.post(url, function (response) {

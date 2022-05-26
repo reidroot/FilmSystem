@@ -27,16 +27,7 @@ public class ScheduleController {
     @Autowired
     private FilmService filmService;
 
-    @RequestMapping("/scheduleTest")
-    @ResponseBody
-    public String test(){
-
-        Schedule schedule = scheduleService.getScheduleById((long)1);
-        System.out.println(schedule);
-
-        return schedule.toString();
-    }
-
+    //后台显示场次列表
     @RequestMapping("/loadPagedSchedules")
     public ModelAndView loadPagedSchedules(){
         ModelAndView modelAndView = new ModelAndView();
@@ -50,6 +41,7 @@ public class ScheduleController {
     }
 
 
+    //显示影院列表和影片列表到add_schedule.jsp
     @RequestMapping("/toCreateSchedule")
     public ModelAndView toCreateSchedule(){
         ModelAndView modelAndView = new ModelAndView();
@@ -64,6 +56,7 @@ public class ScheduleController {
         return modelAndView;
     }
 
+    //新增场次
     @RequestMapping("/createSchedule")
     public ModelAndView createSchedule(Schedule schedule) {
         ModelAndView modelAndView = new ModelAndView();
@@ -74,6 +67,7 @@ public class ScheduleController {
         return modelAndView;
     }
 
+    //显示场次信息到编辑模态窗
     @ResponseBody
     @RequestMapping("/getScheduleById")
     public Result<Schedule> getScheduleById(Long scheduleId) {
@@ -89,6 +83,7 @@ public class ScheduleController {
         }
     }
 
+    //更新场次信息
     @ResponseBody
     @RequestMapping("/updateSchedule")
     public Result updateSchedule(Schedule schedule) {
@@ -104,6 +99,7 @@ public class ScheduleController {
         }
     }
 
+    //场次上架、下架
     @ResponseBody
     @RequestMapping("/deleteSchedule")
     public Result deleteSchedule(Long scheduleId){

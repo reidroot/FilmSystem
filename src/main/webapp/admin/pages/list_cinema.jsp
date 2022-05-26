@@ -236,6 +236,9 @@
                     setTimeout(function() {
                         window.location.reload();
                     }, 1800);
+            },
+            error: function (response) {
+                $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
             }
         })
     }

@@ -116,7 +116,7 @@ function initSignInOutBehavior() {
             // 阻止未登录访问 不允许访问的页面
             if (!flag) {
                 a.addEventListener("click", function () {
-                    if (confirm("登陆后可访问，您确定要登录吗老铁1111？")) {
+                    if (confirm("登陆后可访问，您确定要登录吗?")) {
                         window.location.href = "login.jsp";
                     }
                     //阻止a标签的默认事件

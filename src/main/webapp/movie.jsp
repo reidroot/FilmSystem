@@ -15,6 +15,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="./css/movie.css">
     <link rel="stylesheet" type="text/css" href="./css/remark.css">
+    <link rel="stylesheet" href="/admin/plugins/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -142,7 +143,7 @@
                                                     </div>
                                                     <div class="tcb-rt">
                                                         <p class="ticket-price"><fmt:formatNumber type="number" value="${schedule.price}" maxFractionDigits="0"/></p>
-                                                        <a href="/ticket?scheduleId=${schedule.scheduleId}" class="buy-ticket">购票</a>
+                                                        <a id="${schedule.scheduleId}" class="buy-ticket">购票</a>
                                                     </div>
                                                 </li>
                                             </c:if>
@@ -186,12 +187,13 @@
                     </div>
                     <div class="remark-container">
                         <div class="comment-send">
-                            <form id="commentForm" method="GET" action="http://127.0.0.1:8888/comment">
+                            <form id="commentForm">
                                 <span class="comment-avatar">
-                                    <img src="files/icon/default.png" alt="avatar">
+                                    <c:if test="${sessionScope.USER_SEESION != null}"><img src="${sessionScope.USER_SEESION.icon}" alt="avatar"></c:if>
+                                    <c:if test="${sessionScope.USER_SEESION == null}"><img src="files/icon/default.png" alt="avatar"></c:if>
                                 </span>
                                 <textarea class="comment-send-input" name="comment" form="commentForm" cols="80" rows="5" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"></textarea>
-                                <input class="comment-send-button" type="submit" value="发表评论">
+                                <input class="comment-send-button" value="发表评论">
                             </form>
                         </div>
                         <div class="comment-list" id="commentList">
@@ -201,8 +203,10 @@
                                      <img src="${remark.remarkUser.icon}" alt="头像">
                                     </span>
                                     <div class="comment-content" style="margin-top:-5px;">
-                                        <p class="comment-content-name">${remark.remarkUser.userName}</p>
-                                        <p class="comment-content-article">${remark.context}</p>
+                                        <p class="comment-content-name">${remark.remarkUser.userName}<c:if test="${remark.isBought  == 1}">&nbsp;&nbsp;<i class="fa fa-ticket" style="color: #FF8D1B;"></i></c:if></p>
+                                        <p class="comment-content-article" <c:if test="${remark.isBought  == 1}">style="color: #FF8D1B;"</c:if>>
+                                                ${remark.context}
+                                        </p>
                                         <p class="comment-content-footer">
                                             <span class="comment-content-footer-id">#2</span>
                                             <span class="comment-content-footer-device">来自安卓客户端</span>
@@ -214,18 +218,6 @@
                             </c:forEach>
                         </div>
                     </div>
-<%--                    <div class="movie-watch-time bodpnd">--%>
-<%--                        <p class="title">${filmInfo.filmName}的短评· · · · · · (全部${filmInfo.remarkCount}条)</p>--%>
-<%--                    </div>--%>
-<%--                    <c:forEach items="${filmInfo.remarkList}" var="remark">--%>
-<%--                    <div class="movie-watch-time bodpnd" <c:if test="${remark.isBought  == 1}">style="color: #FF8D1B;"</c:if>>--%>
-<%--                        ${remark.remarkUser.userName}--%>
-<%--                        <fmt:formatDate value="${remark.remarkTime}" pattern="yyyy-MM-dd HH:mm:ss" />--%>
-<%--                        <br>--%>
-<%--                        ${remark.context}--%>
-<%--                    </div>--%>
-<%--                    </c:forEach>--%>
-
                 </div>
                 <script type="text/javascript">
                     let tsa = document.querySelectorAll(".tab-subtitle a");
@@ -356,7 +348,34 @@
 
 
 <script type="text/javascript" src="js/main.js"></script>
+<script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script type="text/javascript">
+
+    $(function () {
+        //判断用户是否登录
+        if(${sessionScope.USER_SEESION == null}){
+            $(".buy-ticket").click(function () {
+                alert("登录后才可购票，您确定要登录吗?");
+                window.location.href = "login.jsp";
+            })
+            $(".comment-send-button").click(function () {
+                alert("登录后才可评论，您确定要登录吗?");
+                window.location.href = "login.jsp";
+            })
+        }else {
+            $(".buy-ticket").click(function () {
+                var scheduleId = $(this).attr("id")
+                window.location.href = "/ticket?scheduleId="+scheduleId;
+            })
+
+            $(".comment-send-button").click(function () {
+                alert("评论去");
+            })
+        }
+
+    })
+
+
     window.onload = function () {
         setPage("movie.jsp");
         initPublic();
