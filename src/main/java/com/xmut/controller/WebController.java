@@ -1,15 +1,19 @@
 package com.xmut.controller;
 
 import com.xmut.domain.*;
+import com.xmut.entity.Result;
 import com.xmut.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -18,6 +22,9 @@ public class WebController {
 
     @Autowired
     private FilmService filmService;
+
+    @Autowired
+    private SlideService slideService;
 
     @Autowired
     private UserService userService;
@@ -40,13 +47,91 @@ public class WebController {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        //获取所有影院信息显示到首页
+        //获取所有影院信息、轮播图信息显示到首页
         List<Film> filmList = filmService.loadAllFilms();
+        List<Slide> slideList = slideService.loadAllSlides();
+
+        for (Slide slide:slideList) {
+            System.out.println(slide);
+        }
 
         modelAndView.addObject("filmList", filmList);
+        modelAndView.addObject("slideList", slideList);
         modelAndView.setViewName("forward:index.jsp");
 
         return modelAndView;
+    }
+
+    /**
+     * 检查改邮箱是否已注册
+     * @param userEmail
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/checkUserByEmail")
+    public Result  checkUserByEmail(String userEmail){
+        if (userEmail == null || userEmail.length() == 0){
+            return new Result(false, "邮箱不能为空");
+        }else{
+            Integer count = userService.checkUserByEmail(userEmail);
+
+            if (count == 0)
+                return new Result(true, "该邮箱未注册过");
+            else
+                return new Result(false, "该邮箱已被占用！");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/createUser")
+    public Result createUser(User user){
+        user.setIcon("/files/icon/default.png");
+        try {
+            Integer count = userService.createUser(user);
+            if(count!=1){
+                return new Result(false, "注册用户失败!");
+            }
+            return new Result(true,"注册用户成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false, "出现异常,注册用户失败!");
+        }
+
+    }
+
+    @ResponseBody
+    @RequestMapping("/updateUser")
+    public Result updateUser(User user, MultipartFile iconFile, HttpServletRequest request){
+
+        //若更新影院图片
+        if (!iconFile.getOriginalFilename().equals("")){
+            //文件上传功能
+            String originalFilename = iconFile.getOriginalFilename();       //上传的文件名字
+            String filePath = request.getServletContext().getRealPath("/")+"files\\icon\\"+originalFilename; //文件上传后的位置
+            String imgPath = "/files/icon/"+originalFilename;
+            try {
+                iconFile.transferTo(new File(filePath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            user.setIcon(imgPath);
+        }
+
+        try {
+            Integer count = userService.updateUser(user);
+            if(count!=1){
+                return new Result(false, "修改个人信息失败!");
+            }
+            User newUser = userService.getUserById(user.getUserId());
+            request.getSession().setAttribute("USER_SEESION", newUser);
+
+            return new Result(true,"修改个人信息成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false, "出现异常,修改个人信息失败!");
+        }
+
+
     }
 
 
@@ -105,7 +190,8 @@ public class WebController {
         //获取放映改电影的所有场次
         List<Schedule> scheduleList = scheduleService.loadScheduleByFilmId(filmId);
 
-        //电影列表去重
+        //影院
+        // 列表去重
         Map<String,Cinema> map = new HashMap<String, Cinema>();
         for (Schedule schedule:scheduleList){
             map.put(schedule.getScheduleCinema().getCinemaName(),schedule.getScheduleCinema());

@@ -24,6 +24,9 @@
 
 <div class="content">
     <div class="body-bg"></div>
+    <!-- 提示框 -->
+    <div class="alert"></div>
+
     <div class="container">
         <!-- 电影信息栏 -->
         <div class="movie-info-bar clearboth">
@@ -64,7 +67,7 @@
                         <i></i>
                         <span>想看</span>
                     </a>
-                    <a href="javascript:;" class="movie-grade-btn flexcenter fl">
+                    <a href="#remark" class="movie-grade-btn flexcenter fl">
                         <i></i>
                         <span>评分</span>
                     </a>
@@ -181,19 +184,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-content" style="display: none">
+                <div id="remark" class="tab-content" style="display: none">
                     <div class="movie-watch-time bodpnd">
                         <p class="title">${filmInfo.filmName}的短评· · · · · · (全部${filmInfo.remarkCount}条)</p>
                     </div>
                     <div class="remark-container">
                         <div class="comment-send">
-                            <form id="commentForm">
+                            <form id="remarkForm">
                                 <span class="comment-avatar">
                                     <c:if test="${sessionScope.USER_SEESION != null}"><img src="${sessionScope.USER_SEESION.icon}" alt="avatar"></c:if>
                                     <c:if test="${sessionScope.USER_SEESION == null}"><img src="files/icon/default.png" alt="avatar"></c:if>
                                 </span>
-                                <textarea class="comment-send-input" name="comment" form="commentForm" cols="80" rows="5" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"></textarea>
-                                <input class="comment-send-button" value="发表评论">
+                                <textarea class="comment-send-input" name="context" form="remarkForm" cols="80" rows="5" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"></textarea>
+                                <input class="comment-send-button" type="button" value="发表评论">
+                                <ul class="stars">
+                                    <p>给个评分吧</p>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    <li>★</li>
+                                    <li>★</li>
+                                </ul>
+                                <input type="hidden" id="filmId" name="filmId" value="${filmInfo.filmId}">
+                                <input type="hidden" id="userId" name="userId" value="${sessionScope.USER_SEESION.userId}">
+                                <input type="hidden" id="score" name="score">
                             </form>
                         </div>
                         <div class="comment-list" id="commentList">
@@ -204,8 +218,8 @@
                                     </span>
                                     <div class="comment-content" style="margin-top:-5px;">
                                         <p class="comment-content-name">${remark.remarkUser.userName}<c:if test="${remark.isBought  == 1}">&nbsp;&nbsp;<i class="fa fa-ticket" style="color: #FF8D1B;"></i></c:if></p>
-                                        <p class="comment-content-article" <c:if test="${remark.isBought  == 1}">style="color: #FF8D1B;"</c:if>>
-                                                ${remark.context}
+                                        <p class="comment-content-article" <c:if test="${remark.isBought == 1}">style="color: #FF8D1B;"</c:if>>
+                                            ${remark.context}
                                         </p>
                                         <p class="comment-content-footer">
                                             <span class="comment-content-footer-id">#2</span>
@@ -345,14 +359,12 @@
 
 <%--  底部导航条内容 分离到footer.jsp中  --%>
 <jsp:include page="footer.jsp"></jsp:include>
-
-
 <script type="text/javascript" src="js/main.js"></script>
 <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script type="text/javascript">
 
+    //判断用户是否登录
     $(function () {
-        //判断用户是否登录
         if(${sessionScope.USER_SEESION == null}){
             $(".buy-ticket").click(function () {
                 alert("登录后才可购票，您确定要登录吗?");
@@ -369,11 +381,71 @@
             })
 
             $(".comment-send-button").click(function () {
-                alert("评论去");
+
+                var url = "/createRemark";
+                $.post(url, $("#remarkForm").serialize(), function (response) {
+
+                    if (response.success == true) {
+                        $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1500);
+                    } else {
+                        $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
+                    }
+                })
             })
         }
 
     })
+
+
+    //星星评分
+    $(function() {
+        //为星星设置hover效果
+        var isClicked = false;
+        var beforeClickedIndex = -1;
+        var clickNum = 0; //点击同一颗星次数
+        $('.stars li').hover(
+            function() {
+                if(!isClicked) {
+                    $(this).css('color', '#FFBF2C');
+                    var index = $(this).index();
+                    for(var i = 1; i <= index; i++) {
+                        $('.stars li:nth-child(' + i + ')').css('color', '#FFBF2C');
+                    }
+                    $("#score").val(index*2);
+                }
+            },
+            function() {
+                if(!isClicked) {
+                    $('.stars li').css('color', '#ADADAD');
+                }
+            }
+        );
+        //星星点击事件
+        $('.stars li').click(function() {
+            $('.stars li').css('color', '#ADADAD');
+            isClicked = true;
+            var index = $(this).index();
+            for(var i = 1; i <= index+1; i++) {
+                $('.stars li:nth-child(' + i + ')').css('color', '#FFBF2C');
+            }
+            if(index == beforeClickedIndex) { //两次点击同一颗星星 该星星颜色变化
+                clickNum++;
+                if(clickNum % 2 == 1) {
+                    $('.stars li:nth-child(' + (index+1) + ')').css('color', '#ADADAD');
+                    index = index-1;
+                } else {
+                    $('.stars li:nth-child(' + (index+1) + ')').css('color', '#FFBF2C');
+                }
+            } else {
+                clickNum = 0;
+                beforeClickedIndex = index;
+            }
+            $("#score").val(index*2);
+        });
+    });
 
 
     window.onload = function () {

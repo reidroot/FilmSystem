@@ -9,6 +9,14 @@ import java.util.List;
 public interface RemarkService {
  /*命名规范：createXxx()  removeXxx() updateXxx() getXxxById() loadAllXxxs() loadPagedXxxs()
     注意: loadAllXxxs复数要加s, 例: loadAllAdmins*/
+
+    /**
+     * 新增评论
+     * @param remark
+     * @return
+     */
+    public Integer createRemark(Remark remark);
+
     /**
      * 根据评论ID查找评论信息
      * @param remarkId

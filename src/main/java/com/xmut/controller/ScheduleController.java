@@ -79,7 +79,7 @@ public class ScheduleController {
             return new Result(true,"查询场次成功",schedule);
         }catch (Exception e){
             e.printStackTrace();
-            return new Result(false,"查询场次失败！");
+            return new Result(false,"出现异常,查询场次失败！");
         }
     }
 
@@ -95,7 +95,7 @@ public class ScheduleController {
             return new Result(true,"编辑场次成功");
         }catch (Exception e){
             e.printStackTrace();
-            return new Result(false, "编辑场次失败!");
+            return new Result(false, "出现异常,编辑场次失败!");
         }
     }
 
@@ -111,7 +111,7 @@ public class ScheduleController {
             return new Result(true,"操作成功");
         }catch (Exception e){
             e.printStackTrace();
-            return new Result(false, "操作失败!");
+            return new Result(false, "出现异常,操作失败!");
         }
     }
 

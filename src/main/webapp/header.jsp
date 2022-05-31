@@ -42,7 +42,7 @@
                     </a>
                     <span class="caret"></span>
                     <ul class="dropdown-menu">
-                        <li><a href="javascript:;">个人中心</a></li>
+                        <li><a href="personal.jsp">个人中心</a></li>
                         <li><a href="/logout">退出登录</a></li>
                     </ul>
                 </div>

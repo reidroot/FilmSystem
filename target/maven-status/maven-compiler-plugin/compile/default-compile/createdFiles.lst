@@ -1,8 +1,11 @@
 com\xmut\domain\Slide.class
 com\xmut\mapper\OrderMapper.class
 com\xmut\service\impl\UserServiceImpl.class
+com\xmut\mapper\SlideMapper.class
+com\xmut\service\impl\SlideServiceImpl.class
 com\xmut\service\impl\FilmServiceImpl.class
 com\xmut\service\OrderService.class
+com\xmut\service\SlideService.class
 com\xmut\controller\WebController.class
 com\xmut\entity\Result.class
 com\xmut\interceptor\ResourceInterceptor.class

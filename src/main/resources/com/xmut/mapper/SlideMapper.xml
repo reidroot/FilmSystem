@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmut.mapper.SlideMapper">
+    <resultMap id="SlideWithFilm" type="Slide">
+        <id property="slideId" column="slide_id"/>
+        <result property="img" column="img"/>
+        <!-- association来配置一对一映射 嵌套查询 -->
+        <association property="slideFilm" column="film_id" javaType="Film"
+                     select="com.xmut.mapper.FilmMapper.findFilmToOther"/>
+    </resultMap>
+    <select id="selectAllSlide" resultMap="SlideWithFilm">
+        select * from t_slide
+    </select>
+</mapper>

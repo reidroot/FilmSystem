@@ -17,8 +17,14 @@
                      select="com.xmut.mapper.UserMapper.findUserById"/>
     </resultMap>
 
+    <!-- 新增评论 -->
+    <insert id="addRemark" parameterType="Remark">
+        insert into t_remark(context,remark_time,score,is_bought,film_id,user_id)
+        values(#{context},#{remarkTime},#{score},#{isBought},#{filmId},#{userId})
+    </insert>
+
     <!-- 嵌套查询方式 -->
-       <!-- 根据remarkId查询Remark-->
+    <!-- 根据remarkId查询Remark-->
     <select id="findRemarkById" parameterType="Long" resultMap="RemarkWithUserAndFilm">
         select * from t_remark where remark_id = #{remarkId}
     </select>
@@ -31,10 +37,10 @@
         select * from t_remark order by remark_time desc
     </select>
 
-
     <!--==================================== 提供给其他Mapper ====================================-->
     <!-- 一对多： 提供给FilmMapper -->
     <select id="remarkListToFilm" parameterType="Long" resultMap="RemarkWithUserAndFilm">
         select * from t_remark where film_id = #{film_id}
     </select>
+
 </mapper>

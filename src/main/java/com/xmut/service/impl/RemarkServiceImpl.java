@@ -2,13 +2,17 @@ package com.xmut.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sun.org.apache.bcel.internal.generic.LSTORE;
+import com.xmut.domain.Order;
 import com.xmut.entity.PageResult;
 import com.xmut.domain.Remark;
+import com.xmut.mapper.OrderMapper;
 import com.xmut.mapper.RemarkMapper;
 import com.xmut.service.RemarkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,6 +20,28 @@ public class RemarkServiceImpl implements RemarkService {
 
     @Autowired
     private RemarkMapper remarkMapper;
+
+    @Autowired
+    private OrderMapper orderMapper;
+
+    public Integer createRemark(Remark remark) {
+        int isBought = 0;
+
+        List<Order> orderList = orderMapper.findOrderByUserId(remark.getUserId());
+        if (orderList != null && !orderList.isEmpty()){
+            for (Order order:orderList) {
+                if (order.getOrderSchedule().getFilmId() == remark.getFilmId()){
+                    isBought = 1;
+                    break;
+                }
+            }
+        }
+
+        remark.setIsBought(isBought);
+        remark.setRemarkTime(new Date());
+
+        return remarkMapper.addRemark(remark);
+    }
 
     public Remark getRemarkById(long remarkId) {
         return remarkMapper.findRemarkById(remarkId);

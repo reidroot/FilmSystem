@@ -3,6 +3,7 @@ package com.xmut.mapper;
 import com.github.pagehelper.Page;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import com.xmut.domain.Order;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,6 +26,12 @@ public interface OrderMapper {
      * @return
      */
     public Order findOrderById(Long orderId);
+
+    /**
+     * 根据userId 查询相关订单
+     * @return
+     */
+    public List<Order> findOrderByUserId(Long userId);
 
     /**
      * 简单查询Order

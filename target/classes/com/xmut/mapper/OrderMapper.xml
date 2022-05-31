@@ -15,7 +15,7 @@
         <association property="orderUser" column="user_id" javaType="User"
                      select="com.xmut.mapper.UserMapper.findUserById"/>
         <association property="orderSchedule" column="schedule_id" javaType="Schedule"
-                     select="com.xmut.mapper.ScheduleMapper.findScheduleById"/>
+                     select="com.xmut.mapper.ScheduleMapper.findEasyScheduleById"/>
     </resultMap>
 
     <insert id="addOrder" parameterType="Order">
@@ -31,6 +31,11 @@
     <!-- 简单查询Order信息 -->
     <select id="findEasyOrderById" parameterType="Long" resultType="Order">
         select * from t_order where order_id = #{orderId}
+    </select>
+
+    <!-- 根据userId查询Order信息 -->
+    <select id="findOrderByUserId" parameterType="Long" resultMap="OrderWithUserAndSchedule">
+        select * from t_order where user_id = #{userId}
     </select>
 
     <select id="selectAllOrders" parameterType="Long" resultMap="OrderWithUserAndSchedule">

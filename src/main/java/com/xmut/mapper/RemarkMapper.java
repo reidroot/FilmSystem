@@ -12,6 +12,13 @@ public interface RemarkMapper {
     注意： selectAllXxxs，记得加s */
 
     /**
+     * 新增Remark
+     * @param remark
+     * @return
+     */
+    public Integer addRemark(Remark remark);
+
+    /**
      * 根据remarkId查询Remark  一对一关联 User、Film
      * @param remarkId
      * @return

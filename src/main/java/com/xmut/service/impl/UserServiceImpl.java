@@ -14,6 +14,22 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    public Integer createUser(User user) {
+        return userMapper.addUser(user);
+    }
+
+    public Integer updateUser(User user) {
+        return userMapper.updateUser(user);
+    }
+
+    public User getUserById(Long userId) {
+        return userMapper.findUserById(userId);
+    }
+
+    public Integer checkUserByEmail(String userEmail) {
+        return userMapper.checkUserByEmail(userEmail);
+    }
+
     public User login(User user) {
         return userMapper.findUserByEmailAndPwd(user);
     }

@@ -22,29 +22,13 @@
 <div class="container">
     <div class="slidey">
         <ul id="slidey-content" style="display: none">
+            <c:forEach items="${slideList}" var="slide">
             <li>
-                <img src="imgs/slideposter/Frozen2.jpg" alt="">
-                <p class="title">冰雪奇缘2</p>
-                <p class="description">为什么艾莎一出生就带着控制冰雪的能力？这个答案一致困扰着她，也威胁着王国的安全。 她将和安娜、克斯托夫、雪宝和驯鹿斯文展开一场危险但非凡的旅程…</p>
+                <img src="${slide.img}" alt="">
+                <p class="title">${slide.slideFilm.filmName}</p>
+                <p class="description">${slide.slideFilm.description}</p>
             </li>
-            <li>
-                <img src="imgs/slideposter/ifseawave.jpg" alt="">
-                <p class="title">若能与你共乘海浪之上</p>
-                <p class="description">青年消防员雏罂粟港和爱好冲浪的向水日菜子相遇并迅速展开热恋。看似命中注定的这对恋人，
-                    却不幸遭遇生死别离。无法接受港已经离世的雏子，某天突然发现，只要唱起属于两个人的那首歌，港就会从水中出现…</p>
-            </li>
-            <li>
-                <img src="imgs/slideposter/skyfire.jpg" alt="">
-                <p class="title">天·火</p>
-                <p class="description">火山喷发了，这些人的命运纠结在一起。为了看见明天的太阳，他们必须与过去和解， 合力为自己也为众生在绝境中寻找一条生路。
-                    这是一个关于爱与勇气、选择与放弃、自救与他救的中国式英雄的故事…</p>
-            </li>
-            <li>
-                <img src="imgs/slideposter/yewen4.jpg" alt="">
-                <p class="title">叶问4</p>
-                <p class="description">因故来到美国唐人街的叶问，意外卷入一场当地军方势力与华人武馆的纠纷，面对日益猖狂的
-                    民族歧视与压迫，叶问挺身而出，在美国海军陆战队军营拼死一战，以正宗咏春，向世界证明了中国功夫…</p>
-            </li>
+            </c:forEach>
         </ul>
         <div class="slidey-main">
             <a href="movie.jsp" class="slidey-main-link"></a>

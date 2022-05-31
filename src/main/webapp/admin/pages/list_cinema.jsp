@@ -230,12 +230,16 @@
             contentType: false,
             processData: false,
             success: function(response){
-                if (response.success == true)
+                if (response.success == true){
                     $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
                     $('#editCinemaModal').modal('hide')
                     setTimeout(function() {
                         window.location.reload();
                     }, 1800);
+                } else{
+                    $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
+                }
+
             },
             error: function (response) {
                 $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();

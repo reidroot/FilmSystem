@@ -23,12 +23,14 @@ public class Remark implements Serializable {
         super();
     }
 
-    public Remark(Integer remarkId, String context, Date remarkTime, Integer score, Integer isBought, Film remarkFilm, User remarkUser) {
+    public Remark(Integer remarkId, String context, Date remarkTime, Integer score, Integer isBought, Long filmId, Long userId, Film remarkFilm, User remarkUser) {
         this.remarkId = remarkId;
         this.context = context;
         this.remarkTime = remarkTime;
         this.score = score;
         this.isBought = isBought;
+        this.filmId = filmId;
+        this.userId = userId;
         this.remarkFilm = remarkFilm;
         this.remarkUser = remarkUser;
     }
@@ -73,6 +75,22 @@ public class Remark implements Serializable {
         this.isBought = isBought;
     }
 
+    public Long getFilmId() {
+        return filmId;
+    }
+
+    public void setFilmId(Long filmId) {
+        this.filmId = filmId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public Film getRemarkFilm() {
         return remarkFilm;
     }
@@ -97,6 +115,8 @@ public class Remark implements Serializable {
                 ", remarkTime=" + remarkTime +
                 ", score=" + score +
                 ", isBought=" + isBought +
+                ", filmId=" + filmId +
+                ", userId=" + userId +
                 ", remarkFilm=" + remarkFilm +
                 ", remarkUser=" + remarkUser +
                 '}';

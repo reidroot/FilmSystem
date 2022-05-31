@@ -3,10 +3,40 @@
         PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xmut.mapper.UserMapper">
+    <!-- 新增User -->
+    <insert id="addUser" parameterType="User">
+        insert into t_user(user_email,user_pwd,user_name,icon) values(#{userEmail},#{userPwd},#{userName},#{icon})
+    </insert>
+    
+    <!-- 更新User -->
+    <update id="updateUser" parameterType="User">
+        update t_user
+        <set>
+            user_name = #{userName},
+            <if test="preference != null and preference != ''">
+                preference = #{preference},
+            </if>
+            <if test="userPhone != null and userPhone != ''">
+                user_phone = #{userPhone},
+            </if>
+            <if test="icon != null and icon != ''">
+                icon = #{icon},
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
+
+    <!-- 根据userId查询User -->
     <select id="findUserById" parameterType="Long" resultType="User">
         select * from t_user where user_id = #{userId}
     </select>
 
+    <!-- 根据userEmail查询相关条数 -->
+    <select id="checkUserByEmail" parameterType="String" resultType="Integer">
+        select count(*) from t_user where user_email = #{userEmail}
+    </select>
+
+    <!-- 根据userEmail和userPwd查询User -->
     <select id="findUserByEmailAndPwd" parameterType="User" resultType="User">
         select * from t_user where user_email = #{userEmail} and user_pwd = #{userPwd}
     </select>

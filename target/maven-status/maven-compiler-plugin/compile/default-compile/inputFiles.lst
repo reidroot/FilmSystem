@@ -5,6 +5,7 @@ D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\controller\WebController.j
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\controller\FilmController.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\controller\RemarkController.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Remark.java
+D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\mapper\SlideMapper.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\User.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\mapper\RemarkMapper.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\UserService.java
@@ -16,8 +17,10 @@ D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Order.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\impl\ScheduleServiceImpl.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\impl\FilmServiceImpl.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\impl\UserServiceImpl.java
+D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\SlideService.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\AdminService.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\entity\Result.java
+D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\impl\SlideServiceImpl.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\mapper\UserMapper.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\RemarkService.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Schedule.java

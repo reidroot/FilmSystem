@@ -1,6 +1,8 @@
 package com.xmut.controller;
 
+import com.xmut.domain.Order;
 import com.xmut.domain.Remark;
+import com.xmut.entity.Result;
 import com.xmut.service.RemarkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,5 +42,23 @@ public class RemarkController {
         modelAndView.setViewName("forward:admin/pages/list_remark.jsp");
 
         return modelAndView;
+    }
+
+    @ResponseBody
+    @RequestMapping("/createRemark")
+    public Result<Order> createRemark(Remark remark){
+        System.out.println("-----------------看看-------------------");
+        System.out.println(remark);
+        try {
+            Integer count = remarkService.createRemark(remark);
+            if(count!=1){
+                return new Result(false, "操作失败!");
+            }
+            System.out.println("-----------------添加成功-------------------");
+            return new Result(true,"操作成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false, "操作失败!");
+        }
     }
 }

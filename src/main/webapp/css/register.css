@@ -30,7 +30,7 @@
     color: #FF8D1B;
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .center-box-head .sign-switch {
@@ -40,12 +40,12 @@
     color: #666;
 }
 
-#center-box-form .form-item {
+.center-box-form .form-item {
     display: flex;
     display: -webkit-flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .form-item .icon{
@@ -102,4 +102,43 @@
     background-color: #FF8D1B;
     border: none;
     border-radius: 5px;
+}
+
+/* 提示框 */
+.alert {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 300px;
+    max-width: 600px;
+    transform: translate(-50%,-50%);
+    z-index: 99999;
+    text-align: center;
+    padding: 15px;
+    border-radius: 3px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
 }
