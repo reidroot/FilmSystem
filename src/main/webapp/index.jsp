@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -23,15 +24,15 @@
     <div class="slidey">
         <ul id="slidey-content" style="display: none">
             <c:forEach items="${slideList}" var="slide">
-            <li>
-                <img src="${slide.img}" alt="">
-                <p class="title">${slide.slideFilm.filmName}</p>
-                <p class="description">${slide.slideFilm.description}</p>
-            </li>
+                <li>
+                    <img src="${slide.img}" alt="">
+                    <p class="title">${slide.slideFilm.filmName}</p>
+                    <p class="description">${fn:substring(slide.slideFilm.description,0,99)}. . .</p>
+                </li>
             </c:forEach>
         </ul>
         <div class="slidey-main">
-            <a href="movie.jsp" class="slidey-main-link"></a>
+            <a class="slidey-main-link"></a>
             <div class="slidey-overlay">
                 <p class="slidey-overlay-title"></p>
                 <p class="slidey-overlay-description"></p>
@@ -122,77 +123,34 @@
             </div>
             <div class="aside">
                 <div class="panel-header">
-                    <span class="panel-title">今日票房</span>
+                    <span class="panel-title">热评榜</span>
                     <a href="javascript:;" class="panel-more">更多</a>
                 </div>
                 <div class="movie-rank">
                     <ul>
-                        <li class="movie-rank-top1">
-                            <a href="javascript:;">
-                                <span class="movie-rank-num movie-rank-top3">1</span>
-                                <img src="./imgs/poster/haishanggangqinshi.jpg" alt="">
-                                <div>
-                                    <p class="movie-rank-name">海上钢琴师</p>
-                                    <span class="box-office">1500万</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num movie-rank-top3">2</span>
-                                <p class="movie-rank-name">叶问4</p>
-                                <span class="box-office">1400万</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num movie-rank-top3">3</span>
-                                <p class="movie-rank-name">若能与你共乘海浪之上</p>
-                                <span class="box-office">1000万</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num">4</span>
-                                <p class="movie-rank-name">吹哨人</p>
-                                <span class="box-office">900万</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num">5</span>
-                                <p class="movie-rank-name">大约在冬季</p>
-                                <span class="box-office">800万</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num">6</span>
-                                <p class="movie-rank-name">吹哨人</p>
-                                <span class="box-office">700万</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num">7</span>
-                                <p class="movie-rank-name">天·火</p>
-                                <span class="box-office">600万</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num">8</span>
-                                <p class="movie-rank-name">一生有你</p>
-                                <span class="box-office">550万</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num">9</span>
-                                <p class="movie-rank-name">冰雪奇缘2</p>
-                                <span class="box-office">450万</span>
-                            </a>
-                        </li>
+                        <c:forEach items="${hotFilms}" var="hotFilm" varStatus="status">
+                            <c:if test="${status.first == true}">
+                                <li class="movie-rank-top1">
+                                    <a href="/filmInfo?filmId=${hotFilm.filmId}">
+                                        <span class="movie-rank-num movie-rank-top3">${status.index+1}</span>
+                                        <img src="${hotFilm.poster}" alt="电影海报">
+                                        <div>
+                                            <p class="movie-rank-name">${hotFilm.filmName}</p>
+                                            <span class="box-office">${hotFilm.remarkCount}条</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:if test="${status.first == false}">
+                                <li>
+                                    <a href="/filmInfo?filmId=${hotFilm.filmId}">
+                                        <span class="movie-rank-num movie-rank-top3">${status.index+1}</span>
+                                        <p class="movie-rank-name">${hotFilm.filmName}</p>
+                                        <span class="box-office">${hotFilm.remarkCount}条</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -274,77 +232,34 @@
             </div>
             <div class="aside">
                 <div class="panel-header">
-                    <span class="panel-title">备受期待</span>
+                    <span class="panel-title">好评榜</span>
                     <a href="javascript:;" class="panel-more">更多</a>
                 </div>
                 <div class="movie-rank">
                     <ul>
-                        <li class="movie-rank-top1">
-                            <a href="javascript:;">
-                                <span class="movie-rank-num movie-rank-top3">1</span>
-                                <img src="./imgs/poster/haishanggangqinshi.jpg" alt="">
-                                <div>
-                                    <p class="movie-rank-name">海上钢琴师</p>
-                                    <span class="box-office">1500人想看</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num movie-rank-top3">2</span>
-                                <p class="movie-rank-name">叶问4</p>
-                                <span class="box-office">1400人想看</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num movie-rank-top3">3</span>
-                                <p class="movie-rank-name">若能与你共乘海浪之上</p>
-                                <span class="box-office">1000人想看</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num">4</span>
-                                <p class="movie-rank-name">吹哨人</p>
-                                <span class="box-office">900人想看</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num">5</span>
-                                <p class="movie-rank-name">大约在冬季</p>
-                                <span class="box-office">800人想看</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num">6</span>
-                                <p class="movie-rank-name">吹哨人</p>
-                                <span class="box-office">700人想看</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num">7</span>
-                                <p class="movie-rank-name">天·火</p>
-                                <span class="box-office">600人想看</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num">8</span>
-                                <p class="movie-rank-name">一生有你</p>
-                                <span class="box-office">550人想看</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="movie-rank-num">9</span>
-                                <p class="movie-rank-name">冰雪奇缘2</p>
-                                <span class="box-office">450人想看</span>
-                            </a>
-                        </li>
+                        <c:forEach items="${goodFilms}" var="goodFilm" varStatus="status">
+                            <c:if test="${status.first == true}">
+                                <li class="movie-rank-top1">
+                                    <a href="/filmInfo?filmId=${goodFilm.filmId}">
+                                        <span class="movie-rank-num movie-rank-top3">${status.index+1}</span>
+                                        <img src="${goodFilm.poster}" alt="电影海报">
+                                        <div>
+                                            <p class="movie-rank-name">${goodFilm.filmName}</p>
+                                            <span class="box-office">${goodFilm.remarkScore}分</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:if test="${status.first == false}">
+                                <li>
+                                    <a href="/filmInfo?filmId=${goodFilm.filmId}">
+                                        <span class="movie-rank-num movie-rank-top3">${status.index+1}</span>
+                                        <p class="movie-rank-name">${goodFilm.filmName}</p>
+                                        <span class="box-office">${goodFilm.remarkScore}分</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>

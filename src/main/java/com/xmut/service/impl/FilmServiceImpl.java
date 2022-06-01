@@ -1,9 +1,6 @@
 package com.xmut.service.impl;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.xmut.domain.Film;
-import com.xmut.entity.PageResult;
 import com.xmut.mapper.FilmMapper;
 import com.xmut.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,13 +42,15 @@ public class FilmServiceImpl implements FilmService {
         return filmMapper.selectAllEasyFilms();
     }
 
-    public PageResult loadPagedFilms(Integer pageNum, Integer pageSize) {
+    public List<Film> loadHotRemarkFilms() {
+        return filmMapper.selectHotRemarkFilms();
+    }
 
-        //开启分页查询
-        PageHelper.startPage(pageNum, pageSize);
-        //调用Dao
-        Page<Film> page = filmMapper.selectPagedFilms();
+    public List<Film> loadGoodRemarkFilms() {
+        return filmMapper.selectGoodRemarkFilms();
+    }
 
-        return new PageResult(page.getTotal(), page.getResult());
+    public List<Film> loadMoreWonderfulFilms() {
+        return filmMapper.selectMoreWonderfulFilms();
     }
 }

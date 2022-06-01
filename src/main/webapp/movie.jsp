@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -69,17 +70,22 @@
                     </a>
                     <a href="#remark" class="movie-grade-btn flexcenter fl">
                         <i></i>
-                        <span>评分</span>
+                        <span>评论</span>
                     </a>
                 </div>
             </div>
             <div class="movie-grade-box">
                 <div class="grade-box">
-                    <b>${score[0]}<sup>.${score[2]}</sup></b>
+                    <c:if test="${fn:length(score) == 3}">
+                        <b>${score[0]}<sup>.${score[2]}</sup></b>
+                    </c:if>
+                    <c:if test="${fn:length(score) == 4}">
+                        <b>${score[0]}${score[1]}<sup>.${score[3]}</sup></b>
+                    </c:if>
                     <p>总分：10</p>
                 </div>
                 <ul>
-                    <li><p>评分：<span>${filmInfo.remarkCount}</span>人</p></li>
+                    <li><p>评论：<span>${filmInfo.remarkCount}</span>人</p></li>
                     <li><p>想看：<span>15684</span>人</p></li>
                     <li><p>票房：<span>3200</span>万</p></li>
                 </ul>
@@ -284,89 +290,27 @@
             </div>
             <!-- 右边 -->
             <div class="aside-content">
-                <p class="ac-title">更多热映</p>
+                <p class="ac-title">更多精彩</p>
                 <div class="more-movie">
                     <ul>
+                        <c:forEach items="${moreWonderfulFilms}" var="moreFilm">
                         <li>
                             <a href="javascript:;">
-                                <img src="./imgs/poster/yishengyouni.jpg" alt="">
+                                <img src="${moreFilm.poster}" alt="">
                             </a>
                             <div class="aside-info">
                                 <h3 class="clearboth">
-                                    <a href="javascript:;">一生有你</a>
-                                    <span>7.5</span>
+                                    <a href="javascript:;">${moreFilm.filmName}</a>
+                                    <span>${moreFilm.remarkScore}</span>
                                 </h3>
-                                <p>导演：卢庚戌</p>
-                                <p>主演：徐娇/谢彬彬/晏紫东</p>
-                                <p>类型：爱情/青春</p>
-                                <p>片长：90分钟</p>
-                                <a href="javascript:;" class="link">选座购票 ＞</a>
+                                <p>导演：${moreFilm.remarkScore}</p>
+                                <p>主演：${moreFilm.actor}</p>
+                                <p>类型：${moreFilm.tag}</p>
+                                <p>片长：${moreFilm.runningTime}分钟</p>
+                                <a href="/filmInfo?filmId=${moreFilm.filmId}" class="link">选座购票 ＞</a>
                             </div>
                         </li>
-                        <li>
-                            <a href="javascript:;">
-                                <img src="./imgs/poster/yishengyouni.jpg" alt="">
-                            </a>
-                            <div class="aside-info">
-                                <h3 class="clearboth">
-                                    <a href="javascript:;">一生有你</a>
-                                    <span>7.5</span>
-                                </h3>
-                                <p>导演：卢庚戌</p>
-                                <p>主演：徐娇/谢彬彬/晏紫东</p>
-                                <p>类型：爱情/青春</p>
-                                <p>片长：90分钟</p>
-                                <a href="javascript:;" class="link">选座购票 ＞</a>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <img src="./imgs/poster/yishengyouni.jpg" alt="">
-                            </a>
-                            <div class="aside-info">
-                                <h3 class="clearboth">
-                                    <a href="javascript:;">一生有你</a>
-                                    <span>7.5</span>
-                                </h3>
-                                <p>导演：卢庚戌</p>
-                                <p>主演：徐娇/谢彬彬/晏紫东</p>
-                                <p>类型：爱情/青春</p>
-                                <p>片长：90分钟</p>
-                                <a href="javascript:;" class="link">选座购票 ＞</a>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <img src="./imgs/poster/yishengyouni.jpg" alt="">
-                            </a>
-                            <div class="aside-info">
-                                <h3 class="clearboth">
-                                    <a href="javascript:;">一生有你</a>
-                                    <span>7.5</span>
-                                </h3>
-                                <p>导演：卢庚戌</p>
-                                <p>主演：徐娇/谢彬彬/晏紫东</p>
-                                <p>类型：爱情/青春</p>
-                                <p>片长：90分钟</p>
-                                <a href="javascript:;" class="link">选座购票 ＞</a>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="javascript:;">
-                                <img src="./imgs/poster/yishengyouni.jpg" alt="">
-                            </a>
-                            <div class="aside-info">
-                                <h3 class="clearboth">
-                                    <a href="javascript:;">一生有你</a>
-                                    <span>7.5</span>
-                                </h3>
-                                <p>导演：卢庚戌</p>
-                                <p>主演：徐娇/谢彬彬/晏紫东</p>
-                                <p>类型：爱情/青春</p>
-                                <p>片长：90分钟</p>
-                                <a href="javascript:;" class="link">选座购票 ＞</a>
-                            </div>
-                        </li>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>

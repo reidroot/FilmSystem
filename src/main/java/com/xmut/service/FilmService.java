@@ -59,11 +59,20 @@ public interface FilmService {
     public List<Film> loadAllEasyFilms();
 
     /**
-     * 分页查询影片信息
-     * @param pageNum
-     * @param pageSize
+     * 按评论数量查找前十的影片信息
      * @return
      */
-    public PageResult loadPagedFilms(Integer pageNum, Integer pageSize);
+    public List<Film> loadHotRemarkFilms();
 
+    /**
+     * 按电影评分查找前十的影片信息
+     * @return
+     */
+    public List<Film> loadGoodRemarkFilms();
+
+    /**
+     * 先按电影评分再按评论数量查找前五的影片信息
+     * @return
+     */
+    public List<Film> loadMoreWonderfulFilms();
 }

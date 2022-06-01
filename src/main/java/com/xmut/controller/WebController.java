@@ -47,16 +47,17 @@ public class WebController {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        //获取所有影院信息、轮播图信息显示到首页
+        //获取所有影院信息、轮播图信息、热评榜、好评榜显示到首页
         List<Film> filmList = filmService.loadAllFilms();
         List<Slide> slideList = slideService.loadAllSlides();
-
-        for (Slide slide:slideList) {
-            System.out.println(slide);
-        }
+        List<Film> hotFilms = filmService.loadHotRemarkFilms();
+        List<Film> goodFilms = filmService.loadGoodRemarkFilms();
 
         modelAndView.addObject("filmList", filmList);
         modelAndView.addObject("slideList", slideList);
+        modelAndView.addObject("hotFilms", hotFilms);
+        modelAndView.addObject("goodFilms", goodFilms);
+
         modelAndView.setViewName("forward:index.jsp");
 
         return modelAndView;
@@ -82,6 +83,11 @@ public class WebController {
         }
     }
 
+    /**
+     * 注册用户
+     * @param user
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/createUser")
     public Result createUser(User user){
@@ -99,6 +105,13 @@ public class WebController {
 
     }
 
+    /**
+     * 修改个人信息
+     * @param user
+     * @param iconFile
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/updateUser")
     public Result updateUser(User user, MultipartFile iconFile, HttpServletRequest request){
@@ -187,6 +200,9 @@ public class WebController {
         Film filmInfo = filmService.getFilmById(filmId);
         char score[] = filmInfo.getRemarkScore().toString().toCharArray();
 
+        //获取更多精彩的影片列表
+        List<Film> moreWonderfulFilms = filmService.loadMoreWonderfulFilms();
+
         //获取放映改电影的所有场次
         List<Schedule> scheduleList = scheduleService.loadScheduleByFilmId(filmId);
 
@@ -206,6 +222,7 @@ public class WebController {
         modelAndView.addObject("score", score);
         modelAndView.addObject("scheduleList", scheduleList);
         modelAndView.addObject("cinemaList",cinemaList);
+        modelAndView.addObject("moreWonderfulFilms",moreWonderfulFilms);
 
         modelAndView.setViewName("forward:movie.jsp");
 

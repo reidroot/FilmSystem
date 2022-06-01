@@ -57,9 +57,23 @@ public interface FilmMapper {
     public List<Film> selectAllEasyFilms();
 
     /**
-     * 分页查询所有Film
+     * 热评榜
+     * 按remark_count查询前十的Film
      * @return
      */
-    public Page<Film> selectPagedFilms();
+    public List<Film> selectHotRemarkFilms();
 
+    /**
+     * 好评榜
+     * 按remark_score查询前十的Film
+     * @return
+     */
+    public List<Film> selectGoodRemarkFilms();
+
+    /**
+     * 更多精彩
+     * 先根据remark_socre降序排序后，然后根据的emark_socre 降序排序后的前五的Film
+     * @return
+     */
+    public List<Film> selectMoreWonderfulFilms();
 }

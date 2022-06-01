@@ -23,6 +23,11 @@
         values(#{context},#{remarkTime},#{score},#{isBought},#{filmId},#{userId})
     </insert>
 
+    <!--根据主键remarkId删除Remark-->
+    <delete id="deleteRemark" parameterType="Long">
+        delete from t_remark where remark_id=#{remarkId}
+    </delete>
+
     <!-- 嵌套查询方式 -->
     <!-- 根据remarkId查询Remark-->
     <select id="findRemarkById" parameterType="Long" resultMap="RemarkWithUserAndFilm">

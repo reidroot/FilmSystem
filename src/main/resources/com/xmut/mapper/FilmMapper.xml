@@ -68,9 +68,19 @@
         select * from t_film order by film_status desc
     </select>
 
-    <!-- 分页查询所有Film对象 -->
-    <select id="selectPagedFilms" resultMap="FilmWithRemarkList">
-        select * from t_film order by film_status desc
+    <!-- 热评榜 根据remark_count 降序排序后的前10条Film列表-->
+    <select id="selectHotRemarkFilms" resultType="Film">
+        select * from t_film order by remark_count desc limit 10
+    </select>
+
+    <!-- 好评榜 根据remark_socre 降序排序后的前10条Film列表-->
+    <select id="selectGoodRemarkFilms" resultType="Film">
+        select * from t_film order by remark_score desc limit 10
+    </select>
+
+    <!-- 更多精彩 先根据remark_socre降序排序后，然后根据的emark_socre 降序排序后的前5条Film列表, 正在上映的-->
+    <select id="selectMoreWonderfulFilms" resultType="Film">
+        select * from t_film where film_status = 1 order by remark_score desc, remark_count desc limit 5
     </select>
 
     <!-- ==================================== 提供给其他Mapper ==================================== -->

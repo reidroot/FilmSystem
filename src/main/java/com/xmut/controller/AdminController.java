@@ -52,9 +52,11 @@ public class AdminController {
         }else{
             request.getSession().setAttribute("ADMIN_SESSION", dbAdmin);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+            //最后登录时间
             String lastTime = sdf.format(new Date());
-            System.out.println(lastTime);
             request.getSession().setAttribute("LAST_LOGIN_TIME", lastTime);
+
             return "redirect:pages/admin_index.jsp";
         }
     }

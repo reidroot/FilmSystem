@@ -44,7 +44,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" id="cinema" action="/createSchedule" method="post" enctype="multipart/form-data">
+                    <form role="form" id="cinema" action="/createSchedule" method="post">
                         <div class="box-body bg-light">
                             <div class="form-group">
                                 <label>所属影院</label>

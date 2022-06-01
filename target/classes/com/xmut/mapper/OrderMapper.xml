@@ -18,10 +18,16 @@
                      select="com.xmut.mapper.ScheduleMapper.findEasyScheduleById"/>
     </resultMap>
 
+    <!-- 新增Order -->
     <insert id="addOrder" parameterType="Order">
         insert into t_order(order_num,position,amount,order_time,order_status,user_id,schedule_id)
         values (#{orderNum},#{position},#{amount},#{orderTime},#{orderStatus},#{userId},#{scheduleId})
     </insert>
+
+    <!-- 更新Order -->
+    <update id="updateOrder" parameterType="Order">
+        update t_order set order_status = #{orderStatus} where order_id = #{orderId}
+    </update>
 
     <!-- 嵌套查询方式 -->
     <select id="findOrderById" parameterType="Long" resultMap="OrderWithUserAndSchedule">
