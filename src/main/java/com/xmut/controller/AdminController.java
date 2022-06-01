@@ -44,16 +44,16 @@ public class AdminController {
 
         //调用Service
         Admin dbAdmin = adminService.login(admin);
-        System.out.println(dbAdmin);
+
         if (dbAdmin == null){
             //登录失败
             request.setAttribute("msg", "登录失败，用户或密码错误！");
             return "forward:pages/admin_login.jsp";
         }else{
             request.getSession().setAttribute("ADMIN_SESSION", dbAdmin);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
             //最后登录时间
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             String lastTime = sdf.format(new Date());
             request.getSession().setAttribute("LAST_LOGIN_TIME", lastTime);
 

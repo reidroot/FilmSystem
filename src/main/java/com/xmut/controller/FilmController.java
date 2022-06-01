@@ -54,6 +54,11 @@ public class FilmController {
         return "success";
     }
 
+    /**
+     * 获取影片信息回显到影片更新窗口
+     * @param filmId
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/getFilmById")
     public Result<Film> getFilmById(Long filmId){
@@ -70,6 +75,13 @@ public class FilmController {
     }
 
 
+    /**
+     * 更新影片
+     * @param film
+     * @param posterFile
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/updateFilm")
     public Result updateFilm(Film film, MultipartFile posterFile, HttpServletRequest request){
@@ -86,7 +98,7 @@ public class FilmController {
                 e.printStackTrace();
             }
 
-            //新增影片
+            //更新影片
             film.setPoster(imgPath);
         }
 

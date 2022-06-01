@@ -94,47 +94,47 @@
         </section>
         <!-- 正文区域 /-->
 
-    <!-- 提示框 -->
-    <div class="alert"></div>
+        <!-- 提示框 -->
+        <div class="alert"></div>
 
-    <!-- 编辑影院的模块框 -->
-    <div class="modal fade" id="editSlideModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title" id="exampleModalLabel">编辑轮播图</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="editSlide" class="form-horizontal">
-                        <input type="hidden" id="slideId" name="slideId">
-                        <div class="form-group">
-                            <label for="imgFile" class="col-sm-2 control-label">轮播图</label>
-                            <div class="col-sm-10">
-                                <img id="picImg" width="400px" height="150px" class="py-1" style="margin-bottom: 5px"><br>
-                                <input type="file" name="imgFile" id="imgFile" onchange="previewImage(this)">
+        <!-- 编辑影院的模块框 -->
+        <div class="modal fade" id="editSlideModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">编辑轮播图</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editSlide" class="form-horizontal">
+                            <input type="hidden" id="slideId" name="slideId">
+                            <div class="form-group">
+                                <label for="imgFile" class="col-sm-2 control-label">轮播图</label>
+                                <div class="col-sm-10">
+                                    <img id="picImg" width="400px" height="150px" class="py-1" style="margin-bottom: 5px"><br>
+                                    <input type="file" name="imgFile" id="imgFile" onchange="previewImage(this)">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="filmId" class="col-sm-2 control-label">影片信息</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" id="filmId" name="filmId">
-                                    <option value="">请选择所属影片</option>
-                                </select>
+                            <div class="form-group">
+                                <label for="filmId" class="col-sm-2 control-label">影片信息</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="filmId" name="filmId">
+                                        <option value="">请选择所属影片</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" onclick="editSlide()">保存</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" onclick="editSlide()">保存</button>
-                </div>
+                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-content -->
+            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal-dialog -->
-    </div>
 
 <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>

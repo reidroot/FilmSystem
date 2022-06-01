@@ -51,10 +51,6 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">
-                                记住我
-                            </label>
                         </div>
                     </div>
                 </div>

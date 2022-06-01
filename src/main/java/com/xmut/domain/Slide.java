@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import java.util.List;
+
 @JsonIgnoreProperties(value="handler")
 public class Slide implements Serializable {
 

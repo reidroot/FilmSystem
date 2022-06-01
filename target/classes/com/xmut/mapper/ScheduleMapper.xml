@@ -54,13 +54,15 @@
 
     <!-- 查询该影片下的所有场次 -->
     <select id="findScheduleByFilmId" parameterType="Long" resultMap="ScheduleWithCinemaAndFilm">
-        select * from t_schedule where film_id = #{filmId}
+        select * from t_schedule where film_id = #{filmId} and schedule_status = 1 order by start_time
     </select>
 
+    <!-- 查询所有场次 -->
     <select id="selectAllSchedule" resultMap="ScheduleWithCinemaAndFilm">
         select * from t_schedule
     </select>
 
+    <!-- 分页查询所有场次 -->
     <select id="selectPagedSchedules" resultMap="ScheduleWithCinemaAndFilm">
         select * from t_schedule
     </select>

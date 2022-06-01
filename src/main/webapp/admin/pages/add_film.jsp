@@ -179,8 +179,6 @@
 
             reader.onload = function(evt) {
                 img.src = evt.target.result;
-                console.log("read ok!" + evt.target.result);
-
             }
             console.log("start to read");
             reader.readAsDataURL(file.files[0]);

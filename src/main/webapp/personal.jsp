@@ -118,7 +118,9 @@
             success: function(response){
                 if (response.success == true){
                     $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
-                    window.location.reload()
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1500);
                 } else{
                     $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
                 }

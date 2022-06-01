@@ -126,7 +126,7 @@
         <!-- 提示框 -->
         <div class="alert"></div>
 
-        <!-- 编辑影院的模块框 -->
+        <!-- 编辑影院的模态框 -->
         <div class="modal fade" id="editFilmModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
