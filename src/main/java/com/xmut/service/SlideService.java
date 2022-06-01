@@ -13,4 +13,18 @@ public interface SlideService {
      * @return
      */
     public List<Slide> loadAllSlides();
+
+    /**
+     * 根据slideId查询轮播图
+     * @param slideId
+     * @return
+     */
+    public Slide getSlideById(Long slideId);
+
+    /**
+     * 更新轮播图
+     * @param slide
+     * @return
+     */
+    public Integer updateSlide(Slide slide);
 }

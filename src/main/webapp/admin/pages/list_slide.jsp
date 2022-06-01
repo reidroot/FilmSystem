@@ -61,24 +61,20 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>影院名称</th>
-                                <th>影院地址</th>
-                                <th>影院图片</th>
-                                <th>联系电话</th>
+                                <th>轮播图</th>
+                                <th>影片名称</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${cinemaList}" var="cinema">
+                            <c:forEach items="${slideList}" var="slide">
                                 <tr>
-                                    <td style="vertical-align:middle;">${cinema.cinemaId}</td>
-                                    <td style="vertical-align:middle;"><img src="${cinema.picture}" width="80px" height="60px"/></td>
-                                    <td style="vertical-align:middle;">${cinema.cinemaName}</td>
-                                    <td style="vertical-align:middle;">${cinema.address}</td>
-                                    <td style="vertical-align:middle;">${cinema.telephone}</td>
+                                    <td style="vertical-align:middle;">${slide.slideId}</td>
+                                    <td style="vertical-align:middle;"><img src="${slide.img}" width="250px" height="100px"/></td>
+                                    <td style="vertical-align:middle;">${slide.slideFilm.filmName}</td>
                                     <td class="text-center" style="vertical-align:middle;">
-                                        <button type="button" class="btn bg-blue btn-xs" onclick="">编辑</button>
-                                        <button type="button" class="btn bg-red btn-xs">删除</button>
+                                        <button type="button" class="btn bg-blue btn-xs" data-toggle="modal"
+                                                data-target="#editSlideModal" onclick="showEditDlg(${slide.slideId})">编辑</button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -98,6 +94,47 @@
         </section>
         <!-- 正文区域 /-->
 
+    <!-- 提示框 -->
+    <div class="alert"></div>
+
+    <!-- 编辑影院的模块框 -->
+    <div class="modal fade" id="editSlideModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">编辑轮播图</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="editSlide" class="form-horizontal">
+                        <input type="hidden" id="slideId" name="slideId">
+                        <div class="form-group">
+                            <label for="imgFile" class="col-sm-2 control-label">轮播图</label>
+                            <div class="col-sm-10">
+                                <img id="picImg" width="400px" height="150px" class="py-1" style="margin-bottom: 5px"><br>
+                                <input type="file" name="imgFile" id="imgFile" onchange="previewImage(this)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="filmId" class="col-sm-2 control-label">影片信息</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="filmId" name="filmId">
+                                    <option value="">请选择所属影片</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="editSlide()">保存</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 
 <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>
@@ -145,6 +182,81 @@
 <script src="/admin/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="/admin/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
+
+    var oldPicture;
+
+    //查询id对应的轮播图信息，并将轮播图信息回显到编辑的窗口中
+    function showEditDlg(id){
+
+        var url = "/getSlideById?slideId="+id;
+
+        $.get(url, function (response) {
+            //将获取的轮播图信息回显到编辑的窗口中
+            $("#slideId").val(response.data.slideId);
+
+            var img = document.getElementById('picImg');
+            img.src = response.data.img;
+            oldPicture = response.data.img;
+
+            var filmId = response.data.filmId;
+            $.each(response.data.filmList, function (index, item) {
+                if(item.filmId == filmId)
+                    $("#filmId").append("<option value='" + item.filmId+"' selected='selected' >" + item.filmName + "</option>");
+                else
+                    $("#filmId").append("<option value='" + item.filmId+"' >" + item.filmName + "</option>");
+
+            })
+        })
+    }
+
+    //点击编辑的保存按钮，提交修改后的轮播图信息
+    function editSlide(){
+        var formData = new FormData(document.getElementById("editSlide"));
+
+        $.ajax({
+            url:"/updateSlide",
+            type: "POST",
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                if (response.success == true){
+                    $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
+                    $('#editSlideModal').modal('hide')
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1500);
+                } else{
+                    $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
+                }
+
+            },
+            error: function (response) {
+                $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
+            }
+        })
+    }
+
+    //回显图片
+    function previewImage(file) {
+        var img = document.getElementById('picImg');
+
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(evt) {
+                img.src = evt.target.result;
+                console.log("read ok!" + evt.target.result);
+            }
+            console.log("start to read");
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            img.src = oldPicture;
+        }
+    }
+
     $(document).ready(function() {
         // 选择框
         $(".select2").select2();

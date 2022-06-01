@@ -16,4 +16,17 @@ public interface SlideMapper {
      */
     public List<Slide> selectAllSlide();
 
+    /**
+     * 根据slideId查询Slide
+     * @param slideId
+     * @return
+     */
+    public Slide findSlideById(Long slideId);
+
+    /**
+     * 更新Slide
+     * @param slide
+     * @return
+     */
+    public Integer updateSlide(Slide slide);
 }

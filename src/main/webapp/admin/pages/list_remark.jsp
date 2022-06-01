@@ -87,7 +87,8 @@
                                         ${remark.remarkUser.userName}
                                     </td>
                                     <td class="text-center">
-                                        <button type="button" class="btn bg-red btn-xs">删除</button>
+                                        <button type="button" class="btn bg-red btn-xs"
+                                                onclick="showDeleteDlg(${remark.remarkId},'${remark.remarkUser.userName}')">删除</button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -107,6 +108,31 @@
 
         </section>
         <!-- 正文区域 /-->
+
+        <!-- 提示框 -->
+        <div class="alert"></div>
+
+        <!-- 删除评论的模块框 -->
+        <div class="modal modal-danger fade" id="deleteRemarkModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">删除评论</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="deleteMessage"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-outline" onclick="deleteRemark()">确定</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 
 
 <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -155,6 +181,34 @@
 <script src="/admin/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="/admin/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
+
+    var deleteId = 0;
+
+    //显示删除模态框
+    function showDeleteDlg(id,userName){
+        deleteId = id;
+
+        $("#deleteMessage").text("您确定要删除"+userName+"用户的评论信息吗?");
+        $("#deleteRemarkModal").modal('show');
+    }
+
+    function deleteRemark(){
+        var url = "/deleteRemark?remarkId="+deleteId;
+
+        $.post(url, function (response) {
+
+            if (response.success == true){
+                $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
+                $('#deleteRemarkModal').modal('hide')
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1500);
+            }else {
+                $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
+            }
+        })
+    }
+
     $(document).ready(function() {
         // 选择框
         $(".select2").select2();

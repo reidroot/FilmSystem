@@ -76,7 +76,6 @@
                 $("#emailMsg").css("color","red");
             }
         })
-
     }
 
     function register(){

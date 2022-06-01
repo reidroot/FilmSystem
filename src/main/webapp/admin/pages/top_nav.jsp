@@ -229,17 +229,17 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="/admin/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">张猿猿</span>
+                        <img src="/files/icon/r2d2.jpg" class="user-image" alt="User Image">
+                        <span class="hidden-xs">${sessionScope.ADMIN_SESSION.adminName}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="/files/icon/r2d2.jpg" class="img-circle" alt="User Image">
 
                             <p>
-                                张猿猿 - 数据管理员
-                                <small>最后登录 11:20AM</small>
+                                ${sessionScope.ADMIN_SESSION.adminName} - 数据管理员
+                                <small>最后登录 ${sessionScope.LAST_LOGIN_TIME}</small>
                             </p>
                         </li>
                         <!-- Menu Body

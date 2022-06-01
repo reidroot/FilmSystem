@@ -222,9 +222,27 @@
                                             ${remark.context}
                                         </p>
                                         <p class="comment-content-footer">
-                                            <span class="comment-content-footer-id">#2</span>
-                                            <span class="comment-content-footer-device">来自安卓客户端</span>
-                                            <span class="comment-content-footer-timestamp"><fmt:formatDate value="${remark.remarkTime}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+                                            <span class="comment-content-footer-device">
+                                                <div class="movie__rate">
+                                                    <script type="text/javascript">
+                                                        var score = ${remark.score}; //评分
+                                                        for (var i=2;i<=10;i=i+2) {
+                                                            if(score >= i) {
+                                                                //存入1代表一个完整的金星
+                                                                document.write('<img height="17px" width="17px" src="files/star-on.png" style="margin-bottom: 5px" />');
+                                                            }else if( score > i-2 && score < i ) {
+                                                                //存入2代表一个左金右会的星星
+                                                                document.write('<img  height="17px" width="17px" src="files/star-half.png" style="margin-bottom: 5px" />');
+                                                            } else {
+                                                                //存入0代表一个完全的灰星
+                                                                document.write('<img height="17px" width="17px" src="files/star-off.png" style="margin-bottom: 5px" />');
+                                                            }
+                                                        }
+                                                    </script>
+                                                    <span class="comment-content-footer-id">${remark.score}分</span>
+                                                    <span class="comment-content-footer-timestamp" style="float: right"><fmt:formatDate value="${remark.remarkTime}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+                                                </div>
+                                            </span>
                                         </p>
                                     </div>
                                     <div class="cls"></div>
@@ -381,7 +399,6 @@
             })
 
             $(".comment-send-button").click(function () {
-
                 var url = "/createRemark";
                 $.post(url, $("#remarkForm").serialize(), function (response) {
 
@@ -396,7 +413,6 @@
                 })
             })
         }
-
     })
 
 

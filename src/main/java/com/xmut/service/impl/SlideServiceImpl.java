@@ -16,4 +16,12 @@ public class SlideServiceImpl implements SlideService {
     public List<Slide> loadAllSlides() {
         return slideMapper.selectAllSlide();
     }
+
+    public Slide getSlideById(Long slideId) {
+        return slideMapper.findSlideById(slideId);
+    }
+
+    public Integer updateSlide(Slide slide) {
+        return slideMapper.updateSlide(slide);
+    }
 }

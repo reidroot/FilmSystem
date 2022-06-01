@@ -103,7 +103,7 @@ public class WebController {
     @RequestMapping("/updateUser")
     public Result updateUser(User user, MultipartFile iconFile, HttpServletRequest request){
 
-        //若更新影院图片
+        //若更新用户头像
         if (!iconFile.getOriginalFilename().equals("")){
             //文件上传功能
             String originalFilename = iconFile.getOriginalFilename();       //上传的文件名字

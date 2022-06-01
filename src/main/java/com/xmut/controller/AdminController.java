@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -49,6 +51,10 @@ public class AdminController {
             return "forward:pages/admin_login.jsp";
         }else{
             request.getSession().setAttribute("ADMIN_SESSION", dbAdmin);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            String lastTime = sdf.format(new Date());
+            System.out.println(lastTime);
+            request.getSession().setAttribute("LAST_LOGIN_TIME", lastTime);
             return "redirect:pages/admin_index.jsp";
         }
     }

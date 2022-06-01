@@ -18,6 +18,13 @@ public interface RemarkService {
     public Integer createRemark(Remark remark);
 
     /**
+     * 删除评论
+     * @param remarkId
+     * @return
+     */
+    public Integer removeRemark(Long remarkId);
+
+    /**
      * 根据评论ID查找评论信息
      * @param remarkId
      * @return

@@ -17,6 +17,13 @@ public interface OrderService {
     public Integer createOrder(Order order);
 
     /**
+     * 更新订单信息
+     * @param order
+     * @return
+     */
+    public Integer updateOrder(Order order);
+
+    /**
      * 根据订单ID查找复杂订单信息
      * @param orderId
      * @return

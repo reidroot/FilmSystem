@@ -43,6 +43,10 @@ public class RemarkServiceImpl implements RemarkService {
         return remarkMapper.addRemark(remark);
     }
 
+    public Integer removeRemark(Long remarkId) {
+        return remarkMapper.deleteRemark(remarkId);
+    }
+
     public Remark getRemarkById(long remarkId) {
         return remarkMapper.findRemarkById(remarkId);
     }

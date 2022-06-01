@@ -21,6 +21,10 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.addOrder(order);
     }
 
+    public Integer updateOrder(Order order) {
+        return orderMapper.updateOrder(order);
+    }
+
     public Order getOrderById(long orderId) {
         return orderMapper.findOrderById(orderId);
     }

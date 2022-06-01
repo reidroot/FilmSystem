@@ -32,6 +32,7 @@ public class RemarkController {
         return remark.toString();
     }
 
+    //后台显示评论列表
     @RequestMapping("/loadPagedRemarks")
     public ModelAndView loadPagedRemarks(){
         ModelAndView modelAndView = new ModelAndView();
@@ -44,14 +45,13 @@ public class RemarkController {
         return modelAndView;
     }
 
+    //前台新增评论
     @ResponseBody
     @RequestMapping("/createRemark")
     public Result<Order> createRemark(Remark remark){
-        System.out.println("-----------------看看-------------------");
-        System.out.println(remark);
         try {
             Integer count = remarkService.createRemark(remark);
-            if(count!=1){
+            if(count != 1){
                 return new Result(false, "操作失败!");
             }
             System.out.println("-----------------添加成功-------------------");
@@ -59,6 +59,23 @@ public class RemarkController {
         }catch (Exception e){
             e.printStackTrace();
             return new Result(false, "操作失败!");
+        }
+    }
+
+
+    //后台删除评论
+    @ResponseBody
+    @RequestMapping("/deleteRemark")
+    public Result deleteRemark(Long remarkId){
+        try {
+            Integer count = remarkService.removeRemark(remarkId);
+            if(count != 1){
+                return new Result(false, "删除评论失败!");
+            }
+            return new Result(true,"删除评论成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false, "出现异常,删除评论失败!");
         }
     }
 }

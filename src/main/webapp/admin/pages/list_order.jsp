@@ -43,6 +43,9 @@
         </section>
         <!-- 内容头部 /-->
 
+        <!-- 提示框 -->
+        <div class="alert"></div>
+
         <!-- 正文区域 -->
         <section class="content">
             <!-- .box-body -->
@@ -85,9 +88,8 @@
                                     <c:if test="${order.orderStatus == 2}">退票成功</c:if>
                                 </td>
                                 <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-blue btn-xs" onclick="findOrderById(${order.orderId})">审核</button>
-                                    <button type="button" class="btn bg-red btn-xs">删除</button>
+                                    <button type="button" class="btn bg-blue btn-xs"  data-toggle="modal"
+                                            data-target="#editOrderModal" onclick="findOrderById(${order.orderId})">审核</button>
                                 </td>
                             </tr>
                             </c:forEach>
@@ -107,8 +109,45 @@
         </section>
         <!-- 正文区域 /-->
 
+        <!-- 编辑订单的模块框 -->
+        <div class="modal fade" id="editOrderModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">编辑订单</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editOrder" class="form-horizontal">
+                            <input type="hidden" id="orderId" name="orderId">
+                            <div class="form-group">
+                                <label for="orderStatus" class="col-sm-2 control-label">订单状态</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="orderStatus" name="orderStatus">
+                                        <option value="">请选择订单状态</option>
+                                        <option value="-1">无法退票</option>
+                                        <option value="0">退票中</option>
+                                        <option value="1">已支付</option>
+                                        <option value="2">退票成功</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" onclick="editOrder()">保存</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
 
-<script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+
+    <script src="/admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="/admin/plugins/jQueryUI/jquery-ui.min.js"></script>
 <script>
     $.widget.bridge('uibutton', $.ui.button);
@@ -155,10 +194,29 @@
 <script src="/admin/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
 
+    //查询id对应的订单信息，并将场次信息回显到编辑的窗口中
     function findOrderById(id){
         var url = "/getOrderById?orderId="+id;
         $.get(url, function (response) {
-            console.log(response.data.position);
+            //将获取的订单信息回显到编辑的窗口中
+            $("#orderId").val(response.data.orderId);
+            $("#orderStatus").val(response.data.orderStatus);
+        })
+    }
+
+    function editOrder(){
+        var url = "/updateOrder";
+
+        $.post(url, $("#editOrder").serialize(), function (response) {
+            if (response.success == true){
+                $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
+                $('#editOrderModal').modal('hide')
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1500);
+            }else {
+                $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
+            }
         })
     }
 

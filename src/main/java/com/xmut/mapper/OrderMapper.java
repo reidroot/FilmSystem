@@ -21,6 +21,13 @@ public interface OrderMapper {
     public Integer addOrder(Order order);
 
     /**
+     * 更新Order
+     * @param order
+     * @return
+     */
+    public Integer updateOrder(Order order);
+
+    /**
      * 根据orderId查询Order  一对一关联 User、Schedule
      * @param orderId
      * @return

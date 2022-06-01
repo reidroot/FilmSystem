@@ -19,6 +19,13 @@ public interface RemarkMapper {
     public Integer addRemark(Remark remark);
 
     /**
+     * 根据主键remarkId删除Remark
+     * @param remarkId 主键
+     * @return
+     */
+    public Integer deleteRemark(Long remarkId);
+
+    /**
      * 根据remarkId查询Remark  一对一关联 User、Film
      * @param remarkId
      * @return
@@ -36,4 +43,5 @@ public interface RemarkMapper {
      * @return
      */
     public Page<Remark> selectPagedRemarks();
+
 }

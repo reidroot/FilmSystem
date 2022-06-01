@@ -272,7 +272,7 @@
 
     //点击编辑的保存按钮，提交更改后的场次信息
     function editSchedule(){
-        var url ="/updateSchedule";
+        var url = "/updateSchedule";
         $.post(url, $("#editSchedule").serialize(), function (response) {
 
             if (response.success == true){
@@ -290,7 +290,6 @@
 
     //显示模态窗，并将场次信息回显到上架、下架的窗口中
     function showDeleteDlg(id,status,cinemaName,fileName){
-        //将获取的场次信息回显到指定的窗口中
         deleteId = id;
         if(status == 0){
             $("#shelvesMessage").text("您确定要上架"+cinemaName+"影院下"+fileName+"的场次信息吗?");
@@ -312,7 +311,7 @@
                 $('#shelvesScheduleModal').modal('hide')
                 setTimeout(function() {
                     window.location.reload();
-                }, 1800);
+                }, 1500);
             }else {
                 $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
             }

@@ -38,6 +38,7 @@ D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\domain\Film.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\ScheduleService.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\controller\ScheduleController.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\impl\CinemaServiceImpl.java
+D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\controller\SlideController.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\mapper\FilmMapper.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\OrderService.java
 D:\J2EE_XL\File_rating_website\src\main\java\com\xmut\service\impl\OrderServiceImpl.java

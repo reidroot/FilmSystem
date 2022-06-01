@@ -43,6 +43,22 @@ public class CinemaController {
     }
 
     @ResponseBody
+    @RequestMapping("/getCinemaById")
+    public Result<Cinema> getCinemaById(Long cinemaId){
+
+        try {
+            Cinema cinema = cinemaService.findEasyCinemaById(cinemaId);
+            if (cinema == null)
+                return new Result(false,"没有获取影院信息");
+            return new Result(true,"查询场次成功", cinema);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false,"出现异常，查询影院失败！");
+        }
+    }
+
+    @ResponseBody
     @RequestMapping("/updateCinema")
     public Result updateCinema(Cinema cinema, MultipartFile pictureFile, HttpServletRequest request){
 
@@ -84,18 +100,4 @@ public class CinemaController {
         return modelAndView;
     }
 
-    @ResponseBody
-    @RequestMapping("/getCinemaById")
-    public Result<Cinema> getCinemaById(Long cinemaId){
-
-        try {
-            Cinema cinema = cinemaService.findEasyCinemaById(cinemaId);
-            if (cinema == null)
-                return new Result(false,"没有获取影院信息");
-            return new Result(true,"查询场次成功", cinema);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new Result(false,"查询影院失败！");
-        }
-    }
 }
