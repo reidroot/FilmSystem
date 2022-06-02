@@ -1,5 +1,7 @@
 package com.xmut.service;
 
+import com.xmut.domain.Order;
+import com.xmut.domain.Remark;
 import com.xmut.domain.User;
 
 import java.util.List;
@@ -23,11 +25,25 @@ public interface UserService {
     public Integer updateUser(User user);
 
     /**
-     * 根据userId获取用户
+     * 基本修改页面 根据userId获取用户
      * @param userId
      * @return
      */
     public User getUserById(Long userId);
+
+    /**
+     * 评论记录页面 根据用户Id查询相关评论信息
+     * @param userId
+     * @return
+     */
+    public List<Remark> loadRemarkByUserId(Long userId);
+
+    /**
+     * 购票记录页面 根据用户Id查询相关订单信息
+     * @param userId
+     * @return
+     */
+    public List<Order> loadOrderByUserId(Long userId);
 
     /**
      * 前台注册 检查该邮箱是否已经注册过

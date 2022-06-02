@@ -42,10 +42,16 @@
         select * from t_remark order by remark_time desc
     </select>
 
+    <!-- 根据userId查询相关Remark信息 -->
+    <select id="selectRemarksByUserId" parameterType="Long" resultMap="RemarkWithUserAndFilm">
+        select * from t_remark where user_id = #{userId}
+    </select>
+
     <!--==================================== 提供给其他Mapper ====================================-->
     <!-- 一对多： 提供给FilmMapper -->
     <select id="remarkListToFilm" parameterType="Long" resultMap="RemarkWithUserAndFilm">
         select * from t_remark where film_id = #{film_id}
     </select>
+
 
 </mapper>

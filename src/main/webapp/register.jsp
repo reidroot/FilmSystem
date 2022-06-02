@@ -61,6 +61,8 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
 
+    var emailPass = 0;
+
     //检查邮箱是否被注册过
     function checkUserEmail(){
         var email = $("#userEmail").val()
@@ -71,34 +73,40 @@
             if (response.success == true){
                 $("#emailMsg").text(response.message);
                 $("#emailMsg").css("color","green");
+                emailPass = 1;
             }else{
                 $("#emailMsg").text(response.message);
                 $("#emailMsg").css("color","red");
+                emailPass = -1;
             }
         })
     }
 
     function register(){
-        $.ajax({
-            url:"/createUser",
-            type:"POST",
-            data:$("#userForm").serialize(),
-            success:function (response) {
-                if (response.success == true){
-                    $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
+        if(emailPass == 1){
+            $.ajax({
+                url:"/createUser",
+                type:"POST",
+                data:$("#userForm").serialize(),
+                success:function (response) {
+                    if (response.success == true){
+                        $('.alert').html(response.message).addClass('alert-success').show().delay(1500).fadeOut();
 
-                    setTimeout(function() {
-                        window.location.href = "login.jsp";
-                    }, 1500);
-                }else {
+                        setTimeout(function() {
+                            window.location.href = "login.jsp";
+                        }, 1500);
+                    }else {
+                        $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
+                    }
+
+                },
+                error: function (response) {
                     $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
                 }
-
-            },
-            error: function (response) {
-                $('.alert').html(response.message).addClass('alert-danger').show().delay(1500).fadeOut();
-            }
-        })
+            })
+        }else{
+            alert("请重新输入邮箱")
+        }
     }
 
     window.onload = function () {

@@ -184,11 +184,11 @@
 
     var deleteId = 0;
 
-    //显示删除模态框
+    //显示删除模态窗
     function showDeleteDlg(id,userName){
         deleteId = id;
 
-        $("#deleteMessage").text("您确定要删除"+userName+"用户的评论信息吗?");
+        $("#deleteMessage").text("您确定要删除["+userName+"]用户的评论信息吗?");
         $("#deleteRemarkModal").modal('show');
     }
 

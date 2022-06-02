@@ -145,6 +145,23 @@
 <script src="/admin/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
 <script src="/admin/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script>
+    //预览图片
+    function previewImage(file) {
+        var img = document.getElementById('picImg');
+
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(evt) {
+                img.src = evt.target.result;
+            }
+
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            img.src = "/files/no-pic2.jpg";
+        }
+    }
+
     $(document).ready(function() {
         // 选择框
         $(".select2").select2();
@@ -167,23 +184,6 @@
         if (liObj.length > 0) {
             liObj.parent().parent().addClass("active");
             liObj.addClass("active");
-        }
-    }
-
-    //回显图片
-    function previewImage(file) {
-        var img = document.getElementById('picImg');
-
-        if (file.files && file.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(evt) {
-                img.src = evt.target.result;
-            }
-            console.log("start to read");
-            reader.readAsDataURL(file.files[0]);
-        } else {
-            img.src = "/files/no-pic2.jpg";
         }
     }
 

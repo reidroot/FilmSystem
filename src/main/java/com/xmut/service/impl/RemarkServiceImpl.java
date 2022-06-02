@@ -27,7 +27,7 @@ public class RemarkServiceImpl implements RemarkService {
     public Integer createRemark(Remark remark) {
         int isBought = 0;
 
-        List<Order> orderList = orderMapper.findOrderByUserId(remark.getUserId());
+        List<Order> orderList = orderMapper.selectOrdersByUserId(remark.getUserId());
         if (orderList != null && !orderList.isEmpty()){
             for (Order order:orderList) {
                 if (order.getOrderSchedule().getFilmId() == remark.getFilmId()){

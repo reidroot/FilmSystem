@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>基本信息</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="./css/index.css">
     <link rel="stylesheet" href="css/base.css" type="text/css" />
@@ -29,8 +29,8 @@
         <div class="setting pb10">
             <div class="nav-tabs pa">
                 <h class="baseinfo fl active">基本信息</h>
-                <a href="http://www.baidu.com" class="countinfo fl">购票记录</a>
-                <a href="http://www.baidu.com" class="countinfo fl">评论记录</a>
+                <a href="/loadOrderByUserId?userId=${sessionScope.USER_SEESION.userId}" class="countinfo fl">购票记录</a>
+                <a href="/loadRemarkByUserId?userId=${sessionScope.USER_SEESION.userId}" class="countinfo fl">评论记录</a>
                 <div class="cb"></div>
             </div>
             <div class="contentBox">
@@ -75,9 +75,7 @@
                             <label class="label-name" for="preference">个性签名：</label>
                             <div class="rlf-group">
                                 <div class="pr">
-                                    <textarea name="preference"  id="preference"  rows="5" class="noresize js-sign moco-form-control">
-                                        ${sessionScope.USER_SEESION.preference}
-                                    </textarea>
+                                    <textarea name="preference"  id="preference"  rows="5" class="noresize js-sign moco-form-control">${sessionScope.USER_SEESION.preference}</textarea>
                                 </div>
                             </div>
                         </div>

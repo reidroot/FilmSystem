@@ -35,10 +35,10 @@ public interface OrderMapper {
     public Order findOrderById(Long orderId);
 
     /**
-     * 根据userId 查询相关订单
+     * 根据userId 查询相关订单列表
      * @return
      */
-    public List<Order> findOrderByUserId(Long userId);
+    public List<Order> selectOrdersByUserId(Long userId);
 
     /**
      * 简单查询Order

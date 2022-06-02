@@ -190,6 +190,7 @@
                         </div>
                     </div>
                 </div>
+                <%-- 评论显示 --%>
                 <div id="remark" class="tab-content" style="display: none">
                     <div class="movie-watch-time bodpnd">
                         <p class="title">${filmInfo.filmName}的短评· · · · · · (全部${filmInfo.remarkCount}条)</p>
@@ -234,13 +235,10 @@
                                                         var score = ${remark.score}; //评分
                                                         for (var i=2;i<=10;i=i+2) {
                                                             if(score >= i) {
-                                                                //存入1代表一个完整的金星
+                                                                //存入一个完整的金星
                                                                 document.write('<img height="17px" width="17px" src="files/star-on.png" style="margin-bottom: 5px" />');
-                                                            }else if( score > i-2 && score < i ) {
-                                                                //存入2代表一个左金右会的星星
-                                                                document.write('<img  height="17px" width="17px" src="files/star-half.png" style="margin-bottom: 5px" />');
-                                                            } else {
-                                                                //存入0代表一个完全的灰星
+                                                            }else {
+                                                                //存入一个完全的灰星
                                                                 document.write('<img height="17px" width="17px" src="files/star-off.png" style="margin-bottom: 5px" />');
                                                             }
                                                         }
@@ -388,6 +386,7 @@
             $('.stars li').css('color', '#ADADAD');
             isClicked = true;
             var index = $(this).index();
+
             for(var i = 1; i <= index+1; i++) {
                 $('.stars li:nth-child(' + i + ')').css('color', '#FFBF2C');
             }

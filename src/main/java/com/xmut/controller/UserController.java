@@ -15,7 +15,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/loadPagedUsers")
-    public ModelAndView loadPagedCinemas(){
+    public ModelAndView loadPagedUsers(){
         ModelAndView modelAndView = new ModelAndView();
 
         List<User> userList = userService.loadAllUsers();

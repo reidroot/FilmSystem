@@ -33,6 +33,13 @@ public interface RemarkMapper {
     public Remark findRemarkById(Long remarkId);
 
     /**
+     * 根据userId查询User
+     * @param userId
+     * @return
+     */
+    public List<Remark> selectRemarksByUserId(Long userId);
+
+    /**
      * 查询所有Remark
      * @return
      */

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -31,6 +30,9 @@ public class WebController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private RemarkService remarkService;
 
     @Autowired
     private ScheduleService scheduleService;
@@ -106,7 +108,7 @@ public class WebController {
     }
 
     /**
-     * 修改个人信息
+     * 用户基本信息 修改个人信息
      * @param user
      * @param iconFile
      * @param request
@@ -147,6 +149,39 @@ public class WebController {
 
     }
 
+    /**
+     * 用户评论记录
+     * @param userId
+     * @return
+     */
+    @RequestMapping("/loadRemarkByUserId")
+    public ModelAndView loadRemarkByUserId(Long userId){
+        ModelAndView modelAndView = new ModelAndView();
+
+        List<Remark> userRemarks = userService.loadRemarkByUserId(userId);
+
+        modelAndView.addObject("userRemarks", userRemarks);
+        modelAndView.setViewName("forward:remarks.jsp");
+
+        return modelAndView;
+    }
+
+    /**
+     * 用户购票记录
+     * @param userId
+     * @return
+     */
+    @RequestMapping("/loadOrderByUserId")
+    public ModelAndView loadOrderByUserId(Long userId){
+        ModelAndView modelAndView = new ModelAndView();
+
+        List<Order> userOrders = userService.loadOrderByUserId(userId);
+
+        modelAndView.addObject("userOrders", userOrders);
+        modelAndView.setViewName("forward:orders.jsp");
+
+        return modelAndView;
+    }
 
     /**
      * 用户登录
@@ -159,7 +194,6 @@ public class WebController {
 
         //调用Service
         User dbUser = userService.login(user);
-        System.out.println(dbUser);
 
         if (dbUser == null){
             //登陆失败
@@ -192,11 +226,11 @@ public class WebController {
      * @return
      */
     @RequestMapping("/filmInfo")
-    public ModelAndView filmInfo(long filmId){
+    public ModelAndView filmInfo(Long filmId){
 
         ModelAndView modelAndView = new ModelAndView();
 
-        //获取该filmId的影片信息
+        //获取该filmId的影片信息（带有该电影的评论列表）
         Film filmInfo = filmService.getFilmById(filmId);
         char score[] = filmInfo.getRemarkScore().toString().toCharArray();
 
@@ -228,7 +262,6 @@ public class WebController {
 
         return modelAndView;
     }
-
 
     /**
      * 为前台ticket.jsp页面传值
@@ -287,9 +320,7 @@ public class WebController {
      * @return
      */
     @RequestMapping("/generateOrder")
-    @ResponseBody
     public String generateOrder(String rows, String cols, Order order, Long userId, Long scheduleId){
-        System.out.println(order);
 
         //用户购买的座位行、列
         char[] rowArray = rows.toCharArray();
@@ -329,6 +360,28 @@ public class WebController {
         schedule.setSeat(seatSql);
         scheduleService.updateSeat(schedule);
 
-        return "success";
+        String url = "forward:ticket?scheduleId="+order.getScheduleId();
+        return url;
+    }
+
+    /**
+     * 前台新增评论
+     * @param remark
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/createRemark")
+    public Result<Order> createRemark(Remark remark){
+
+        try {
+            Integer count = remarkService.createRemark(remark);
+            if(count != 1){
+                return new Result(false, "操作失败!");
+            }
+            return new Result(true,"操作成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false, "操作失败!");
+        }
     }
 }

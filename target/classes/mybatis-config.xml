@@ -27,7 +27,4 @@
         </plugin>
     </plugins>
 
-<mappers>
-    <mapper class="com.xmut.mapper.RemarkMapper"/>
-</mappers>
 </configuration>

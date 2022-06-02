@@ -22,6 +22,10 @@ public class FilmController {
     @Autowired
     private FilmService filmService;
 
+    /**
+     * 后台加载影片列表
+     * @return
+     */
     @RequestMapping("/loadPagedFilms")
     public ModelAndView loadPagedCinemas(){
         ModelAndView modelAndView = new ModelAndView();
@@ -34,6 +38,13 @@ public class FilmController {
         return modelAndView;
     }
 
+    /**
+     * 新增影片
+     * @param film
+     * @param posterFile
+     * @param request
+     * @return
+     */
     @RequestMapping("/createFilm")
     public String createFilm(Film film, MultipartFile posterFile, HttpServletRequest request){
         //文件上传功能
@@ -113,6 +124,11 @@ public class FilmController {
         }
     }
 
+    /**
+     * 上架、下架影片信息
+     * @param filmId
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/deleteFilm")
     public Result deleteFilm(Long filmId){

@@ -103,7 +103,7 @@
         <div class="panel">
             <div class="main">
                 <div class="panel-header">
-                    <span class="panel-title">正在热映（<span>20</span>部）</span>
+                    <span class="panel-title">正在热映</span>
                     <a href="javascript:;" class="panel-more">更多</a>
                 </div>
                 <div class="movie-list">
@@ -158,7 +158,7 @@
         <div class="panel">
             <div class="main">
                 <div class="panel-header">
-                    <span class="panel-title">即将上映（<span>30</span>部）</span>
+                    <span class="panel-title">即将上映</span>
                     <a href="javascript:;" class="panel-more">更多</a>
                 </div>
                 <div class="movie-list">
